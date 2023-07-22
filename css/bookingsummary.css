@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+
+  --primary-button-clr: #38621E;
+  --primary-btn-hover: #60814b;
+  --secondary-button-clr: #FCFDFC;
+  --background-clr: #E9F2EB;
+  --accent-clr: #73AB48;
+  --textlink-hover: #3d5e3e;
+  --main-text-clr: #0C360E;
+  --text-black-clr: #040605;
+  --text-green-clr: #2A401C;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+.section-name {
+  margin: 30px 0px 10px 0px;
+  color: rgb(116, 145, 98);
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
+ 
+.section-phrase {
+  color: var(--text-black-clr);
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media(max-width: 700px) {
+    body {
+        font-size: 14px;
+    }
+
+    .section-name {
+      font-size: 17px;
+    }
+
+    .section-phrase {
+      font-size: 25px;
+    }
+}
+
+/* nav */
+#navBar {
+    .nav {
+        color: #fff;
+        padding: 10px 50px 10px 50px;
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .site-nav {
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        .site-name {
+            .logo {
+                cursor: pointer;
+                float: left;
+            }
+        }
+    
+        .nav-bar a {
+            color: var(--main-text-clr);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            margin-left: 50px;
+        }
+
+        .nav-bar a:hover {
+            color: var(--textlink-hover);
+        }
+            
+        .book-btn {
+            margin: 10px 0;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            border-style: none;
+            background: transparent;
+            padding: 10px 20px;
+            background: var(--primary-button-clr);
+            color: #fff;
+            cursor: pointer;
+            width: 160px;
+            height: 40px;
+        }  
+
+        .book-btn:hover {
+            background: var(--primary-btn-hover);
+        }
+
+        .vl {
+            border-left: 3px solid var(--main-text-clr);
+            height: 30px;
+          }
+
+        #user {
+          color: var(--main-text-clr);
+          font-size: 25px;
+          cursor: pointer;
+        }
+
+    }
+
+    #menu-icon {
+        color: var(--bg-color);
+        font-size: 24px;
+        z-index: 100001;
+        cursor: pointer;
+        display: none;
+    }
+
+    @media(max-width: 700px) {
+      .site-nav {
+    
+        .nav-bar a {
+          display: none;
+        }
+            
+        .book-btn {
+          display: none;
+        }  
+
+        .vl {
+           display: none;
+          }
+
+        #user {
+          color: var(--main-text-clr);
+          font-size: 25px;
+          cursor: pointer;
+        }
+
+    }
+
+
+        #menu-icon {
+            display: inline-block;
+        }
+        .head-top a {
+           display: none;
+    
+        }
+        .head-btn {
+            font-size: 17px;
+        }
+        .head-bottom h1 {
+            font-size: 28px;
+        }
+        .head-bottom p {
+            font-size: 17px;
+            margin: 20px auto;
+        }
+    } 
+}
+
+/*booking summary*/
+#bookingSummary {
+    display: flex;
+    margin: 50px;
+}
+  
+.summary-container {
+    width: 100%;
+    height: auto;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.booking-summary-container {
+    width: 80%;
+    height: auto;
+    border: 2px solid var(--main-text-clr);
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title {
+    width: 100%;
+    background: var(--accent-clr);
+    padding: 10px 10px 10px 20px;
+}
+
+.booking-summary-container h3 {
+    text-align: left;
+}
+
+.details-container {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.section-details {
+    width: 100%;
+    padding: 10px 10px 10px 20px;
+    display: flex;
+}
+
+.section-details span {
+    margin-right: 20px;
+    font-weight: bold;
+    width: 25%;
+    text-align: left;
+}
+
+.totalCost {
+    font-size: 25px;
+}
+
+.totalCostNumber {
+    font-size: 25px;
+}
+
+.horizontal-line {
+    border: none;
+    border-top: 1px solid #ccc; 
+    margin: 20px 0;
+}
+
+.cta-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.primary-btn {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border-style: none;
+    background: transparent;
+    padding: 10px 20px;
+    background: var(--primary-button-clr);
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.3);
+    color: #fff;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+}  
+  
+.primary-btn:hover {
+    background: var(--primary-btn-hover);
+}
+  
+.secondary-btn {
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid var(--primary-button-clr);
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.3);
+    background: transparent;
+    padding: 10px 20px;
+    background: var(--secondary-button-clr);
+    color: var(--primary-button-clr);
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+}  
+  
+.secondary-btn:hover {
+    background: var(--primary-btn-hover);
+    color: #fff;
+}
+
+@media(max-width: 768px) {
+    .cta-buttons {
+    flex-direction: column;
+    }
+}
