@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+  $firstname = $_SESSION["FirstName"];
+  $middlename = $_SESSION["MiddleName"];
+  $lastname = $_SESSION["LastName"];
+  $phonenumber = $_SESSION["PhoneNumber"];
+  $emailaddress = $_SESSION["EmailAddress"];
+
+  $dateofvisit = $_SESSION['dateofvisit'];
+  $timeSlot = $_SESSION['timeSlot'];
+  $Adult = $_SESSION['Adult'];
+  $Children = $_SESSION['Children'];
+  $SeniorPWD = $_SESSION['SeniorPWD'];
+  $cottagetype = $_SESSION['cottagetype'];
+  $notesroom = $_SESSION['notesroom'];
+  $payment = $_SESSION['cottagetype'];
+  $TotalCost = $_SESSION['TotalCost'];
+
+  $paymentAdult = $_SESSION['ppAdult'];
+  $paymentChildren = $_SESSION['ppChildren'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,31 +78,31 @@
             <!-- First Name -->
             <div class="section-details">
               <span>First Name:</span>
-              <p>Trisha Mae</p>
+              <p><?php echo $firstname ?></p>
             </div>
 
             <!-- Middle Name -->
             <div class="section-details">
               <span>Middle Name:</span>
-              <p>Maravilla</p>
+              <p><?php echo $middlename ?></p>
             </div>
 
             <!-- Last Name -->
             <div class="section-details">
               <span>Last Name:</span>
-              <p>Erandio</p>
+              <p><?php echo $lastname ?></p>
             </div>
 
             <!-- Phone Number -->
             <div class="section-details">
               <span>Phone Number:</span>
-              <p>09123456789</p>
+              <p><?php echo $phonenumber ?></p>
             </div>
 
             <!-- Email Address -->
             <div class="section-details">
               <span>Email Address:</span>
-              <p>erandiotrish@gmail.com</p>
+              <p><?php echo $emailaddress ?></p>
             </div>
           </div>
 
@@ -94,13 +118,13 @@
             <!-- Date of Visit:-->
             <div class="section-details">
               <span>Date of Visit:</span>
-              <p>MM/DD/YYYY</p>
+              <p><?php echo $dateofvisit ?></p>
             </div>
 
             <!-- Time Slot-->
             <div class="section-details">
               <span>Time Slot:</span>
-              <p>DAY (8:00 AM - 5:00 PM)</p>
+              <p><?php echo $timeSlot ?></p>
             </div>
 
             <!-- Adult-->
@@ -112,25 +136,25 @@
             <!-- Children-->
             <div class="section-details">
               <span>Children:</span>
-              <p>0</p>
+              <p><?php echo $Children ?></p>
             </div>
 
             <!-- Senior/PWD-->
             <div class="section-details">
               <span>Senior/PWD:</span>
-              <p>0</p>
+              <p><?php echo $SeniorPWD ?></p>
             </div>
 
             <!-- Cottage Type -->
             <div class="section-details">
               <span>Cottage Type:</span>
-              <p>Canopy</p>
+              <p><?php echo $cottagetype ?></p>
             </div>
 
             <!-- Additional Notes -->
             <div class="section-details">
               <span>Additional Notes:</span>
-              <p>None</p>
+              <p><?php echo $notesroom ?></p>
             </div>
           </div>
 
@@ -139,7 +163,7 @@
             <!-- Payment Type -->
             <div class="section-details">
               <span>Payment Type:</span>
-              <p>Down Payment</p>
+              <p><?php echo $payment ?></p>
             </div>
 
             <!-- Payment Method -->
@@ -193,7 +217,7 @@
             <!-- Total Cost -->
             <div class="section-details">
               <span class="totalCost">Total Cost:</span>
-              <p class="totalCostNumber">₱3,240</p>
+              <p class="totalCostNumber"><?php echo ''.$TotalCost ?></p>
             </div>
 
             <div class="cta-buttons">
@@ -201,7 +225,7 @@
                 <button type="button" class="secondary-btn">CANCEL</button>
               </a>
               <a href="confirmation.html" id="confirmBooking">
-                <button type="button" class="primary-btn">
+                <button class="primary-btn">
                   CONFIRM BOOKING
                 </button>
               </a>

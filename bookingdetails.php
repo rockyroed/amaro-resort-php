@@ -1,3 +1,37 @@
+<?php
+session_start();
+
+if(isset($_POST["dateofvisit"])) {
+
+  $dateofvisit = $_POST['dateofvisit'];
+  $timeSlot = $_POST['timeSlot'];
+  $Adult = $_POST['Adult'];
+  $Children = $_POST['Children'];
+  $SeniorPWD = $_POST['SeniorPWD'];
+  $cottagetype = $_POST['cottagetype'];
+  $notesroom = $_POST['notesroom'];
+  $payment = $_POST['cottagetype'];
+  $TotalCost = $_POST['TotalCost'];
+
+  $_SESSION["FirstName"] = $firstname; 
+  $_SESSION["MiddleName"] = $middlename;
+  $_SESSION["LastName"] = $lastname; 
+  $_SESSION["PhoneNumber"] = $phonenumber;
+  $_SESSION["EmailAddress"] = $emailaddress;
+
+  $_SESSION['dateofvisit'] = $dateofvisit;
+  $_SESSION['timeSlot'] = $timeSlot;
+  $_SESSION['Adult'] = $Adult;
+  $_SESSION['Children'] = $Children;
+  $_SESSION['SeniorPWD'] = $SeniorPWD;
+  $_SESSION['cottagetype'] = $cottagetype;
+  $_SESSION['notesroom'] = $notesroom;
+  $_SESSION['payment'] = $payment;
+  $_SESSION['TotalCost'] = $TotalCost;
+  header("Location: paymentdetails.php"); die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,7 +70,7 @@
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <div class="column">
                 <!-- Date of Visit -->
                 <div class="input-box">
@@ -44,6 +78,7 @@
                   <input
                     type="date"
                     id="dateofvisit"
+                    name="dateofvisit"
                     title="Date of Visit"
                     placeholder="DD-MMM-YYYY"
                     required
@@ -124,7 +159,7 @@
                   <select
                     title="cottage type"
                     id="cottagetype"
-                    name="cottage type"
+                    name="cottagetype"
                     required
                   >
                     <option hidden value="">Select Cottage</option>
@@ -140,7 +175,7 @@
                 <textarea
                   id="notesRoom"
                   title="AdditionalNotes"
-                  name="notes room"
+                  name="notesroom"
                   placeholder="Type any additional notes here"
                 ></textarea>
               </div>
@@ -149,12 +184,12 @@
 
               <!-- Payment -->
               <div class="input-box">
-                <label for="CottageType">Payment</label>
+                <label for="payment">Payment</label>
                 <div class="select-box">
                   <select
-                    title="cottage type"
-                    id="cottagetype"
-                    name="cottage type"
+                    title="payment"
+                    id="payment"
+                    name="payment"
                     required
                   >
                     <option hidden value="">
@@ -186,8 +221,8 @@
                 <a href="reservation.html" id="backButton">
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <a href="paymentdetails.html" id="proceedPayment">
-                  <button type="button" class="primary-btn">
+                <!-- <a href="" id="proceedPayment"> -->
+                  <button class="primary-btn">
                     PROCEED TO PAYMENT
                   </button>
                 </a>

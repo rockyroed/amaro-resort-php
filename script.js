@@ -46,3 +46,5 @@ function toggleMainMenu() {
 }
 
 document.getElementById('menu-bar').addEventListener('click', toggleMainMenu);
+
+

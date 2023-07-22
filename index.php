@@ -1,13 +1,11 @@
 <?php
   session_start();
-
-  $isLoggedIn = "";
-
   if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     $isLoggedIn = true;
   } else {
     $isLoggedIn = false;
   }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +36,7 @@
             <a class="navBar" href="index.php"> Home </a>
             <a class="navBar" href="about.html"> About </a>
             <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
             <a class="navBar" href="contact.html"> Contact </a>
           </div>
 

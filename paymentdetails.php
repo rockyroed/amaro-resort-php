@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+if(isset($_POST["ppAdult"])) {
+
+  $paymentAdult = $_POST['ppAdult'];
+  $paymentChildren = $_POST['ppChildren'];
+  
+
+  $_SESSION["paymentAdult"] = $paymentAdult; 
+  $_SESSION["paymentChildren"] = $paymentChildren;
+  header("Location: bookingsummary.php"); die();
+ 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -72,7 +88,7 @@
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <div class="column">
                 <div class="input-box">
                   <!-- Adult -->
@@ -81,7 +97,7 @@
                     type="number"
                     id="adult"
                     title="Adult"
-                    name="Adult"
+                    name="ppAdult"
                     value=""
                     size="40"
                     maxlength="50"
@@ -97,7 +113,7 @@
                     type="number"
                     id="children"
                     title="Children"
-                    name="Children"
+                    name="ppChildren"
                     value=""
                     size="30"
                     maxlength="50"
@@ -111,8 +127,8 @@
                 <a href="bookingdetails.html" id="cancelButton">
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <a href="bookingsummary.html" id="confirm">
-                  <button type="button" class="primary-btn">
+                <!-- <a href="bookingsummary.php" id="confirm"> -->
+                  <button class="primary-btn">
                     CONFIRM PAYMENT
                   </button>
                 </a>
@@ -168,7 +184,7 @@
                 <a href="bookingdetails.html" id="cancelButton">
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <a href="bookingsummary.html" id="confirm">
+                <!-- <a href="bookingsummary.html" id="confirm"> -->
                   <button type="button" class="primary-btn">
                     CONFIRM PAYMENT
                   </button>

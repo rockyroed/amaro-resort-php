@@ -4,6 +4,8 @@
   if(isset($_POST["emailaddress"]) && isset($_POST["password"])) {
     $emailaddress = $_POST["emailaddress"];
     $password = $_POST["password"];
+
+    $_SESSION['email_address'] = $emailaddress;
   
     try {
         require_once "includes/dbh.inc.php";
@@ -25,6 +27,7 @@
             $passwsord = $result["password"];
             $type = $result["type"];
             $creationdate = $result["creation_date"];
+            header( "Location: index.php" ); die;
         } else {
             $error = "Cannot log in. The user is not existing or the password is incorrect. Please try again.";
         }
@@ -133,7 +136,7 @@
 
             <div class="signup-link">
               <span class="question">Don't have an account yet?</span>
-              <a href="signup.html" id="signupLink">
+              <a href="signup.php" id="signupLink">
                 <span class="textlink">SIGN UP</span>
               </a>
             </div>

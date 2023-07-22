@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+$error = "";
+
+  if(isset($_POST["FirstName"])) {
+    $firstname = $_POST["FirstName"];
+    $middlename = $_POST["MiddleName"];
+    $lastname = $_POST["LastName"];
+    $phonenumber = $_POST["PhoneNumber"];
+    $emailaddress = $_POST["EmailAddress"];
+
+    $_SESSION["FirstName"] = $firstname; 
+    $_SESSION["MiddleName"] = $middlename;
+    $_SESSION["LastName"] = $lastname; 
+    $_SESSION["PhoneNumber"] = $phonenumber;
+    $_SESSION["EmailAddress"] = $emailaddress;
+    header("Location: bookingdetails.php"); die();
+    
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,10 +45,10 @@
               SWIMMING
             </button>
           </a>
-          <a href="#swim-book" id="roomBook">
+          <a href="#room-book" id="roomBook">
             <button type="button" class="book-btn" id="room-btn">ROOM</button>
           </a>
-          <a href="#swim-book" id="eventBook">
+          <a href="#event-book" id="eventBook">
             <button type="button" class="book-btn" id="event-btn">EVENT</button>
           </a>
         </div>
@@ -40,7 +64,7 @@
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <!-- Full Name Column -->
 
               <div class="column">
@@ -132,8 +156,8 @@
                 <a href="index.php" id="cancelButton">
                   <button type="button" class="secondary-btn">CANCEL</button>
                 </a>
-                <a href="bookingdetails.html" id="reserveButton">
-                  <button type="button" class="primary-btn">BOOK NOW</button>
+                <!-- <a href="bookingdetails.php" id="reserveButton"> -->
+                  <button class="primary-btn">BOOK NOW</button>
                 </a>
               </div>
             </form>
