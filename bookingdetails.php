@@ -47,7 +47,7 @@ if(isset($_POST["dateofvisit"])) {
   </head>
   <body>
     <section id="reservation">
-      <div class="left-book">
+      <!-- <div class="left-book">
         <div class="left-container">
           <h1>CHOOSE A RESERVATION</h1>
           <a href="#swim-book" id="swimBook">
@@ -60,7 +60,7 @@ if(isset($_POST["dateofvisit"])) {
             <button type="button" class="book-btn">EVENT</button>
           </a>
         </div>
-      </div>
+      </div> -->
       <div class="right-book">
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />

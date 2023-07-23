@@ -29,20 +29,6 @@ if(isset($_POST["ppAdult"])) {
   </head>
   <body>
     <section id="reservation">
-      <div class="left-book">
-        <div class="left-container">
-          <h1>CHOOSE A RESERVATION</h1>
-          <a href="#swim-book" id="swimBook">
-            <button type="button" class="book-btn">SWIMMING</button>
-          </a>
-          <a href="#swim-book" id="roomBook">
-            <button type="button" class="book-btn">ROOM</button>
-          </a>
-          <a href="#swim-book" id="eventBook">
-            <button type="button" class="book-btn">EVENT</button>
-          </a>
-        </div>
-      </div>
       <div class="right-book">
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />
