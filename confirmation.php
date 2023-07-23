@@ -1,28 +1,27 @@
 <?php
 session_start();
+  if(isset($_POST["FirstName"])) {
+    $firstname = $_SESSION["FirstName"];
+    $middlename = $_SESSION["MiddleName"];
+    $lastname = $_SESSION["LastName"];
+    $phonenumber = $_SESSION["PhoneNumber"];
+    $emailaddress = $_SESSION["EmailAddress"];
 
-  $firstname = $_SESSION["FirstName"];
-  $middlename = $_SESSION["MiddleName"];
-  $lastname = $_SESSION["LastName"];
-  $phonenumber = $_SESSION["PhoneNumber"];
-  $emailaddress = $_SESSION["EmailAddress"];
+    $dateofvisit = $_SESSION['dateofvisit'];
+    $timeSlot = $_SESSION['timeSlot'];
+    $Adult = $_SESSION['Adult'];
+    $Children = $_SESSION['Children'];
+    $SeniorPWD = $_SESSION['SeniorPWD'];
+    $cottagetype = $_SESSION['cottagetype'];
+    $notesroom = $_SESSION['notesroom'];
+    $payment = $_SESSION['cottagetype'];
+    $TotalCost = $_SESSION['TotalCost'];
 
-  $dateofvisit = $_SESSION['dateofvisit'];
-  $timeSlot = $_SESSION['timeSlot'];
-  $Adult = $_SESSION['Adult'];
-  $Children = $_SESSION['Children'];
-  $SeniorPWD = $_SESSION['SeniorPWD'];
-  $cottagetype = $_SESSION['cottagetype'];
-  $notesroom = $_SESSION['notesroom'];
-  $payment = $_SESSION['cottagetype'];
-  $TotalCost = $_SESSION['TotalCost'];
+    $paymentAdult = $_SESSION['ppAdult'];
+    $paymentChildren = $_SESSION['ppChildren'];
 
-  $paymentAdult = $_SESSION['ppAdult'];
-  $paymentChildren = $_SESSION['ppChildren'];
-
-  $date = date('m/d/y H:i:s');
-  
-
+    $date = date('m/d/y H:i:s');
+  }
 ?>
 
 <!DOCTYPE html>
