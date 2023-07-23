@@ -128,6 +128,20 @@ function validateSeniorPWDPax(){
   }
 }
 
+function eventPax(){
+  var paxNumber = document.getElementById('paxNum').value;
+  var maxPax = document.getElementById('event.maxPax').value;
+  console.log(paxNumber, maxPax);
+
+  if(Number(paxNumber) < 0) {
+    document.getElementById('paxNum').value = 0;
+  } else {
+    if(Number(paxNumber) > Number(maxPax)) {
+      document.getElementById('paxNum').value = Number(maxPax);
+    }
+  }
+}
+
 function computeDays(){
   var checkin = document.getElementById('checkin').value;
   var checkout = document.getElementById('checkout').value;
@@ -170,4 +184,22 @@ function greyOutPreviousDate(){
   checkOutInput.setAttribute('min', currentDateString);
   console.log(currentDate);
   console.log(currentDateString);
+  }
+
+  function calculateEventTotal(){
+    var eventPrice = document.getElementById('event.price').value;
+    var totalCost = document.getElementById('totalCost');
+    var downPayment = document.getElementById('downPayment');
+
+    var tcpost = document.getElementById('tcPost');
+    var dpPost = document.getElementById('dpPost');
+
+
+    var FinalCost = eventPrice;
+    
+      totalCost.textContent = "₱" + FinalCost;
+      downPayment.textContent = "₱" + (FinalCost * 0.2);
+
+      tcpost.value = totalCost.textContent;
+      dpPost.value = downPayment.textContent;
   }

@@ -62,8 +62,23 @@ TotalCost
     header("Location: paymentdetails.php"); die();
   }
     
-} else {
-  $type = "EVENT";
+} else if ($type == "EVENT") {
+  if(isset($_POST['eventDate']) && isset($_POST['PaxNumber']) && isset($_POST['venuearea'])){
+  $eventDate = $_POST['eventDate'];
+  $eventPax = $_POST['PaxNumber'];
+  $venueArea = $_POST['venuearea'];
+  $TotalCost = $_POST['totalCost'];
+  $downPayment = $_POST['downPayment'];
+
+  $_SESSION["EventDate"] = $eventDate;
+  $_SESSION["EventPax"] = $eventPax;
+  $_SESSION["VenueArea"] = $venueArea;
+  $_SESSION["totalCost"] = $TotalCost;
+  $_SESSION["downPayment"] = $downPayment;
+  echo "<script>alert('Success');</script>";
+  header("Location: paymentdetails.php"); die();
+  }
+
 }
 
 ?>
@@ -291,7 +306,6 @@ TotalCost
                 </div>
               </div>
               <div class="hidden" id="roomRet">
-              <input type='hidden' id=tempMax value=''>
                 
               </div>
               
@@ -423,6 +437,43 @@ TotalCost
             <hr class="hz-line" />
             <!-- Form -->
             <form action="" class="form" method="post">
+            <div class="column">
+                <!-- Venue / Area -->
+                <div class="input-box">
+                  <label for="VenueArea">Venue / Area</label>
+                  <div class="select-box">
+                    <select
+                      title="venue area"
+                      id="venueArea"
+                      name="venuearea"
+                      required
+                      onchange="calculateEventTotal()"
+                    >
+                      <option hidden value="">Select Venue</option>
+                      <option value="Function Hall">Function Hall Max Pax: 80</option>
+                      <option value="Court">Court</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Pax Number -->
+                <div class="input-box">
+                  <label for="PaxNumber">Pax Number</label>
+                  <input
+                    type="number"
+                    id="paxNum"
+                    title="Pax Number"
+                    name="PaxNumber"
+                    value=""
+                    size="30"
+                    maxlength="50"
+                    placeholder="0"
+                    required
+                    onclick="eventPax()"
+                  />
+                </div>
+              </div>
+
               <div class="column">
                 <!-- Event Date -->
                 <div class="input-box">
@@ -430,10 +481,11 @@ TotalCost
                   <input
                     type="date"
                     id="eventDate"
-                    name="eventDate
+                    name="eventDate"
                     title="Event Date"
                     placeholder="DD-MMM-YYYY"
                     required
+                    onchange="calculateEventTotal()"
                   />
                 </div>
 
@@ -455,39 +507,9 @@ TotalCost
                   </div>
                 </div> -->
               </div>
-              <div class="column">
-                <!-- Pax Number -->
-                <div class="input-box">
-                  <label for="PaxNumber">Pax Number</label>
-                  <input
-                    type="number"
-                    id="paxNum"
-                    title="Pax Number"
-                    name="PaxNumber"
-                    value=""
-                    size="30"
-                    maxlength="50"
-                    placeholder="0"
-                    required
-                  />
-                </div>
 
-                <!-- Venue / Area -->
-                <div class="input-box">
-                  <label for="VenueArea">Venue / Area</label>
-                  <div class="select-box">
-                    <select
-                      title="venue area"
-                      id="venueArea"
-                      name="venuearea"
-                      required
-                    >
-                      <option hidden value="">Select Venue</option>
-                      <option value="Function Hall">Function Hall</option>
-                      <option value="Court">Court</option>
-                    </select>
-                  </div>
-                </div>
+              <div class="hidden" id="eventRet">
+                
               </div>
 
               <!-- Additional Notes -->
@@ -506,13 +528,15 @@ TotalCost
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <p id="totalCost"></p>
+                <input class="hidden" id="tcPost" name="totalCost"></input>
+                <p id="totalCost">₱0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
-                <p id="downPayment"></p>
+                <input class="hidden" id="dpPost" name="downPayment"></input>
+                <p id="downPayment" name="">₱0</p>
               </div>
 
               <div class="cta-buttons">
@@ -571,6 +595,27 @@ TotalCost
                         // console.log(data);
                         // console.log("value:" + value);
                         $("#roomRet").html(data);
+                    }
+                });
+            });
+        });
+  </script>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $("#venueArea").on('click',function(){
+                var value = $(this).val();
+
+                $.ajax({url:"fetch.php",
+                    type:"POST",
+                    data:"event=" + value,
+                    dataType: "html",
+                    beforeSend:function(){
+                        $("#eventRet").html("");
+                    },
+                    success:function(data){
+                        // console.log(data);
+                        // console.log("value:" + value);
+                        $("#eventRet").html(data);
                     }
                 });
             });

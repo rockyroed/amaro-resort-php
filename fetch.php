@@ -37,6 +37,24 @@ if (isset($_POST['room'])){
             echo "<input type='hidden' name='room.minPax' id='room.minPax' value='$minPax'>";
         }
 }
+
+if (isset($_POST['event'])){
+        
+    $event = $_POST['event'];
+
+    $query = "SELECT * FROM `event_venues` WHERE `event_type` = '$event'";
+    $eventRes = mysqli_query($con, $query);
+    while($eventRow = mysqli_fetch_assoc($eventRes)){
+        $eventType = $eventRow['event_type'];
+        $eventPrice = $eventRow['price'];
+        $eventMinPax = $eventRow['pax_min'];
+        $eventMaxPax = $eventRow['pax_max'];
+        echo "<input type='hidden' name=event.price id=event.price value='$eventPrice'>";
+        echo "<input type='hidden' name='event' id='event' value='$eventType'>";
+        echo "<input type='hidden' name='event.maxPax' id='event.maxPax' value='$eventMaxPax'>";
+        echo "<input type='hidden' name='event.minPax' id='event.minPax' value='$eventMinPax'>";
+    }
+}
 ?>
 
 
