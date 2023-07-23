@@ -59,8 +59,8 @@
           </div>
 
           <div class="page-buttons">
-            <a href="#bookingHistory" id="bookingHistory">
-              <button type="button" class="page-btn">BOOKING</button>
+            <a href="" id="bookingHistory">
+              <button type="button" class="page-btn selected">BOOKING</button>
             </a>
             <a href="#accountSettings" id="settings">
               <button type="button" class="page-btn">SETTINGS</button>
@@ -70,7 +70,7 @@
       </div>
       <div class="right-side">
         <!-- start of account settings -->
-        <section class="account-settings-container" id="accountSettings">
+        <section class="account-settings-container hidden" id="accountSettingsContainer">
           <div class="page-title">
             <span>Account Settings</span>
           </div>
@@ -174,7 +174,7 @@
         <!-- start of account settings-->
 
         <!-- start of booking history -->
-        <section id="booking-history-container" id="bookingHistory">
+        <section class="booking-history-container" id="bookingHistoryContainer">
           <div class="page-title">
             <span>Booking History</span>
           </div>
@@ -204,5 +204,6 @@
       </div>
     </section>
     <!-- end of account -->
+    <script type="module" src="./javascript/account.js"></script>
   </body>
 </html>

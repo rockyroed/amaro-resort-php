@@ -464,3 +464,16 @@ body {
 #booking a {
   color: var(--primary-button-clr);
 }
+
+.selected {
+  background: var(--primary-btn-hover);
+  color: #fff;
+}
+
+.shown {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
