@@ -163,14 +163,20 @@ if(isset($_POST["dateofvisit"])) {
                     required
                   >
                     <option hidden value="">Select Cottage</option>
-                    <option value="Pavillion">Pavillion</option>
-                    <option value="Night">NIGHT (7:00 PM - 4:00 AM)</option>
+                    <option value="Pavillion">None</option>
+                    <option value="Night">Canopy (5-10 pax): P1,000.00</option>
+                    <option value="Night">Trellis 1</option>
+                    <option value="Night">Trellis 2</option>
+                    <option value="Night">Kubo</option>
+                    <option value="Night">Pavilion 1</option>
+                    <option value="Night">Pavilion 2</option>
+                    <option value="Night">Pavilion 3</option>
                   </select>
                 </div>
               </div>
 
               <!-- Additional Notes -->
-              <div class="input-box">
+              <!-- <div class="input-box">
                 <label for="Notes">Additional Notes</label>
                 <textarea
                   id="notesRoom"
@@ -178,7 +184,7 @@ if(isset($_POST["dateofvisit"])) {
                   name="notesroom"
                   placeholder="Type any additional notes here"
                 ></textarea>
-              </div>
+              </div> -->
 
               <hr class="horizontal-line" />
 
@@ -313,7 +319,7 @@ if(isset($_POST["dateofvisit"])) {
                 </div>
               </div>
 
-              <!-- Cottage Type -->
+              <!-- Room Type -->
               <div class="input-box">
                 <label for="RoomType">Room Type</label>
                 <div class="select-box">
@@ -324,14 +330,14 @@ if(isset($_POST["dateofvisit"])) {
                     required
                   >
                     <option hidden value="">Select Room</option>
-                    <option value="CoupleRoom">Couple Room (₱2,000)</option>
+                    <option value="CoupleRoom">Couple Room (pax min-pax max) (₱2,000)</option>
                     <option value="FamilyRoom">Family Room (₱2,800)</option>
                   </select>
                 </div>
               </div>
 
               <!-- Additional Notes -->
-              <div class="input-box">
+              <!-- <div class="input-box">
                 <label for="notes">Additional Notes</label>
                 <textarea
                   id="notesSwim"
@@ -339,7 +345,7 @@ if(isset($_POST["dateofvisit"])) {
                   name="notes swim"
                   placeholder="Type any additional notes here"
                 ></textarea>
-              </div>
+              </div> -->
 
               <hr class="horizontal-line" />
 
@@ -414,7 +420,7 @@ if(isset($_POST["dateofvisit"])) {
                 </div>
 
                 <!-- Event Type -->
-                <div class="input-box">
+                <!-- <div class="input-box">
                   <label for="EventType">Event Type</label>
                   <div class="select-box">
                     <select
@@ -429,7 +435,7 @@ if(isset($_POST["dateofvisit"])) {
                       <option value="Anniversary">Debut</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="column">
                 <!-- Pax Number -->
@@ -459,7 +465,7 @@ if(isset($_POST["dateofvisit"])) {
                       required
                     >
                       <option hidden value="">Select Venue</option>
-                      <option value="CoupleRoom">Function Hall</option>
+                      <option value="CoupleRoom">Function Hall (pax min-pax max): (Price)</option>
                       <option value="FamilyRoom">Court / Event Area</option>
                     </select>
                   </div>
@@ -467,7 +473,7 @@ if(isset($_POST["dateofvisit"])) {
               </div>
 
               <!-- Additional Notes -->
-              <div class="input-box">
+              <!-- <div class="input-box">
                 <label for="notes">Additional Notes</label>
                 <textarea
                   id="notesSwim"
@@ -475,7 +481,7 @@ if(isset($_POST["dateofvisit"])) {
                   name="notes swim"
                   placeholder="Type any additional notes here"
                 ></textarea>
-              </div>
+              </div> -->
 
               <hr class="horizontal-line" />
 

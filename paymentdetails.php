@@ -77,33 +77,17 @@ if(isset($_POST["ppAdult"])) {
             <form action="#" class="form" method="post">
               <div class="column">
                 <div class="input-box">
-                  <!-- Adult -->
-                  <label for="Adult">Adult</label>
+                  <!-- Email Address -->
+                  <label for="Adult">Email Address</label>
                   <input
-                    type="number"
-                    id="adult"
+                    type="text"
+                    id="email-address"
                     title="Adult"
                     name="ppAdult"
                     value=""
                     size="40"
                     maxlength="50"
-                    placeholder="0"
-                    required
-                  />
-                </div>
-
-                <!-- Children -->
-                <div class="input-box">
-                  <label for="Children">Children</label>
-                  <input
-                    type="number"
-                    id="children"
-                    title="Children"
-                    name="ppChildren"
-                    value=""
-                    size="30"
-                    maxlength="50"
-                    placeholder="0"
+                    placeholder=""
                     required
                   />
                 </div>
@@ -134,29 +118,29 @@ if(isset($_POST["ppAdult"])) {
             <form action="#" class="form" method="get">
               <div class="column">
                 <div class="input-box">
-                  <!-- Adult -->
-                  <label for="Adult">Adult</label>
+                  <!-- Account Name -->
+                  <label for="Adult">Account Name</label>
                   <input
-                    type="number"
-                    id="adult"
-                    title="Adult"
+                    type="text"
+                    id="account-name"
+                    title="Account Name"
                     name="Adult"
                     value=""
                     size="40"
-                    maxlength="50"
-                    placeholder="0"
+                    maxlength="100"
+                    placeholder=""
                     required
                   />
                 </div>
 
-                <!-- Children -->
+                <!-- Account Number -->
                 <div class="input-box">
-                  <label for="Children">Children</label>
+                  <label for="Children">Account Number</label>
                   <input
                     type="number"
-                    id="children"
-                    title="Children"
-                    name="Children"
+                    id="account-number"
+                    title="Account Number"
+                    name="accountnumber"
                     value=""
                     size="30"
                     maxlength="50"
