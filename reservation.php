@@ -3,13 +3,15 @@ session_start();
 
 $error = "";
 
-  if(isset($_POST["FirstName"])) {
+  if(isset($_POST['restype']) && isset($_POST["FirstName"]) && isset($_POST["MiddleName"]) && isset($_POST["LastName"]) && isset($_POST["PhoneNumber"]) && isset($_POST["EmailAddress"])) {
+    $type = $_POST["restype"];
     $firstname = $_POST["FirstName"];
     $middlename = $_POST["MiddleName"];
     $lastname = $_POST["LastName"];
     $phonenumber = $_POST["PhoneNumber"];
     $emailaddress = $_POST["EmailAddress"];
 
+    $_SESSION["Type"] = $type;
     $_SESSION["FirstName"] = $firstname; 
     $_SESSION["MiddleName"] = $middlename;
     $_SESSION["LastName"] = $lastname; 
@@ -41,15 +43,15 @@ $error = "";
         <div class="left-container">
           <h1>CHOOSE A RESERVATION</h1>
           <a href="#swim-book" id="swimBook">
-            <button type="button" class="book-btn selected" id="swimming-btn">
+            <button type="button" class="book-btn selected" value="Swimming" id="swimming-btn">
               SWIMMING
             </button>
           </a>
           <a href="#room-book" id="roomBook">
-            <button type="button" class="book-btn" id="room-btn">ROOM</button>
+            <button type="button" class="book-btn" value="Room" id="room-btn">ROOM</button>
           </a>
           <a href="#event-book" id="eventBook">
-            <button type="button" class="book-btn" id="event-btn">EVENT</button>
+            <button type="button" class="book-btn" value="Event" id="event-btn">EVENT</button>
           </a>
         </div>
       </div>
@@ -64,9 +66,9 @@ $error = "";
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <!-- Full Name Column -->
-
+              <input class="hidden" id="restype" name="restype">
               <div class="column">
                 <!-- First Name -->
                 <div class="input-box">
@@ -166,6 +168,6 @@ $error = "";
         </div>
       </div>
     </section>
-    <script type="module" src="/javascript/reservation.js"></script>
+    <script type="module" src="./javascript/reservation.js"></script>
   </body>
 </html>

@@ -12,6 +12,10 @@
   --text-green-clr: #2A401C;
 }
 
+.hidden{
+  display: none;
+}
+
 * {
     box-sizing: border-box;
     padding: 0;

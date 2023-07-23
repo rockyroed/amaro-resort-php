@@ -9,3 +9,16 @@
     } catch(PDOException $e) {
         echo "Connection Failed: " . $e->getMessage();
     }
+
+
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $dbname = "amaro";
+
+
+    // checks if database connection is successful
+    if(!$con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname)){
+        die("failed to connect!");
+    }
+?>

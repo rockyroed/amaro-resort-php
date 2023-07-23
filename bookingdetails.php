@@ -1,35 +1,39 @@
 <?php
 session_start();
+$type = $_SESSION["Type"];
 
-if(isset($_POST["dateofvisit"])) {
+$type = strtoupper($type);
 
-  $dateofvisit = $_POST['dateofvisit'];
-  $timeSlot = $_POST['timeSlot'];
-  $Adult = $_POST['Adult'];
-  $Children = $_POST['Children'];
-  $SeniorPWD = $_POST['SeniorPWD'];
-  $cottagetype = $_POST['cottagetype'];
-  $notesroom = $_POST['notesroom'];
-  $payment = $_POST['cottagetype'];
-  $TotalCost = $_POST['TotalCost'];
+if($type == "SWIMMING") {
+  if(isset($_POST['dateofvisit']) && isset($_POST['timeslot']) && isset($_POST['Adult']) 
+  && isset($_POST['Children']) && isset($_POST['SeniorPWD']) && isset($_POST['cottagetype']) 
+  && isset($_POST['totalCost']) && isset($_POST['downPayment'])){
+    $dateofvisit = $_POST['dateofvisit'];
+    $timeslot = $_POST['timeslot'];
+    $adult = $_POST['Adult'];
+    $children = $_POST['Children'];
+    $seniorPWD = $_POST['SeniorPWD'];
+    $cottagetype = $_POST['cottagetype'];
+    $TotalCost = $_POST['totalCost'];
+    $downPayment = $_POST['downPayment'];
 
-  $_SESSION["FirstName"] = $firstname; 
-  $_SESSION["MiddleName"] = $middlename;
-  $_SESSION["LastName"] = $lastname; 
-  $_SESSION["PhoneNumber"] = $phonenumber;
-  $_SESSION["EmailAddress"] = $emailaddress;
-
-  $_SESSION['dateofvisit'] = $dateofvisit;
-  $_SESSION['timeSlot'] = $timeSlot;
-  $_SESSION['Adult'] = $Adult;
-  $_SESSION['Children'] = $Children;
-  $_SESSION['SeniorPWD'] = $SeniorPWD;
-  $_SESSION['cottagetype'] = $cottagetype;
-  $_SESSION['notesroom'] = $notesroom;
-  $_SESSION['payment'] = $payment;
-  $_SESSION['TotalCost'] = $TotalCost;
-  header("Location: paymentdetails.php"); die();
+    $_SESSION["DateOfVisit"] = $dateofvisit;
+    $_SESSION["TimeSlot"] = $timeslot;
+    $_SESSION["Adult"] = $adult;
+    $_SESSION["Children"] = $children;
+    $_SESSION["SeniorPWD"] = $seniorPWD;
+    $_SESSION["CottageType"] = $cottagetype;
+    $_SESSION["totalCost"] = $TotalCost;
+    $_SESSION["downPayment"] = $downPayment;
+    echo "<script>alert('Success');</script>";
+    header("Location: paymentdetails.php"); die();
+  }
+} elseif($type == "ROOM") {
+  
+} else {
+  $type = "EVENT";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -44,33 +48,21 @@ if(isset($_POST["dateofvisit"])) {
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   </head>
   <body>
     <section id="reservation">
-      <!-- <div class="left-book">
-        <div class="left-container">
-          <h1>CHOOSE A RESERVATION</h1>
-          <a href="#swim-book" id="swimBook">
-            <button type="button" class="book-btn">SWIMMING</button>
-          </a>
-          <a href="#swim-book" id="roomBook">
-            <button type="button" class="book-btn">ROOM</button>
-          </a>
-          <a href="#swim-book" id="eventBook">
-            <button type="button" class="book-btn">EVENT</button>
-          </a>
-        </div>
-      </div> -->
       <div class="right-book">
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />
-          <span class="section-name">SWIMMING RESERVATION</span>
+          <span class="section-name"><?php echo $type.' '.'RESERVATION'?></span>
+          <?php if($type == "SWIMMING"): ?>
           <div class="form-container">
             <header>Reservation Details</header>
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <div class="column">
                 <!-- Date of Visit -->
                 <div class="input-box">
@@ -101,6 +93,9 @@ if(isset($_POST["dateofvisit"])) {
                     </select>
                   </div>
                 </div>
+                <div class="hidden" id="timeRet">
+
+                </div>
               </div>
               <div class="column">
                 <div class="input-box">
@@ -111,11 +106,12 @@ if(isset($_POST["dateofvisit"])) {
                     id="adult"
                     title="Adult"
                     name="Adult"
-                    value=""
+                    value="0"
                     size="40"
                     maxlength="50"
                     placeholder="0"
                     required
+                    onclick="calculateTotal()"
                   />
                 </div>
 
@@ -127,11 +123,12 @@ if(isset($_POST["dateofvisit"])) {
                     id="children"
                     title="Children"
                     name="Children"
-                    value=""
+                    value="0"
                     size="30"
                     maxlength="50"
                     placeholder="0"
                     required
+                    onclick="calculateTotal()"
                   />
                 </div>
 
@@ -143,11 +140,12 @@ if(isset($_POST["dateofvisit"])) {
                     id="seniorPWD"
                     title="SeniorPWD"
                     name="SeniorPWD"
-                    value=""
+                    value="0"
                     size="30"
                     maxlength="50"
                     placeholder="0"
                     required
+                    onclick="calculateTotal()"
                   />
                 </div>
               </div>
@@ -161,16 +159,17 @@ if(isset($_POST["dateofvisit"])) {
                     id="cottagetype"
                     name="cottagetype"
                     required
+                    onclick="calculateTotal()"
                   >
-                    <option hidden value="">Select Cottage</option>
-                    <option value="Pavillion">None</option>
-                    <option value="Night">Canopy (5-10 pax): P1,000.00</option>
-                    <option value="Night">Trellis 1</option>
-                    <option value="Night">Trellis 2</option>
-                    <option value="Night">Kubo</option>
-                    <option value="Night">Pavilion 1</option>
-                    <option value="Night">Pavilion 2</option>
-                    <option value="Night">Pavilion 3</option>
+                    <option hidden value="0">Select Cottage</option>
+                    <option value="0">None</option>
+                    <option value="1000">Canopy (5-10 pax): P1,000.00</option>
+                    <option value="1500">Trellis 1</option>
+                    <option value="2000">Trellis 2</option>
+                    <option value="1200">Kubo</option>
+                    <option value="7500">Pavilion 1</option>
+                    <option value="8500">Pavilion 2</option>
+                    <option value="9500">Pavilion 3</option>
                   </select>
                 </div>
               </div>
@@ -189,7 +188,7 @@ if(isset($_POST["dateofvisit"])) {
               <hr class="horizontal-line" />
 
               <!-- Payment -->
-              <div class="input-box">
+              <!-- <div class="input-box">
                 <label for="payment">Payment</label>
                 <div class="select-box">
                   <select
@@ -202,25 +201,22 @@ if(isset($_POST["dateofvisit"])) {
                       Down Payment or Full Payment
                     </option>
                     <option value="DownPayment">Down Payment (20%)</option>
-                    <option value="FullPayment">Full Payment</option>
                   </select>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <input
-                  type="number"
-                  id="totalCost"
-                  title="totalCost"
-                  name="TotalCost"
-                  value=""
-                  size="30"
-                  maxlength="50"
-                  placeholder="0"
-                  required
-                />
+                <input class="hidden" id="tcPost" name="totalCost"></input>
+                <p id="totalCost">₱0</p>
+              </div>
+
+              <!-- Down Payment -->
+              <div class="input-box">
+                <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
+                <input class="hidden" id="dpPost" name="downPayment"></input>
+                <p id="downPayment" name="">₱0</p>
               </div>
 
               <div class="cta-buttons">
@@ -238,12 +234,13 @@ if(isset($_POST["dateofvisit"])) {
           </div>
 
           <!-- Room Reservation -->
+          <?php elseif($type == "ROOM"): ?>
           <div class="form-container">
             <header>Reservation Details</header>
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="" class="form" method="post">
               <div class="column">
                 <!-- Check-In -->
                 <div class="input-box">
@@ -251,6 +248,7 @@ if(isset($_POST["dateofvisit"])) {
                   <input
                     type="date"
                     id="checkin"
+                    name="checkin"
                     title="Check-in"
                     placeholder="DD-MMM-YYYY"
                     required
@@ -263,6 +261,7 @@ if(isset($_POST["dateofvisit"])) {
                   <input
                     type="date"
                     id="checkout"
+                    name="checkout"
                     title="Check-out"
                     placeholder="DD-MMM-YYYY"
                     required
@@ -326,7 +325,7 @@ if(isset($_POST["dateofvisit"])) {
                   <select
                     title="room type"
                     id="roomtype"
-                    name="room type"
+                    name="roomtype"
                     required
                   >
                     <option hidden value="">Select Room</option>
@@ -349,50 +348,27 @@ if(isset($_POST["dateofvisit"])) {
 
               <hr class="horizontal-line" />
 
-              <!-- Payment -->
-              <div class="input-box">
-                <label for="CottageType">Payment</label>
-                <div class="select-box">
-                  <select
-                    title="cottage type"
-                    id="cottagetype"
-                    name="cottage type"
-                    required
-                  >
-                    <option hidden value="">
-                      Down Payment or Full Payment
-                    </option>
-                    <option value="DownPayment">Down Payment (20%)</option>
-                    <option value="FullPayment">Full Payment</option>
-                  </select>
-                </div>
-              </div>
-
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <input
-                  type="number"
-                  id="totalCost"
-                  title="totalCost"
-                  name="TotalCost"
-                  value=""
-                  size="30"
-                  maxlength="50"
-                  placeholder="0"
-                  required
-                />
+                <p id="totalCost"></p>
+              </div>
+
+              <!-- Down Payment -->
+              <div class="input-box">
+                <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
+                <p id="downPayment"></p>
               </div>
 
               <div class="cta-buttons">
                 <a href="index.php" id="cancelButton">
                   <button type="button" class="secondary-btn">CANCEL</button>
                 </a>
-                <a href="paymentdetails.html" id="proceedPayment">
-                  <button type="button" class="primary-btn">
+                <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
+                  <button class="primary-btn">
                     PROCEED TO PAYMENT
                   </button>
-                </a>
+                <!-- </a> -->
               </div>
             </form>
             <!-- End of Form -->
@@ -400,12 +376,13 @@ if(isset($_POST["dateofvisit"])) {
           <!-- End of Room Reservation -->
 
           <!-- Event Reservation -->
+          <?php else: ?>
           <div class="form-container">
             <header>Reservation Details</header>
             <p>Fill out the required fields to reserve.</p>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="" class="form" method="post">
               <div class="column">
                 <!-- Event Date -->
                 <div class="input-box">
@@ -413,6 +390,7 @@ if(isset($_POST["dateofvisit"])) {
                   <input
                     type="date"
                     id="eventDate"
+                    name="eventDate
                     title="Event Date"
                     placeholder="DD-MMM-YYYY"
                     required
@@ -445,7 +423,7 @@ if(isset($_POST["dateofvisit"])) {
                     type="number"
                     id="paxNum"
                     title="Pax Number"
-                    name="Pax Number"
+                    name="PaxNumber"
                     value=""
                     size="30"
                     maxlength="50"
@@ -461,7 +439,7 @@ if(isset($_POST["dateofvisit"])) {
                     <select
                       title="venue area"
                       id="venueArea"
-                      name="venue area"
+                      name="venuearea"
                       required
                     >
                       <option hidden value="">Select Venue</option>
@@ -485,57 +463,57 @@ if(isset($_POST["dateofvisit"])) {
 
               <hr class="horizontal-line" />
 
-              <!-- Payment -->
-              <div class="input-box">
-                <label for="CottageType">Payment</label>
-                <div class="select-box">
-                  <select
-                    title="cottage type"
-                    id="cottagetype"
-                    name="cottage type"
-                    required
-                  >
-                    <option hidden value="">
-                      Down Payment or Full Payment
-                    </option>
-                    <option value="DownPayment">Down Payment (20%)</option>
-                    <option value="FullPayment">Full Payment</option>
-                  </select>
-                </div>
-              </div>
-
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <input
-                  type="number"
-                  id="totalCost"
-                  title="totalCost"
-                  name="TotalCost"
-                  value=""
-                  size="30"
-                  maxlength="50"
-                  placeholder="0"
-                  required
-                />
+                <p id="totalCost"></p>
+              </div>
+
+              <!-- Down Payment -->
+              <div class="input-box">
+                <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
+                <p id="downPayment"></p>
               </div>
 
               <div class="cta-buttons">
                 <a href="index.php" id="cancelButton">
                   <button type="button" class="secondary-btn">CANCEL</button>
                 </a>
-                <a href="paymentdetails.html" id="proceedPayment">
-                  <button type="button" class="primary-btn">
+                <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
+                  <button class="primary-btn">
                     PROCEED TO PAYMENT
                   </button>
-                </a>
+                <!-- </a> -->
               </div>
             </form>
             <!-- End of Form -->
+            <?php endif; ?>
           </div>
           <!-- End of Event Reservation -->
         </div>
       </div>
     </section>
   </body>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $("#timeSlot").on('click',function(){
+                var value = $(this).val();
+
+                $.ajax({url:"fetch.php",
+                    type:"POST",
+                    data:"time=" + value,
+                    dataType: "html",
+                    beforeSend:function(){
+                        $("#timeRet").html("");
+                    },
+                    success:function(data){
+                        // console.log(data);
+                        // console.log("value:" + value);
+                        $("#timeRet").html(data);
+                    }
+                });
+            });
+        });
+  </script>
+  <script src="script.js"></script>
 </html>

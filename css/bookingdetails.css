@@ -19,6 +19,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+.hidden{
+    display: none;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -297,4 +301,23 @@ header {
   font-size: 25px;
   font-style: normal;
   font-weight: 700;
+}
+
+#dpaymentLabel {
+  color: var(--main-text-clr);
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+#totalCost {
+  text-align: left;
+  padding-top: 10px;
+  font-size: 40px;
+}
+
+#downPayment {
+  text-align: left;
+  padding-top: 10px;
+  font-size: 40px;
 }

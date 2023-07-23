@@ -48,3 +48,33 @@ function toggleMainMenu() {
 document.getElementById('menu-bar').addEventListener('click', toggleMainMenu);
 
 
+
+function calculateTotal(){
+  var adultInput = document.getElementById('adult').value;
+  var childrenInput = document.getElementById('children').value;
+  var seniorPWDInput = document.getElementById('seniorPWD').value;
+  
+  
+  var adultPrice = document.getElementById('Adult.price').value;
+  var childrenPrice = document.getElementById('Child.price').value;
+  var seniorPWDPrice = document.getElementById('PWD.price').value;
+  var cottagePrice = document.getElementById('cottagetype').value;
+  var totalCost = document.getElementById('totalCost');
+  var downPayment = document.getElementById('downPayment');
+
+  var tcpost = document.getElementById('tcPost');
+  var dpPost = document.getElementById('dpPost');
+  
+  adultTotal = adultInput * adultPrice;
+  childrenTotal = childrenInput * childrenPrice;
+  seniorTotal = seniorPWDInput * seniorPWDPrice;
+  cottageTotal = parseInt(cottagePrice);
+
+
+  totalCost.textContent = "₱" + (cottageTotal + adultTotal + childrenTotal + seniorTotal);
+  downPayment.textContent = "₱" + ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
+
+  tcpost.value = totalCost.textContent;
+  dpPost.value = downPayment.textContent;
+}
+

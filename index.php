@@ -71,8 +71,8 @@
 
 
           <div class="account-menu" id="account-menu">
-            <a href="account.html"><i class="fas fa-user-edit"></i>Account</a>
-            <a href="login.html"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
           </div>
         </div>
         <div class="head-bottom flex">
