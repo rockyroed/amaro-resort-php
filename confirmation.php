@@ -74,8 +74,8 @@ session_start();
     <section id="bookingSummary">
       <div class="summary-container">
         <span class="section-phrase">
-          Reservation complete! <br />
-          We're excited to welcome you.
+          Confirm Reservation <br />
+          Please check the details before proceeding.
         </span>
         <div class="booking-summary-container">
           <div class="details-container">
@@ -88,9 +88,33 @@ session_start();
             </div>
 
             <!-- Reservation Number -->
-            <div class="section-details">
+            <!-- <div class="section-details">
               <span>Reservation Number:</span>
               <p>RSVSWM230720XYZ</p>
+            </div> -->
+
+            <!-- Reservation Type -->
+            <div class="section-details">
+              <span>Reservation Type:</span>
+              <p><?php echo $reservationtype ?></p>
+            </div>
+
+            <!-- Adult Pax -->
+            <div class="section-details">
+              <span>Adult Pax:</span>
+              <p><?php echo $Adult ?></p>
+            </div>
+
+            <!-- Children Pax -->
+            <div class="section-details">
+              <span>Children Pax:</span>
+              <p><?php echo $Children ?></p>
+            </div>
+
+            <!-- Senior/PWD Pax -->
+            <div class="section-details">
+              <span>Senior/PWD Pax:</span>
+              <p><?php echo $SeniorPWD ?></p>
             </div>
 
             <!-- Reservation Date -->
@@ -98,14 +122,26 @@ session_start();
               <span>Reservation Date:</span>
               <p><?php echo $date ?></p>
             </div>
+
+            <!-- Payment Method -->
+            <div class="section-details">
+              <span>Payment Method:</span>
+              <p><?php echo $paymentmethod ?></p>
+            </div>
+
+            <!-- Payment -->
+            <div class="section-details">
+              <span>Payment:</span>
+              <p><?php echo $payment ?></p>
+            </div>
           </div>
 
-          <p> Present this to confirmation slip to the resort receptionist. <br> See you soon! </p>
+          <!-- <p> Present this to confirmation slip to the resort receptionist. <br> See you soon! </p> -->
 
           </div>
           <div class="cta-buttons">
             <a href="index.php" id="backToHome">
-              <button type="button" class="secondary-btn">BACK TO HOME</button>
+              <button type="button" class="secondary-btn">GO BACK</button>
             </a>
             <a href="reservation.html" id="addBooking">
               <button type="submit" class="primary-btn">
