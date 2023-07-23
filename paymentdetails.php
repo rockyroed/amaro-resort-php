@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+$type = $_SESSION["Type"];
+
+$type = strtoupper($type);
+
 if(isset($_POST["ppAdult"])) {
 
   $paymentAdult = $_POST['ppAdult'];
@@ -32,30 +36,30 @@ if(isset($_POST["ppAdult"])) {
       <div class="right-book">
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />
-          <span class="section-name">SWIMMING RESERVATION</span>
+          <span class="section-name"><?php echo $type.' '.'RESERVATION'?></span>
           <div class="form-container">
             <header>Payment Method</header>
             <p>Select your payment option.</p>
 
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <div class="payment--options">
-                <button name="paypal" type="button" title="PayPal">
+                <button class="payment" name="paypal" type="button" title="PayPal">
                   <img
                     src="css/page-images/PayPal.png"
                     alt="logo"
                     class="logo"
                   />
                 </button>
-                <button name="gcash" type="button" title="GCash">
+                <button class="payment" name="gcash" type="button" title="GCash">
                   <img
                     src="css/page-images/GCash.png"
                     alt="logo"
                     class="logo"
                   />
                 </button>
-                <button name="mastercard" type="button" title="Mastercard">
+                <button class="payment" name="mastercard" type="button" title="Mastercard">
                   <img
                     src="css/page-images/mastercard.png"
                     alt="logo"
@@ -68,7 +72,7 @@ if(isset($_POST["ppAdult"])) {
           </div>
 
           <!-- Paypal Form -->
-          <div class="form-container">
+          <div class="form-container payment-details hidden">
             <header>
               <img src="css/page-images/PayPal.png" alt="logo" class="logo" />
             </header>
@@ -109,13 +113,13 @@ if(isset($_POST["ppAdult"])) {
           <!-- End of Paypal Form -->
 
           <!-- Gcash Form -->
-          <div class="form-container">
+          <div class="form-container payment-details hidden">
             <header>
               <img src="css/page-images/GCash.png" alt="logo" class="logo" />
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <div class="column">
                 <div class="input-box">
                   <!-- Account Name -->
@@ -166,7 +170,7 @@ if(isset($_POST["ppAdult"])) {
           <!-- End of GCash Form -->
 
           <!-- Mastercard Form -->
-          <div class="form-container">
+          <div class="form-container payment-details hidden">
             <header>
               <img
                 src="css/page-images/mastercard.png"
@@ -176,7 +180,7 @@ if(isset($_POST["ppAdult"])) {
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="get">
+            <form action="#" class="form" method="post">
               <div class="input-box">
                 <!-- Adult -->
                 <label for="CardNumber">Card Number</label>
@@ -276,5 +280,6 @@ if(isset($_POST["ppAdult"])) {
         </div>
       </div>
     </section>
+    <script type="module" src="./javascript/paymentdetails.js"></script>
   </body>
 </html>

@@ -28,10 +28,57 @@ if($type == "SWIMMING") {
     echo "<script>alert('Success');</script>";
     header("Location: paymentdetails.php"); die();
   }
+  /* 
+checkin
+checkout
+Adult
+Children
+SeniorPWD
+roomtype
+TotalCost 
+*/
 } elseif($type == "ROOM") {
-  
-} else {
-  $type = "EVENT";
+  if(isset($_POST['roomtype']) && isset($_POST['checkin']) && isset($_POST['checkout'])
+  && isset($_POST['Adult']) && isset($_POST['Children']) && isset($_POST['SeniorPWD'])
+  && isset($_POST['totalCost']) && isset($_POST['downPayment'])){
+    $roomtype = $_POST['roomtype'];
+    $checkin = $_POST['checkin'];
+    $checkout = $_POST['checkout'];
+    $adult = $_POST['Adult'];
+    $children = $_POST['Children'];
+    $seniorPWD = $_POST['SeniorPWD'];
+    $TotalCost = $_POST['totalCost'];
+    $downPayment = $_POST['downPayment'];
+
+    $_SESSION["RoomType"] = $roomtype;
+    $_SESSION["CheckIn"] = $checkin;
+    $_SESSION["CheckOut"] = $checkout;
+    $_SESSION["Adult"] = $adult;
+    $_SESSION["Children"] = $children;
+    $_SESSION["SeniorPWD"] = $seniorPWD;
+    $_SESSION["totalCost"] = $TotalCost;
+    $_SESSION["downPayment"] = $downPayment;
+    echo "<script>alert('Success');</script>";
+    header("Location: paymentdetails.php"); die();
+  }
+    
+} else if ($type == "EVENT") {
+  if(isset($_POST['eventDate']) && isset($_POST['PaxNumber']) && isset($_POST['venuearea'])){
+  $eventDate = $_POST['eventDate'];
+  $eventPax = $_POST['PaxNumber'];
+  $venueArea = $_POST['venuearea'];
+  $TotalCost = $_POST['totalCost'];
+  $downPayment = $_POST['downPayment'];
+
+  $_SESSION["EventDate"] = $eventDate;
+  $_SESSION["EventPax"] = $eventPax;
+  $_SESSION["VenueArea"] = $venueArea;
+  $_SESSION["totalCost"] = $TotalCost;
+  $_SESSION["downPayment"] = $downPayment;
+  echo "<script>alert('Success');</script>";
+  header("Location: paymentdetails.php"); die();
+  }
+
 }
 
 ?>
@@ -111,7 +158,7 @@ if($type == "SWIMMING") {
                     maxlength="50"
                     placeholder="0"
                     required
-                    onclick="calculateTotal()"
+                    onclick="calculateSwimTotal()"
                   />
                 </div>
 
@@ -128,7 +175,7 @@ if($type == "SWIMMING") {
                     maxlength="50"
                     placeholder="0"
                     required
-                    onclick="calculateTotal()"
+                    onclick="calculateSwimTotal()"
                   />
                 </div>
 
@@ -145,7 +192,7 @@ if($type == "SWIMMING") {
                     maxlength="50"
                     placeholder="0"
                     required
-                    onclick="calculateTotal()"
+                    onclick="calculateSwimTotal()"
                   />
                 </div>
               </div>
@@ -159,7 +206,7 @@ if($type == "SWIMMING") {
                     id="cottagetype"
                     name="cottagetype"
                     required
-                    onclick="calculateTotal()"
+                    onclick="calculateSwimTotal()"
                   >
                     <option hidden value="0">Select Cottage</option>
                     <option value="0">None</option>
@@ -241,6 +288,27 @@ if($type == "SWIMMING") {
             <hr class="hz-line" />
             <!-- Form -->
             <form action="" class="form" method="post">
+              <!-- Room Type -->
+              <div class="input-box">
+                <label for="RoomType">Room Type</label>
+                <div class="select-box">
+                  <select
+                    title="roomtype"
+                    id="roomtype"
+                    name="roomtype"
+                    required
+                    onclick="greyOutPreviousDate()"
+                  >
+                    <option hidden value="">Select Room</option>
+                    <option value="Couple">Couple Room (1-2 Pax)</option>
+                    <option value="Family">Family Room (2-4 Pax)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="hidden" id="roomRet">
+                
+              </div>
+              
               <div class="column">
                 <!-- Check-In -->
                 <div class="input-box">
@@ -251,7 +319,7 @@ if($type == "SWIMMING") {
                     name="checkin"
                     title="Check-in"
                     placeholder="DD-MMM-YYYY"
-                    required
+                    onchange="computeDays()"
                   />
                 </div>
 
@@ -265,6 +333,7 @@ if($type == "SWIMMING") {
                     title="Check-out"
                     placeholder="DD-MMM-YYYY"
                     required
+                    onchange="computeDays()"
                   />
                 </div>
               </div>
@@ -281,7 +350,7 @@ if($type == "SWIMMING") {
                     size="40"
                     maxlength="50"
                     placeholder="0"
-                    required
+                    onclick="validateAdultPax()"
                   />
                 </div>
 
@@ -297,7 +366,7 @@ if($type == "SWIMMING") {
                     size="30"
                     maxlength="50"
                     placeholder="0"
-                    required
+                    onclick="validateChildrenPax()"
                   />
                 </div>
 
@@ -313,25 +382,8 @@ if($type == "SWIMMING") {
                     size="30"
                     maxlength="50"
                     placeholder="0"
-                    required
+                    onclick="validateSeniorPWDPax()"
                   />
-                </div>
-              </div>
-
-              <!-- Room Type -->
-              <div class="input-box">
-                <label for="RoomType">Room Type</label>
-                <div class="select-box">
-                  <select
-                    title="room type"
-                    id="roomtype"
-                    name="roomtype"
-                    required
-                  >
-                    <option hidden value="">Select Room</option>
-                    <option value="CoupleRoom">Couple Room (pax min-pax max) (₱2,000)</option>
-                    <option value="FamilyRoom">Family Room (₱2,800)</option>
-                  </select>
                 </div>
               </div>
 
@@ -351,13 +403,15 @@ if($type == "SWIMMING") {
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <p id="totalCost"></p>
+                <input class="hidden" id="tcPost" name="totalCost"></input>
+                <p id="totalCost">₱0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
-                <p id="downPayment"></p>
+                <input class="hidden" id="dpPost" name="downPayment"></input>
+                <p id="downPayment" name="">₱0</p>
               </div>
 
               <div class="cta-buttons">
@@ -383,6 +437,43 @@ if($type == "SWIMMING") {
             <hr class="hz-line" />
             <!-- Form -->
             <form action="" class="form" method="post">
+            <div class="column">
+                <!-- Venue / Area -->
+                <div class="input-box">
+                  <label for="VenueArea">Venue / Area</label>
+                  <div class="select-box">
+                    <select
+                      title="venue area"
+                      id="venueArea"
+                      name="venuearea"
+                      required
+                      onchange="calculateEventTotal()"
+                    >
+                      <option hidden value="">Select Venue</option>
+                      <option value="Function Hall">Function Hall Max Pax: 80</option>
+                      <option value="Court">Court</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Pax Number -->
+                <div class="input-box">
+                  <label for="PaxNumber">Pax Number</label>
+                  <input
+                    type="number"
+                    id="paxNum"
+                    title="Pax Number"
+                    name="PaxNumber"
+                    value=""
+                    size="30"
+                    maxlength="50"
+                    placeholder="0"
+                    required
+                    onclick="eventPax()"
+                  />
+                </div>
+              </div>
+
               <div class="column">
                 <!-- Event Date -->
                 <div class="input-box">
@@ -390,10 +481,11 @@ if($type == "SWIMMING") {
                   <input
                     type="date"
                     id="eventDate"
-                    name="eventDate
+                    name="eventDate"
                     title="Event Date"
                     placeholder="DD-MMM-YYYY"
                     required
+                    onchange="calculateEventTotal()"
                   />
                 </div>
 
@@ -415,39 +507,9 @@ if($type == "SWIMMING") {
                   </div>
                 </div> -->
               </div>
-              <div class="column">
-                <!-- Pax Number -->
-                <div class="input-box">
-                  <label for="PaxNumber">Pax Number</label>
-                  <input
-                    type="number"
-                    id="paxNum"
-                    title="Pax Number"
-                    name="PaxNumber"
-                    value=""
-                    size="30"
-                    maxlength="50"
-                    placeholder="0"
-                    required
-                  />
-                </div>
 
-                <!-- Venue / Area -->
-                <div class="input-box">
-                  <label for="VenueArea">Venue / Area</label>
-                  <div class="select-box">
-                    <select
-                      title="venue area"
-                      id="venueArea"
-                      name="venuearea"
-                      required
-                    >
-                      <option hidden value="">Select Venue</option>
-                      <option value="CoupleRoom">Function Hall (pax min-pax max): (Price)</option>
-                      <option value="FamilyRoom">Court / Event Area</option>
-                    </select>
-                  </div>
-                </div>
+              <div class="hidden" id="eventRet">
+                
               </div>
 
               <!-- Additional Notes -->
@@ -466,13 +528,15 @@ if($type == "SWIMMING") {
               <!-- Total Cost -->
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
-                <p id="totalCost"></p>
+                <input class="hidden" id="tcPost" name="totalCost"></input>
+                <p id="totalCost">₱0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
-                <p id="downPayment"></p>
+                <input class="hidden" id="dpPost" name="downPayment"></input>
+                <p id="downPayment" name="">₱0</p>
               </div>
 
               <div class="cta-buttons">
@@ -510,6 +574,48 @@ if($type == "SWIMMING") {
                         // console.log(data);
                         // console.log("value:" + value);
                         $("#timeRet").html(data);
+                    }
+                });
+            });
+        });
+  </script>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $("#roomtype").on('click',function(){
+                var value = $(this).val();
+
+                $.ajax({url:"fetch.php",
+                    type:"POST",
+                    data:"room=" + value,
+                    dataType: "html",
+                    beforeSend:function(){
+                        $("#roomRet").html("");
+                    },
+                    success:function(data){
+                        // console.log(data);
+                        // console.log("value:" + value);
+                        $("#roomRet").html(data);
+                    }
+                });
+            });
+        });
+  </script>
+  <script type="text/javascript">
+        $(document).ready(function(){
+            $("#venueArea").on('click',function(){
+                var value = $(this).val();
+
+                $.ajax({url:"fetch.php",
+                    type:"POST",
+                    data:"event=" + value,
+                    dataType: "html",
+                    beforeSend:function(){
+                        $("#eventRet").html("");
+                    },
+                    success:function(data){
+                        // console.log(data);
+                        // console.log("value:" + value);
+                        $("#eventRet").html(data);
                     }
                 });
             });
