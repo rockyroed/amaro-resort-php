@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2023 at 04:49 PM
+-- Generation Time: Jul 24, 2023 at 05:08 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -375,9 +375,21 @@ CREATE TABLE `room_reservations` (
 CREATE TABLE `swimming_prices` (
   `swimming_price_id` int(11) NOT NULL,
   `chosen_hour` enum('Day','Night','','') NOT NULL,
-  `guest_type` enum('Adult','Child','','') NOT NULL,
+  `guest_type` enum('Adult','Child','Senior','') NOT NULL,
   `price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `swimming_prices`
+--
+
+INSERT INTO `swimming_prices` (`swimming_price_id`, `chosen_hour`, `guest_type`, `price`) VALUES
+(1, 'Day', 'Adult', 280),
+(2, 'Day', 'Child', 250),
+(3, 'Day', 'Senior', 224),
+(4, 'Night', 'Adult', 300),
+(5, 'Night', 'Child', 250),
+(6, 'Night', 'Senior', 240);
 
 -- --------------------------------------------------------
 
@@ -391,6 +403,7 @@ CREATE TABLE `swimming_reservations` (
   `chosen_hour` enum('Day','Night','','') NOT NULL,
   `pax_adults` int(11) NOT NULL,
   `pax_children` int(11) NOT NULL,
+  `pax_senior` int(11) NOT NULL,
   `cottage_number` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -575,7 +588,7 @@ ALTER TABLE `room_reservations`
 -- AUTO_INCREMENT for table `swimming_prices`
 --
 ALTER TABLE `swimming_prices`
-  MODIFY `swimming_price_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `swimming_price_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `swimming_reservations`
