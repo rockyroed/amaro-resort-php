@@ -7,10 +7,23 @@ $firstname = $_SESSION["FirstName"];
 $middlename = $_SESSION["MiddleName"];
 $lastname = $_SESSION["LastName"];
 $type = $_SESSION["Type"];
-
+$referencenumber = $_SESSION["reservation_id"];
+$reservationdate = $_SESSION["reservation_date"];
+$paymentType = $_SESSION["paymentType"];
 $Adult = $_SESSION["Adult"];
 $Children = $_SESSION["Children"];
 $SeniorPWD = $_SESSION["SeniorPWD"];
+$totalCost = $_SESSION["totalCost"];
+$downPayment = $_SESSION["downPayment"];
+
+if ($type == "Room") {
+  $paxNum = (int)$Adult + (int)$Children + (int)$SeniorPWD;
+}
+
+$eventPax = $_SESSION['EventPax'];
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,56 +94,72 @@ $SeniorPWD = $_SESSION["SeniorPWD"];
                 <p><?php echo $firstname.' '.$middlename.' '.$lastname ?></p>
             </div>
 
-            <!-- Reservation Number -->
-            <!-- <div class="section-details">
-              <span>Reservation Number:</span>
-              <p>RSVSWM230720XYZ</p>
-            </div> -->
-
             <!-- Reservation Type -->
             <div class="section-details">
               <span>Reservation Type:</span>
-              <p><?php echo $reservationtype ?></p>
-            </div>
-
-            <!-- Adult Pax -->
-            <div class="section-details">
-              <span>Adult Pax:</span>
-              <p><?php echo $Adult ?></p>
-            </div>
-
-            <!-- Children Pax -->
-            <div class="section-details">
-              <span>Children Pax:</span>
-              <p><?php echo $Children ?></p>
-            </div>
-
-            <!-- Senior/PWD Pax -->
-            <div class="section-details">
-              <span>Senior/PWD Pax:</span>
-              <p><?php echo $SeniorPWD ?></p>
+              <p><?php echo $type ?></p>
             </div>
 
             <!-- Reservation Date -->
             <div class="section-details">
               <span>Reservation Date:</span>
-              <p><?php echo $date ?></p>
+              <p><?php echo $reservationdate ?></p>
             </div>
+
+            <!-- Pax Number -->
+            <?php if($type == "SWIMMING"): ?>
+              <!-- Adult-->
+              <div class="section-details">
+                <span>Adult:</span>
+                <p><?php echo $Adult ?></p>
+              </div>
+
+              <!-- Children-->
+              <div class="section-details">
+                <span>Children:</span>
+                <p><?php echo $Children ?></p>
+              </div>
+
+              <!-- Senior/PWD-->
+              <div class="section-details">
+                <span>Senior/PWD:</span>
+                <p><?php echo $SeniorPWD ?></p>
+              </div>
+
+            <?php elseif($type == "Room"): ?>
+            <div class="section-details">
+              <span>Pax Number:</span>
+              <p><?php echo $paxNum ?></p>
+            </div>
+
+            <?php else: ?>
+              
+            <div class="section-details">
+              <span>Pax Number:</span>
+              <p><?php echo $eventPax ?></p>
+            </div>
+            <?php endif; ?>
 
             <!-- Payment Method -->
             <div class="section-details">
               <span>Payment Method:</span>
-              <p><?php echo $paymentmethod ?></p>
+              <p><?php echo $paymentType ?></p>
             </div>
 
-            <!-- Payment -->
+            <!-- Total Cost -->
             <div class="section-details">
-              <span>Payment:</span>
-              <p><?php echo $payment ?></p>
+              <span>Total Cost:</span>
+              <p><?php echo '₱' .$totalCost ?></p>
+            </div>
+
+            <!-- Total Cost -->
+            <div class="section-details">
+              <span>Down Payment:</span>
+              <p><?php echo '₱' .$downPayment ?></p>
             </div>
           </div>
 
-          <!-- <p> Present this to confirmation slip to the resort receptionist. <br> See you soon! </p> -->
+          <p> Present this to confirmation slip to the resort receptionist. <br> See you soon! </p>
 
           </div>
           <div class="cta-buttons">

@@ -63,7 +63,8 @@ TotalCost
   }
     
 } else if ($type == "EVENT") {
-  if(isset($_POST['eventDate']) && isset($_POST['PaxNumber']) && isset($_POST['venuearea'])){
+  if(isset($_POST['eventDate']) && isset($_POST['PaxNumber']) && isset($_POST['venuearea']) 
+  && isset($_POST['totalCost']) && isset($_POST['downPayment'])){
   $eventDate = $_POST['eventDate'];
   $eventPax = $_POST['PaxNumber'];
   $venueArea = $_POST['venuearea'];
@@ -350,7 +351,7 @@ TotalCost
                     size="40"
                     maxlength="50"
                     placeholder="0"
-                    onclick="validateAdultPax()"
+                    onclick="doubleEvent()"
                   />
                 </div>
 

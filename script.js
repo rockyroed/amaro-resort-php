@@ -72,8 +72,8 @@ function calculateSwimTotal(){
   cottageTotal = parseInt(cottagePrice);
   
   totalPax = adultInput + childrenInput + seniorPWDInput;
-  totalCost.textContent = "₱" + (cottageTotal + adultTotal + childrenTotal + seniorTotal);
-  downPayment.textContent = "₱" + ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
+  totalCost.textContent = (cottageTotal + adultTotal + childrenTotal + seniorTotal);
+  downPayment.textContent = ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
 
   tcpost.value = totalCost.textContent;
   dpPost.value = downPayment.textContent;
@@ -148,6 +148,9 @@ function computeDays(){
   var totalCost = document.getElementById('totalCost');
   var downPayment = document.getElementById('downPayment');
   
+  var tcpost = document.getElementById('tcPost');
+  var dpPost = document.getElementById('dpPost');
+  
   if(checkin && checkout) {
     const checkInDate = new Date(checkin);
     const checkOutDate = new Date(checkout);
@@ -163,11 +166,19 @@ function computeDays(){
     
       var FinalCost = roomPrice * daysGap;
     
-      totalCost.textContent = "₱" + FinalCost;
-      downPayment.textContent = "₱" + (FinalCost * 0.2);
+      totalCost.textContent =  FinalCost;
+      downPayment.textContent = (FinalCost * 0.2);
+
+      tcpost.value = totalCost.textContent;
+      dpPost.value = downPayment.textContent;
     }
   
   }
+}
+
+function doubleEvent(){
+  computeDays();
+  validateAdultPax();
 }
 
 function greyOutPreviousDate(){
@@ -197,8 +208,8 @@ function greyOutPreviousDate(){
 
     var FinalCost = eventPrice;
     
-      totalCost.textContent = "₱" + FinalCost;
-      downPayment.textContent = "₱" + (FinalCost * 0.2);
+      totalCost.textContent = FinalCost;
+      downPayment.textContent = (FinalCost * 0.2);
 
       tcpost.value = totalCost.textContent;
       dpPost.value = downPayment.textContent;

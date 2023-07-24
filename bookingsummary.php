@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once "includes/dbh.inc.php";
+
+  echo $_SESSION["totalCost"];
+  echo $_SESSION["downPayment"];
   // Guest Details
   if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
   && isset($_SESSION["PhoneNumber"]) && isset($_SESSION["EmailAddress"]) && isset($_SESSION["Type"])) {
@@ -15,9 +18,10 @@ require_once "includes/dbh.inc.php";
 
   // General Reservation Details
   if (isset($_SESSION["totalCost"]) && isset($_SESSION["downPayment"])) {
-      $TotalCost = $_SESSION["totalCost"];
-      $downpayment = $_SESSION["downPayment"];
-      $guest_id = $_SESSION['guest_id'];
+      $TotalCost = ($_SESSION["totalCost"]);
+      $downpayment = ($_SESSION["downPayment"]);
+      $totalcostNum = (int)$TotalCost;
+      $downpaymentNum = (int)$downpayment;
 }
 
   // Reservation Details for Swimming
@@ -57,12 +61,19 @@ require_once "includes/dbh.inc.php";
     $paxNum = (int)$Adult + (int)$Children + (int)$SeniorPWD;
     $checkin = $_SESSION["CheckIn"];
     $checkout = $_SESSION["CheckOut"];
+    $TotalCost = $_SESSION["totalCost"];
+    $downpayment = $_SESSION["downPayment"];
+    
 }
   // Reservation Details for Events
   if(isset($_SESSION['EventDate']) && isset($_SESSION['EventPax']) && isset($_SESSION['VenueArea'])){
     $eventDate = $_SESSION['EventDate'];
     $eventPax = $_SESSION['EventPax'];
     $venueArea = $_SESSION['VenueArea'];
+    $TotalCost = ($_SESSION["totalCost"]);
+    $downpayment = ($_SESSION["downPayment"]);
+    $totalcostNum = (int)$TotalCost;
+    $downpaymentNum = (int)$downpayment;
 }
 
   // General Payment Detail
@@ -105,17 +116,22 @@ check:
       goto check;
     }
   }
-
+  
   if (isset($_POST['submit'])){
+    $guest_id = ($_SESSION['guest_id']);
+    $_SESSION['reservation_id'] = $referencenumber;
+    $_SESSION['reservation_date'] = $timeStamp;
 
-    $query = "INSERT INTO reservations (reservation_id,guest_id, reservation_type,reservation_date,payment_method,total_cost,down_payment,payment_status) 
-    VALUES ($referencenumber, $guest_id, $type, '$timeStamp', $paymentType,$TotalCost,$downpayment, 'Pending')";
+    $resQuery = "INSERT INTO reservations (reservation_id,guest_id, reservation_type,reservation_date,payment_method,total_cost,down_payment,payment_status) 
+    VALUES ('$referencenumber', '$guest_id', '$type', '$timeStamp', '$paymentType','$totalcostNum','$downpaymentNum', 'Pending')";
     
-    $verify = mysqli_query($con, $query);
+    $verify = mysqli_query($con, $resQuery);
   
     if ($verify) {
-        echo "<script> alert(Reservatioh Successful!)</script>";}
-      else{
+        echo "<script> alert(Reservatioh Successful!)</script>";
+        header ("Location: confirmation.php");
+      
+      }else{
         echo "<script> alert(Reservation Failed!)</script>";
       }
   }
@@ -296,7 +312,7 @@ check:
               <!-- Time Slot-->
               <div class="section-details">
                 <span>Pax Number:</span>
-                <p><?php echo $paxNum ?></p>
+                <p><?php echo $eventPax ?></p>
               </div>
 
               <!-- Adult-->
@@ -380,22 +396,16 @@ check:
             <!-- Total Cost -->
             <div class="section-details">
               <span>Total Cost:</span>
-              <p><?php echo $TotalCost ?></p>
+              <p><?php echo '₱' .$totalcostNum ?></p>
             </div>
 
             <!-- Downpayment -->
             <div class="section-details">
-              <span>Downpayment:</span>
-              <p><?php echo $downpayment ?></p>
+              <span>Down Payment:</span>
+              <p><?php echo '₱' .$downpaymentNum ?></p>
             </div>
 
             <hr class="horizontal-line" />
-
-            <!-- Total Cost -->
-            <!-- <div class="section-details">
-              <span class="totalCost">Total Cost:</span>
-              <p class="totalCostNumber"><?php echo ''.$TotalCost ?></p>
-            </div> -->
             
             <div class="cta-buttons">
               <a href="index.php" id="cancelButton">
