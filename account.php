@@ -1,3 +1,61 @@
+<?php
+session_start();
+require_once "includes/dbh.inc.php";
+
+if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
+&& isset($_SESSION["PhoneNumber"]) && isset($_SESSION["EmailAddress"]) && isset($_SESSION["Type"])
+&& isset($_SESSION["guest_id"]) && isset($_SESSION["email_address"])) {
+    $firstname = $_SESSION["FirstName"];
+    $middlename = $_SESSION["MiddleName"];
+    $lastname = $_SESSION["LastName"];
+    $phonenumber = $_SESSION["PhoneNumber"];
+    $emailaddress = $_SESSION["EmailAddress"];
+    $type = $_SESSION["Type"];
+    $guestid = $_SESSION["guest_id"];
+    $email_address = $_SESSION["email_address"];
+
+}
+
+if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST["LastName"])) 
+&& (isset($_POST['PhoneNumber'])) && (isset($_POST['EmailAddress']))) ) {
+    $firstname = $_POST["FirstName"];
+    $middlename = $_POST["MiddleName"];
+    $lastname = $_POST["LastName"];
+    $phonenumber = $_POST["PhoneNumber"];
+    $emailaddress = $_POST["EmailAddress"];
+
+    try {
+        require_once "includes/dbh.inc.php";
+
+        $query = "UPDATE guests SET first_name = ?, middle_name = ?, last_name = ?, phone_number = ?, email_address = ? WHERE guest_id = ?";
+
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$firstname, $middlename, $lastname, $phonenumber, $emailaddress, $guestid]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($result) {
+            $guest_id = $result["guest_id"];
+            $firstname = $result["first_name"];
+            $middlename = $result["middle_name"];
+            $lastname = $result["last_name"];
+            $phonenumber = $result["phone_number"];
+            $emailaddress = $result["email_address"];
+            $type = $result["type"];
+            $creationdate = $result["creation_date"];
+            $_SESSION['guest_id'] = $guest_id;
+            header( "Location: index.php" ); die;
+        } else {
+            $error = "Cannot log in. The user is not existing or the password is incorrect. Please try again.";
+        }
+
+        $pdo = null;
+        $stmt = null;
+    } catch(PDOException $e) {
+        die("Query Failed: " . $e->getMessage());
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -54,8 +112,8 @@
             <i class="fas fa-user-circle"></i>
           </div>
           <div class="account-info">
-            <span id="firstNameDisplay">Trisha Mae</span>
-            <span id="emailAddDisplay">erandiotrish@gmail.com</span>
+            <span id="firstNameDisplay"><?php echo $firstname ?></span>
+            <span id="emailAddDisplay"><?php echo $email_address ?></span>
           </div>
 
           <div class="page-buttons">
@@ -70,7 +128,11 @@
       </div>
       <div class="right-side">
         <!-- start of account settings -->
+        <?php $stng_query = "select * from guests where guest_id = '$guestid'"?>
+          <?php $stng_result = mysqli_query($con, $stng_query)?>
+          <?php $stng_row = mysqli_fetch_assoc($stng_result)?>
         <section class="account-settings-container hidden" id="accountSettingsContainer">
+        <form method="post">  
           <div class="page-title">
             <span>Account Settings</span>
           </div>
@@ -90,7 +152,7 @@
                   value=""
                   size="40"
                   maxlength="50"
-                  placeholder="First Name"
+                  placeholder="<?php echo $stng_row['first_name']?>"
                   required
                 />
               </div>
@@ -106,7 +168,7 @@
                   value=""
                   size="40"
                   maxlength="50"
-                  placeholder="Middle Name"
+                  placeholder="<?php echo $stng_row['middle_name']?>"
                   required
                 />
               </div>
@@ -122,7 +184,7 @@
                   value=""
                   size="40"
                   maxlength="50"
-                  placeholder="Last Name"
+                  placeholder="<?php echo $stng_row['last_name']?>"
                   required
                 />
               </div>
@@ -137,7 +199,7 @@
                   id="phoneNumber"
                   title="11-Digit Phone Number"
                   name="PhoneNumber"
-                  placeholder="(09)00-000-0000"
+                  placeholder="<?php echo $stng_row['phone_number']?>"
                   maxlength="11"
                   size="50"
                   pattern="[09]{2}[0-9]{9}"
@@ -156,7 +218,7 @@
                   value=""
                   size="50"
                   maxlength="50"
-                  placeholder="Email Address"
+                  placeholder="<?php echo $stng_row['email_address']?>"
                   required
                 />
               </div>
@@ -166,15 +228,18 @@
             <a href="#" id="cancelButton">
               <button type="button" class="secondary-btn">CANCEL</button>
             </a>
-            <a href="#" id="settings">
-              <button type="button" class="primary-btn">SAVE</button>
+            <!-- <a href="#" id="settings"> -->
+              <button class="primary-btn">SAVE</button>
             </a>
           </div>
+        </form>
         </section>
         <!-- start of account settings-->
 
         <!-- start of booking history -->
         <section class="booking-history-container" id="bookingHistoryContainer">
+        <?php $booking_query = "select * from reservations where guest_id = '$guestid'"?>
+        <?php $booking_result = mysqli_query($con, $booking_query)?>
           <div class="page-title">
             <span>Booking History</span>
           </div>
@@ -190,13 +255,15 @@
                 <th>Details</th>
                 <th>Status</th>
               </tr>
+              <?php while($booking_row = mysqli_fetch_assoc($booking_result)){?>
               <tr>
-                <td>RSVSWM230720XYZ</td>
-                <td>Swimming</td>
-                <td>07/20/2023</td>
-                <td><a href="details.html" alt="view">view</a></td>
-                <td>Paid - Down Payment</td>
+                <td><?php echo $booking_row['reservation_id']?></td>
+                <td><?php echo $booking_row['reservation_type']?></td>
+                <td><?php echo $booking_row['reservation_date']?></td>
+                <td><a href="details.php?reservation_id=<?php echo $booking_row['reservation_id']?>" alt="view">view</a></td>
+                <td><?php echo $booking_row['payment_status']?></td>
               </tr>
+              <?php }?>
             </table>
           </div>
         </section>

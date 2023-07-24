@@ -2,6 +2,11 @@
 session_start();
 require_once "includes/dbh.inc.php";
 
+  if(isset($_GET['reservation_id'])){
+    $reservation_id = $_GET['reservation_id'];
+    $timeStamp = $_SESSION['reservation_date']; 
+  }
+
   // Guest Details
   if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
   && isset($_SESSION["PhoneNumber"]) && isset($_SESSION["EmailAddress"]) && isset($_SESSION["Type"])) {
@@ -99,49 +104,15 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
   $YYYY = $_SESSION["YYYY"];
   $CVV = $_SESSION["CVV"];
 }
-
-$reserveQuery = "select reservation_id from reservations";
-$result = mysqli_query($con, $reserveQuery);
-
-$referencenumber = bin2hex(random_bytes(16));
-$timeStamp = date("Y-m-d H:i:s");
-
-check:
-  while ($row = mysqli_fetch_assoc($result)) {
-    $reservation_id = $row['reservation_id'];
-    if($referencenumber == $reservation_id){
-      $referencenumber = bin2hex(random_bytes(16));
-      goto check;
-    }
-  }
-  
-  if (isset($_POST['submit'])){
-    $guest_id = ($_SESSION['guest_id']);
-    $_SESSION['reservation_id'] = $referencenumber;
-    $_SESSION['reservation_date'] = $timeStamp;
-
-    $resQuery = "INSERT INTO reservations (reservation_id,guest_id, reservation_type,reservation_date,payment_method,total_cost,down_payment,payment_status) 
-    VALUES ('$referencenumber', '$guest_id', '$type', '$timeStamp', '$paymentType','$totalcostNum','$downpaymentNum', 'Pending')";
-    
-    $verify = mysqli_query($con, $resQuery);
-  
-    if ($verify) {
-        echo "<script> alert(Reservatioh Successful!)</script>";
-        header ("Location: confirmation.php");
-      
-      }else{
-        echo "<script> alert(Reservation Failed!)</script>";
-      }
-  }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bookingsummary.css" />
+    <link rel="stylesheet" href="css/details.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
     <title>Amaro Resort</title>
     <script
@@ -185,8 +156,23 @@ check:
     <!-- start of Reservation summary -->
     <section id="bookingSummary">
       <div class="summary-container">
-        <span class="section-phrase">Reservation Summary</span>
+        <span class="section-phrase">View Details</span>
         <div class="booking-summary-container">
+          <div class="details-container">
+            <div class="section-title"><h3>Reservation</h3></div>
+            <!-- Reservation Number -->
+            <div class="section-details">
+              <span>Reservation Number: </span>
+              <p><?php echo $reservation_id ?></p>
+            </div>
+
+            <!-- Transaction Date -->
+            <div class="section-details">
+              <span>Transaction Date:</span>
+              <p><?php echo $timeStamp ?></p>
+            </div>
+          </div>
+
           <div class="details-container">
             <div class="section-title"><h3>Guest Details</h3></div>
             <!-- First Name -->
@@ -402,21 +388,6 @@ check:
               <span>Down Payment:</span>
               <p><?php echo '₱' .$downpaymentNum ?></p>
             </div>
-
-            <hr class="horizontal-line" />
-            
-            <div class="cta-buttons">
-              <a href="index.php" id="cancelButton">
-                <button type="button" class="secondary-btn">CANCEL</button>
-              </a>
-              <form method="post">
-              <button class="primary-btn" name="submit">
-                CONFIRM BOOKING
-              </button>
-              </form>
-            </div>
-            
-          </div>
         </div>
       </div>
     </section>
