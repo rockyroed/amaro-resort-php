@@ -5,16 +5,44 @@ $type = $_SESSION["Type"];
 
 $type = strtoupper($type);
 
-if(isset($_POST["ppAdult"])) {
+  if (isset($_POST["paymentCardnumber"]) && isset($_POST["paymentCardname"])
+  && isset($_POST["mm"]) && isset($_POST["YYYY"]) && isset($_POST["CVV"]) && isset($_POST["paymentType"])){
 
-  $paymentAdult = $_POST['ppAdult'];
-  $paymentChildren = $_POST['ppChildren'];
-  
+    $paymentCardnumber = $_POST['paymentCardnumber'];
+    $paymentCardname = $_POST['paymentCardname'];
+    $mm = $_POST['mm'];
+    $YYYY = $_POST['YYYY'];
+    $CVV = $_POST['CVV'];
+    $paymentType = $_POST['paymentType'];
 
-  $_SESSION["paymentAdult"] = $paymentAdult; 
-  $_SESSION["paymentChildren"] = $paymentChildren;
-  header("Location: bookingsummary.php"); die();
- 
+    $_SESSION["paymentCardnumber"] = $paymentCardnumber;
+    $_SESSION["paymentCardname"] = $paymentCardname;
+    $_SESSION["mm"] = $mm;
+    $_SESSION["YYYY"] = $YYYY;
+    $_SESSION["CVV"] = $CVV;
+    $_SESSION["paymentType"] = $paymentType;
+    header("Location: bookingsummary.php"); die();
+
+} else if(isset($_POST["paymentAccountname"]) && isset($_POST["paymentAccountnumber"]) 
+  && isset($_POST["paymentType"])){
+
+    $paymentAccountname = $_POST['paymentAccountname'];
+    $paymentAccountnumber = $_POST['paymentAccountnumber'];
+    $paymentType = $_POST['paymentType'];
+
+    $_SESSION["paymentAccountname"] = $paymentAccountname;
+    $_SESSION["paymentAccountnumber"] = $paymentAccountnumber;
+    $_SESSION["paymentType"] = $paymentType;
+    header("Location: bookingsummary.php"); die();
+}
+  else if(isset($_POST["paymentEmailadd"]) && isset($_POST["paymentType"])) {
+
+    $paymentEmailadd = $_POST['paymentEmailadd'];
+    $paymentType = $_POST['paymentType'];
+
+    $_SESSION["paymentEmailadd"] = $paymentEmailadd;
+    $_SESSION["paymentType"] = $paymentType;
+    header("Location: bookingsummary.php"); die();
 }
 ?>
 
@@ -43,7 +71,7 @@ if(isset($_POST["ppAdult"])) {
 
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <div class="payment--options">
                 <button class="payment" name="paypal" type="button" title="PayPal">
                   <img
@@ -78,16 +106,16 @@ if(isset($_POST["ppAdult"])) {
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <div class="column">
                 <div class="input-box">
                   <!-- Email Address -->
-                  <label for="Adult">Email Address</label>
+                  <label for="email">Email Address</label>
                   <input
-                    type="text"
+                    type="email"
                     id="email-address"
-                    title="Adult"
-                    name="ppAdult"
+                    title="emailadd"
+                    name="paymentEmailadd"
                     value=""
                     size="40"
                     maxlength="50"
@@ -95,7 +123,10 @@ if(isset($_POST["ppAdult"])) {
                     required
                   />
                 </div>
+                <input class="hidden" name="paymentType" id="paymentType"></input>
               </div>
+
+             
 
               <div class="cta-buttons">
                 <a href="bookingdetails.html" id="cancelButton">
@@ -119,16 +150,16 @@ if(isset($_POST["ppAdult"])) {
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <div class="column">
                 <div class="input-box">
                   <!-- Account Name -->
-                  <label for="Adult">Account Name</label>
+                  <label for="accountname">Account Name</label>
                   <input
                     type="text"
                     id="account-name"
                     title="Account Name"
-                    name="Adult"
+                    name="paymentAccountname"
                     value=""
                     size="40"
                     maxlength="100"
@@ -139,12 +170,12 @@ if(isset($_POST["ppAdult"])) {
 
                 <!-- Account Number -->
                 <div class="input-box">
-                  <label for="Children">Account Number</label>
+                  <label for="accountnumber">Account Number</label>
                   <input
                     type="number"
                     id="account-number"
-                    title="Account Number"
-                    name="accountnumber"
+                    title="AccountNumber"
+                    name="paymentAccountnumber"
                     value=""
                     size="30"
                     maxlength="50"
@@ -152,6 +183,7 @@ if(isset($_POST["ppAdult"])) {
                     required
                   />
                 </div>
+                <input class="hidden" name="paymentType" id="paymentType"></input>
               </div>
 
               <div class="cta-buttons">
@@ -159,10 +191,10 @@ if(isset($_POST["ppAdult"])) {
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
                 <!-- <a href="bookingsummary.html" id="confirm"> -->
-                  <button type="button" class="primary-btn">
+                  <button class="primary-btn">
                     CONFIRM PAYMENT
                   </button>
-                </a>
+                <!-- </a> -->
               </div>
             </form>
             <!-- End of Form -->
@@ -180,7 +212,7 @@ if(isset($_POST["ppAdult"])) {
             </header>
             <hr class="hz-line" />
             <!-- Form -->
-            <form action="#" class="form" method="post">
+            <form action="" class="form" method="post">
               <div class="input-box">
                 <!-- Adult -->
                 <label for="CardNumber">Card Number</label>
@@ -188,7 +220,7 @@ if(isset($_POST["ppAdult"])) {
                   type="text"
                   id="cardNum"
                   title="Card Number"
-                  name="Card Number"
+                  name="paymentCardnumber"
                   value=""
                   size="40"
                   maxlength="50"
@@ -204,7 +236,7 @@ if(isset($_POST["ppAdult"])) {
                   type="text"
                   id="cardName"
                   title="Card Name"
-                  name="Card Name"
+                  name="paymentCardname"
                   value=""
                   size="40"
                   maxlength="50"
@@ -261,17 +293,18 @@ if(isset($_POST["ppAdult"])) {
                     required
                   />
                 </div>
+                <input class="hidden" name="paymentType" id="paymentType"></input>
               </div>
 
               <div class="cta-buttons">
                 <a href="bookingdetails.html" id="cancelButton">
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <a href="bookingsummary.html" id="confirm">
-                  <button type="button" class="primary-btn">
+                <!-- <a href="bookingsummary.html" id="confirm"> -->
+                  <button class="primary-btn">
                     CONFIRM PAYMENT
                   </button>
-                </a>
+                <!-- </a> -->
               </div>
             </form>
             <!-- End of Form -->

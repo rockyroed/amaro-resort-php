@@ -11,8 +11,9 @@ for(let i = 0; i < buttons.length; i++) {
         for(let i = 0; i < buttons.length; i++) {
             if(i === index) {
                 buttons[i].classList.add('selected');
-                // resType.value = outText;
-                // console.log(resType.value);
+                var bname = buttons[i].getAttribute('name');
+                paymentType.value = bname;
+                console.log(paymentType.value);
             } else {
                 buttons[i].classList.remove('selected');
             }
