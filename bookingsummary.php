@@ -1,25 +1,66 @@
 <?php
 session_start();
+  // Guest Details
 
+if (isset($_SESSION['FirstName']) && isset($_SESSION['MiddleName']) && isset($_SESSION['LastName']) 
+&& isset($_SESSION['PhoneNumber']) && isset($_SESSION['EmailAddress']) && isset($_SESSION['Type']) 
+&& isset($_SESSION['totalCost']) && isset($_SESSION['downPayment']) && isset($_SESSION['DateOfVisit']) 
+&& isset($_SESSION['TimeSlot']) && isset($_SESSION['Adult']) && isset($_SESSION['Children']) 
+&& isset($_SESSION['SeniorPWD']) && isset($_SESSION['CottageType']) && isset($_SESSION['RoomType']) 
+&& isset($_SESSION['CheckIn']) && isset($_SESSION['CheckOut']) && isset($_SESSION['EventDate']) 
+&& isset($_SESSION['EventPax']) && isset($_SESSION['VenueArea']) && isset($_SESSION['paymentType']) 
+&& isset($_SESSION['paymentEmailadd']) && isset($_SESSION['paymentAccountname']) 
+&& isset($_SESSION['paymentAccountnumber']) && isset($_SESSION['paymentCardnumber']) 
+&& isset($_SESSION['paymentCardname']) && isset($_SESSION['mm']) 
+&& isset($_SESSION['YYYY']) && isset($_SESSION['CVV'])) {
   $firstname = $_SESSION["FirstName"];
   $middlename = $_SESSION["MiddleName"];
   $lastname = $_SESSION["LastName"];
   $phonenumber = $_SESSION["PhoneNumber"];
   $emailaddress = $_SESSION["EmailAddress"];
+  $type = $_SESSION["Type"];
 
-  $dateofvisit = $_SESSION['dateofvisit'];
-  $timeSlot = $_SESSION['timeSlot'];
-  $Adult = $_SESSION['Adult'];
-  $Children = $_SESSION['Children'];
-  $SeniorPWD = $_SESSION['SeniorPWD'];
-  $cottagetype = $_SESSION['cottagetype'];
-  $notesroom = $_SESSION['notesroom'];
-  $payment = $_SESSION['cottagetype'];
-  $TotalCost = $_SESSION['TotalCost'];
+  // General Reservation Details
+  $TotalCost = $_SESSION["totalCost"];
+  $downpayment = $_SESSION["downPayment"];
 
-  $paymentAdult = $_SESSION['ppAdult'];
-  $paymentChildren = $_SESSION['ppChildren'];
+  // Reservation Details for Swimming
+  $dateofvisit = $_SESSION["DateOfVisit"];
+  $timeSlot = $_SESSION["TimeSlot"];
+  $Adult = $_SESSION["Adult"];
+  $Children = $_SESSION["Children"];
+  $SeniorPWD = $_SESSION["SeniorPWD"];
+  $cottagetype = $_SESSION["CottageType"];
+  
 
+  // Reservation Details for Room
+  $roomtype = $_SESSION["RoomType"];
+  $checkin = $_SESSION["CheckIn"];
+  $checkout = $_SESSION["CheckOut"];
+
+  // Reservation Details for Events
+  $eventDate = $_SESSION['EventDate'];
+  $eventPax = $_SESSION['EventPax'];
+  $venueArea = $_SESSION['VenueArea'];
+
+
+
+
+  // Payment Details for Paypal
+  $paymentType = $_SESSION["paymentType"];
+  $paymentEmailadd = $_SESSION["paymentEmailadd"];
+
+  // Payment Details for GCash
+  $paymentAccountname = $_SESSION["paymentAccountname"];
+  $paymentAccountnumber = $_SESSION["paymentAccountnumber"];
+
+  // Payment Details for Credit Card
+  $paymentCardnumber = $_SESSION["paymentCardnumber"];
+  $paymentCardname = $_SESSION["paymentCardname"];
+  $mm = $_SESSION["mm"];
+  $YYYY = $_SESSION["YYYY"];
+  $CVV = $_SESSION["CVV"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -112,7 +153,7 @@ session_start();
             <!-- Reservation Type-->
             <div class="section-details">
               <span>Reservation Type:</span>
-              <p>Swimming</p>
+              <p><?php echo $type ?></p>
             </div>
 
             <!-- Date of Visit:-->
@@ -130,7 +171,7 @@ session_start();
             <!-- Adult-->
             <div class="section-details">
               <span>Adult:</span>
-              <p>8</p>
+              <p><?php echo $Adult ?></p>
             </div>
 
             <!-- Children-->
@@ -152,36 +193,36 @@ session_start();
             </div>
 
             <!-- Additional Notes -->
-            <div class="section-details">
+            <!-- <div class="section-details">
               <span>Additional Notes:</span>
               <p><?php echo $notesroom ?></p>
             </div>
-          </div>
+          </div> -->
 
           <div class="details-container">
             <div class="section-title"><h3>Payment Details</h3></div>
             <!-- Payment Type -->
             <div class="section-details">
               <span>Payment Type:</span>
-              <p><?php echo $payment ?></p>
+              <p>Downpayment</p>
             </div>
 
             <!-- Payment Method -->
             <div class="section-details">
               <span>Payment Method:</span>
-              <p>GCash</p>
+              <p><?php echo $paymentType ?></p>
             </div>
 
             <!-- Account Name -->
             <div class="section-details">
               <span>Account Name:</span>
-              <p>Trisha Mae Erandio</p>
+              <p><?php echo $paymentAccountname ?></p>
             </div>
 
             <!-- Payment Method -->
             <div class="section-details">
               <span>Account Number:</span>
-              <p>09123456789</p>
+              <p><?php echo $paymentAccountnumber ?></p>
             </div>
 
             <!-- Reference Number -->
@@ -200,25 +241,25 @@ session_start();
           <div class="details-container">
             <div class="section-title"><h3>Amount</h3></div>
 
-            <!-- Pax Number -->
+            <!-- Total Cost -->
             <div class="section-details">
-              <span>Pax:</span>
-              <p>₱2,240</p>
+              <span>Total Cost:</span>
+              <p><?php echo $TotalCost ?></p>
             </div>
 
-            <!-- Cottage Type -->
+            <!-- Downpayment -->
             <div class="section-details">
-              <span>Cottage:</span>
-              <p>₱1,000</p>
+              <span>Downpayment:</span>
+              <p><?php echo $downpayment ?></p>
             </div>
 
             <hr class="horizontal-line" />
 
             <!-- Total Cost -->
-            <div class="section-details">
+            <!-- <div class="section-details">
               <span class="totalCost">Total Cost:</span>
               <p class="totalCostNumber"><?php echo ''.$TotalCost ?></p>
-            </div>
+            </div> -->
 
             <div class="cta-buttons">
               <a href="index.php" id="cancelButton">
