@@ -57,7 +57,7 @@ function calculateSwimTotal(){
   
   var adultPrice = document.getElementById('Adult.price').value;
   var childrenPrice = document.getElementById('Child.price').value;
-  var seniorPWDPrice = document.getElementById('PWD.price').value;
+  var seniorPWDPrice = document.getElementById('Senior.price').value;
   var cottagePrice = document.getElementById('cottagetype').value;
   var totalCost = document.getElementById('totalCost');
   var downPayment = document.getElementById('downPayment');

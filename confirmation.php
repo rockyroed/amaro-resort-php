@@ -1,27 +1,16 @@
 <?php
 session_start();
-  if(isset($_POST["FirstName"])) {
-    $firstname = $_SESSION["FirstName"];
-    $middlename = $_SESSION["MiddleName"];
-    $lastname = $_SESSION["LastName"];
-    $phonenumber = $_SESSION["PhoneNumber"];
-    $emailaddress = $_SESSION["EmailAddress"];
+require_once "includes/dbh.inc.php";
 
-    $dateofvisit = $_SESSION['dateofvisit'];
-    $timeSlot = $_SESSION['timeSlot'];
-    $Adult = $_SESSION['Adult'];
-    $Children = $_SESSION['Children'];
-    $SeniorPWD = $_SESSION['SeniorPWD'];
-    $cottagetype = $_SESSION['cottagetype'];
-    $notesroom = $_SESSION['notesroom'];
-    $payment = $_SESSION['cottagetype'];
-    $TotalCost = $_SESSION['TotalCost'];
 
-    $paymentAdult = $_SESSION['ppAdult'];
-    $paymentChildren = $_SESSION['ppChildren'];
+$firstname = $_SESSION["FirstName"];
+$middlename = $_SESSION["MiddleName"];
+$lastname = $_SESSION["LastName"];
+$type = $_SESSION["Type"];
 
-    $date = date('m/d/y H:i:s');
-  }
+$Adult = $_SESSION["Adult"];
+$Children = $_SESSION["Children"];
+$SeniorPWD = $_SESSION["SeniorPWD"];
 ?>
 
 <!DOCTYPE html>
@@ -74,17 +63,22 @@ session_start();
     <section id="bookingSummary">
       <div class="summary-container">
         <span class="section-phrase">
-          Confirm Reservation <br />
-          Please check the details before proceeding.
+          Reservation Complete! <br />
+          We're excited to welcome you.
         </span>
         <div class="booking-summary-container">
           <div class="details-container">
             <div class="section-title"><h3>Transaction Details</h3></div>
-
+            <!-- Reference Number -->
+            <div class="section-details">
+                <span>Reference Number:</span>
+                <p><?php echo $referencenumber ?></p>
+            </div>
+            
             <!-- Guest Name -->
             <div class="section-details">
                 <span>Guest Name:</span>
-                <p><?php echo $firstname.''.$middlename.''.$lastname ?></p>
+                <p><?php echo $firstname.' '.$middlename.' '.$lastname ?></p>
             </div>
 
             <!-- Reservation Number -->

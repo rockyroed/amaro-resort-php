@@ -27,6 +27,7 @@
             $passwsord = $result["password"];
             $type = $result["type"];
             $creationdate = $result["creation_date"];
+            $_SESSION['guest_id'] = $guest_id;
             header( "Location: index.php" ); die;
         } else {
             $error = "Cannot log in. The user is not existing or the password is incorrect. Please try again.";

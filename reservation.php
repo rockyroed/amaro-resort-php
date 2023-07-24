@@ -43,7 +43,7 @@ $error = "";
         <div class="left-container">
           <h1>CHOOSE A RESERVATION</h1>
           <a href="#swim-book" id="swimBook">
-            <button type="button" class="book-btn selected" value="Swimming" id="swimming-btn">
+            <button type="button" class="book-btn" value="Swimming" id="swimming-btn">
               SWIMMING
             </button>
           </a>
@@ -59,7 +59,7 @@ $error = "";
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />
           <span class="section-name" id="section-name"
-            >SWIMMING RESERVATION</span
+            ></span
           >
           <div class="form-container">
             <header>Guest Details</header>

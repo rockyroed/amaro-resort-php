@@ -6,14 +6,14 @@ $type = $_SESSION["Type"];
 $type = strtoupper($type);
 
   if (isset($_POST["paymentCardnumber"]) && isset($_POST["paymentCardname"])
-  && isset($_POST["mm"]) && isset($_POST["YYYY"]) && isset($_POST["CVV"]) && isset($_POST["paymentType"])){
+  && isset($_POST["mm"]) && isset($_POST["YYYY"]) && isset($_POST["CVV"]) && isset($_POST["paymentCCType"])){
 
     $paymentCardnumber = $_POST['paymentCardnumber'];
     $paymentCardname = $_POST['paymentCardname'];
     $mm = $_POST['mm'];
     $YYYY = $_POST['YYYY'];
     $CVV = $_POST['CVV'];
-    $paymentType = $_POST['paymentType'];
+    $paymentType = $_POST['paymentCCType'];
 
     $_SESSION["paymentCardnumber"] = $paymentCardnumber;
     $_SESSION["paymentCardname"] = $paymentCardname;
@@ -24,21 +24,21 @@ $type = strtoupper($type);
     header("Location: bookingsummary.php"); die();
 
 } else if(isset($_POST["paymentAccountname"]) && isset($_POST["paymentAccountnumber"]) 
-  && isset($_POST["paymentType"])){
+  && isset($_POST["paymentGType"])){
 
     $paymentAccountname = $_POST['paymentAccountname'];
     $paymentAccountnumber = $_POST['paymentAccountnumber'];
-    $paymentType = $_POST['paymentType'];
+    $paymentType = $_POST['paymentGType'];
 
     $_SESSION["paymentAccountname"] = $paymentAccountname;
     $_SESSION["paymentAccountnumber"] = $paymentAccountnumber;
     $_SESSION["paymentType"] = $paymentType;
     header("Location: bookingsummary.php"); die();
 }
-  else if(isset($_POST["paymentEmailadd"]) && isset($_POST["paymentType"])) {
+  else if(isset($_POST["paymentEmailadd"]) && isset($_POST["paymentPPType"])) {
 
     $paymentEmailadd = $_POST['paymentEmailadd'];
-    $paymentType = $_POST['paymentType'];
+    $paymentType = $_POST['paymentPPType'];
 
     $_SESSION["paymentEmailadd"] = $paymentEmailadd;
     $_SESSION["paymentType"] = $paymentType;
@@ -116,14 +116,13 @@ $type = strtoupper($type);
                     id="email-address"
                     title="emailadd"
                     name="paymentEmailadd"
-                    value=""
                     size="40"
                     maxlength="50"
                     placeholder=""
                     required
                   />
                 </div>
-                <input class="hidden" name="paymentType" id="paymentType"></input>
+                <input class="hidden" name="paymentPPType" id="paymentPPType"></input>
               </div>
 
              
@@ -160,7 +159,6 @@ $type = strtoupper($type);
                     id="account-name"
                     title="Account Name"
                     name="paymentAccountname"
-                    value=""
                     size="40"
                     maxlength="100"
                     placeholder=""
@@ -176,14 +174,13 @@ $type = strtoupper($type);
                     id="account-number"
                     title="AccountNumber"
                     name="paymentAccountnumber"
-                    value=""
                     size="30"
                     maxlength="50"
                     placeholder="0"
                     required
                   />
                 </div>
-                <input class="hidden" name="paymentType" id="paymentType"></input>
+                <input class="hidden" name="paymentGType" id="paymentGType"></input>
               </div>
 
               <div class="cta-buttons">
@@ -221,7 +218,6 @@ $type = strtoupper($type);
                   id="cardNum"
                   title="Card Number"
                   name="paymentCardnumber"
-                  value=""
                   size="40"
                   maxlength="50"
                   placeholder="0"
@@ -237,7 +233,6 @@ $type = strtoupper($type);
                   id="cardName"
                   title="Card Name"
                   name="paymentCardname"
-                  value=""
                   size="40"
                   maxlength="50"
                   placeholder="0"
@@ -254,7 +249,6 @@ $type = strtoupper($type);
                     id="mm"
                     title="MM"
                     name="mm"
-                    value=""
                     size="40"
                     maxlength="50"
                     placeholder="0"
@@ -270,7 +264,6 @@ $type = strtoupper($type);
                     id="yyyy"
                     title="YYYY"
                     name="YYYY"
-                    value=""
                     size="40"
                     maxlength="50"
                     placeholder="0"
@@ -286,14 +279,13 @@ $type = strtoupper($type);
                     id="cvv"
                     title="CVV"
                     name="CVV"
-                    value=""
                     size="30"
                     maxlength="50"
                     placeholder="0"
                     required
                   />
                 </div>
-                <input class="hidden" name="paymentType" id="paymentType"></input>
+                <input class="hidden" name="paymentCCType" id="paymentCCType"></input>
               </div>
 
               <div class="cta-buttons">
