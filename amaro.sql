@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2023 at 07:47 PM
+-- Generation Time: Jul 24, 2023 at 07:37 PM
 -- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -155,7 +155,7 @@ INSERT INTO `cottage_numbers` (`cottage_number`, `cottage_id`, `reserved_check_i
 
 CREATE TABLE `event_reservations` (
   `event_reservation_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `event_type` enum('Function Hall','Court','','') NOT NULL,
   `pax_nunber` int(11) NOT NULL,
   `event_venue_number` varchar(11) NOT NULL
@@ -213,7 +213,7 @@ INSERT INTO `event_venue_numbers` (`event_venue_number`, `event_venue_id`, `rese
 
 CREATE TABLE `gcash_payment_details` (
   `gcash_payment_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `account_name` varchar(100) NOT NULL,
   `account_number` varchar(15) NOT NULL,
   `transaction_id` int(100) NOT NULL
@@ -254,7 +254,7 @@ INSERT INTO `guests` (`guest_id`, `first_name`, `middle_name`, `last_name`, `pho
 
 CREATE TABLE `mastercard_payment_details` (
   `mastercard_payment_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `cardholder_number` varchar(15) NOT NULL,
   `cardholder_name` varchar(100) NOT NULL,
   `month` int(11) NOT NULL,
@@ -270,7 +270,7 @@ CREATE TABLE `mastercard_payment_details` (
 
 CREATE TABLE `paypal_payment_details` (
   `paypal_payment_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `email_address` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -281,7 +281,7 @@ CREATE TABLE `paypal_payment_details` (
 --
 
 CREATE TABLE `reservations` (
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `guest_id` int(11) NOT NULL,
   `reservation_type` enum('Swimming','Room','Event','') NOT NULL,
   `reservation_date` datetime NOT NULL,
@@ -296,7 +296,7 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`reservation_id`, `guest_id`, `reservation_type`, `reservation_date`, `payment_method`, `total_cost`, `down_payment`, `payment_status`) VALUES
-('0', 1, 'Swimming', '2023-07-24 18:13:22', '', 0, 0, 'Pending');
+(0, 1, 'Swimming', '2023-07-24 18:13:22', '', 0, 0, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -367,7 +367,7 @@ INSERT INTO `room_numbers` (`room_number`, `room_id`, `reserved_check_in`, `rese
 
 CREATE TABLE `room_reservations` (
   `room_reservation_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `room_type` enum('Couple','Family','','') NOT NULL,
   `pax_number` int(11) NOT NULL,
   `room_number` varchar(11) NOT NULL
@@ -406,7 +406,7 @@ INSERT INTO `swimming_prices` (`swimming_price_id`, `chosen_hour`, `guest_type`,
 
 CREATE TABLE `swimming_reservations` (
   `swimming_reservation_id` int(11) NOT NULL,
-  `reservation_id` varchar(255) NOT NULL,
+  `reservation_id` int(11) NOT NULL,
   `chosen_hour` enum('Day','Night','','') NOT NULL,
   `pax_adults` int(11) NOT NULL,
   `pax_children` int(11) NOT NULL,
@@ -661,7 +661,7 @@ ALTER TABLE `room_numbers`
 --
 ALTER TABLE `room_reservations`
   ADD CONSTRAINT `room_to_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `room_to_room` FOREIGN KEY (`room_number`) REFERENCES `room_numbers` (`room_number`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `room_to_room` FOREIGN KEY (`room_number`) REFERENCES `room_numbers` (`room_number`);
 
 --
 -- Constraints for table `swimming_reservations`
