@@ -2,19 +2,20 @@
 session_start();
 require_once "includes/dbh.inc.php";
 
-if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
-&& isset($_SESSION["PhoneNumber"]) && isset($_SESSION["EmailAddress"]) && isset($_SESSION["Type"])
-&& isset($_SESSION["guest_id"]) && isset($_SESSION["email_address"])) {
-    $firstname = $_SESSION["FirstName"];
-    $middlename = $_SESSION["MiddleName"];
-    $lastname = $_SESSION["LastName"];
-    $phonenumber = $_SESSION["PhoneNumber"];
-    $emailaddress = $_SESSION["EmailAddress"];
-    $type = $_SESSION["Type"];
-    $guestid = $_SESSION["guest_id"];
-    $email_address = $_SESSION["email_address"];
-
+if (isset($_SESSION["guest_id"])) {
+  $guestid = $_SESSION["guest_id"];
+  $query = "SELECT * FROM guests WHERE guest_id = ?";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute([$guestid]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $firstname = $result["first_name"];
+  $middlename = $result["middle_name"];
+  $lastname = $result["last_name"];
+  $phonenumber = $result["phone_number"];
+  $emailaddress = $result["email_address"];
 }
+  
+
 
 if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST["LastName"])) 
 && (isset($_POST['PhoneNumber'])) && (isset($_POST['EmailAddress']))) ) {
@@ -113,7 +114,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
           </div>
           <div class="account-info">
             <span id="firstNameDisplay"><?php echo $firstname ?></span>
-            <span id="emailAddDisplay"><?php echo $email_address ?></span>
+            <span id="emailAddDisplay"><?php echo $emailaddress ?></span>
           </div>
 
           <div class="page-buttons">
@@ -149,7 +150,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                   id="firstName"
                   title="First Name"
                   name="FirstName"
-                  value=""
+                  value="<?php echo $stng_row['first_name']?>"
                   size="40"
                   maxlength="50"
                   placeholder="<?php echo $stng_row['first_name']?>"
@@ -165,7 +166,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                   id="middleName"
                   title="Middle Name"
                   name="MiddleName"
-                  value=""
+                  value="<?php echo $stng_row['middle_name']?>"
                   size="40"
                   maxlength="50"
                   placeholder="<?php echo $stng_row['middle_name']?>"
@@ -181,7 +182,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                   id="lastName"
                   title="Last Name"
                   name="LastName"
-                  value=""
+                  value="<?php echo $stng_row['last_name']?>"
                   size="40"
                   maxlength="50"
                   placeholder="<?php echo $stng_row['last_name']?>"
@@ -199,6 +200,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                   id="phoneNumber"
                   title="11-Digit Phone Number"
                   name="PhoneNumber"
+                  value="<?php echo $stng_row['phone_number']?>"
                   placeholder="<?php echo $stng_row['phone_number']?>"
                   maxlength="11"
                   size="50"
@@ -215,7 +217,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                   id="emailAddress"
                   title="Email Address"
                   name="EmailAddress"
-                  value=""
+                  value="<?php echo $stng_row['email_address']?>"
                   size="50"
                   maxlength="50"
                   placeholder="<?php echo $stng_row['email_address']?>"

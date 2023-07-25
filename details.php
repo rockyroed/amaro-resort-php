@@ -4,105 +4,130 @@ require_once "includes/dbh.inc.php";
 
   if(isset($_GET['reservation_id'])){
     $reservation_id = $_GET['reservation_id'];
-    $timeStamp = $_SESSION['reservation_date']; 
+    $query = "SELECT * FROM reservations WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $reservation_id = $result["reservation_id"];
+      $guest_id = $result["guest_id"];
+      $res_type = $result["reservation_type"];
+      $date_created = $result["reservation_date"];
+      $paymentMethod = $result["payment_method"];
+      $totalcost = $result["total_cost"];
+      $downpayment = $result["downpayment"];   
   }
 
   // Guest Details
-  if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
-  && isset($_SESSION["PhoneNumber"]) && isset($_SESSION["EmailAddress"]) && isset($_SESSION["Type"])) {
-      $firstname = $_SESSION["FirstName"];
-      $middlename = $_SESSION["MiddleName"];
-      $lastname = $_SESSION["LastName"];
-      $phonenumber = $_SESSION["PhoneNumber"];
-      $emailaddress = $_SESSION["EmailAddress"];
-      $type = $_SESSION["Type"];
+  $query = "SELECT * FROM guests WHERE guest_id = ?";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute([$guest_id]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  if($result) {
+    $firstname = $result["first_name"];
+    $middlename = $result["middle_name"];
+    $lastname = $result["last_name"];
+    $phonenumber = $result["phone_number"];
+    $emailaddress = $result["email_address"];
+  }
 }
 
-
-  // General Reservation Details
-  if (isset($_SESSION["totalCost"]) && isset($_SESSION["downPayment"])) {
-      $TotalCost = ($_SESSION["totalCost"]);
-      $downpayment = ($_SESSION["downPayment"]);
-      $totalcostNum = (int)$TotalCost;
-      $downpaymentNum = (int)$downpayment;
-}
 
   // Reservation Details for Swimming
-  if (isset($_SESSION['DateOfVisit']) && isset($_SESSION['TimeSlot']) && isset($_SESSION['Adult']) 
-  && isset($_SESSION['Children']) && isset($_SESSION['SeniorPWD']) && isset($_SESSION['CottageType'])){
-    $dateofvisit = $_SESSION["DateOfVisit"];
-    $timeSlot = $_SESSION["TimeSlot"];
-    $Adult = $_SESSION["Adult"];
-    $Children = $_SESSION["Children"];
-    $SeniorPWD = $_SESSION["SeniorPWD"];
-    $cottagetype = $_SESSION["CottageType"];
-    $cottagetypename = "";
+  if($res_type == "Swimming"){
+    $query = "SELECT * FROM swimming_reservations WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $dateofvisit = $result["date_of_visit"];
+      $timeSlot = $result["time_slot"];
+      $Adult = $result["adult"];
+      $Children = $result["children"];
+      $SeniorPWD = $result["senior_pwd"];
+      $cottage_id = $result["cottage_id"];
+    }
 
-    if ($cottagetype == 1000) {
-      $cottagetypename = "Canopy";
-    }else if ($cottagetype == 1500) {
-      $cottagetypename = "Trellis 1";
-    }else if ($cottagetype == 2000) {
-      $cottagetypename = "Trellis 2";
-    }else if ($cottagetype == 1200) {
-      $cottagetypename = "Kubo";
-    }else if ($cottagetype == 7500) {
-      $cottagetypename = "Pavilion 1";
-    }else if ($cottagetype == 6500) {
-      $cottagetypename = "Pavilion 2";
-    }else if ($cottagetype == 9500) {
-      $cottagetypename = "Pavilion 3";
+    // Cottage Details
+    $query = "SELECT * FROM cottages WHERE cottage_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$cottage_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $cottagetypename = $result["cottage_type_name"];
     }
 }
   // Reservation Details for Room
-  if(isset($_SESSION['RoomType']) && isset($_SESSION['CheckIn']) 
-    && isset($_SESSION['CheckOut'])){
-    $roomtype = $_SESSION["RoomType"];
-    $Adult = $_SESSION["Adult"];
-    $Children = $_SESSION["Children"];
-    $SeniorPWD = $_SESSION["SeniorPWD"];
-    $paxNum = (int)$Adult + (int)$Children + (int)$SeniorPWD;
-    $checkin = $_SESSION["CheckIn"];
-    $checkout = $_SESSION["CheckOut"];
-    $TotalCost = $_SESSION["totalCost"];
-    $downpayment = $_SESSION["downPayment"];
+  if($res_type == "Room"){
+    $query = "SELECT * FROM room_reservations WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $checkin = $result["check_in"];
+      $checkout = $result["check_out"];
+      $room_id = $result["room_id"];
+      $paxNum = $result["pax_number"];
+    }
+
+    // Room Details
+    $query = "SELECT * FROM rooms WHERE room_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$room_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $roomtype = $result["room_type"];
+    }
     
 }
   // Reservation Details for Events
-  if(isset($_SESSION['EventDate']) && isset($_SESSION['EventPax']) && isset($_SESSION['VenueArea'])){
-    $eventDate = $_SESSION['EventDate'];
-    $eventPax = $_SESSION['EventPax'];
-    $venueArea = $_SESSION['VenueArea'];
-    $TotalCost = ($_SESSION["totalCost"]);
-    $downpayment = ($_SESSION["downPayment"]);
-    $totalcostNum = (int)$TotalCost;
-    $downpaymentNum = (int)$downpayment;
-}
-
-  // General Payment Detail
-  if (isset($_SESSION["paymentType"])) {
-    $paymentType = $_SESSION["paymentType"];
-    echo $paymentType;
+  if($res_type == "Events"){
+    $query = "SELECT * FROM event_reservations WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $eventVenueNumber = $result["event_venu_number"];
+      $eventPax = $result["pax_number"];
+      $venueArea = $result["event_type"];
   }
+}
   
   
   // Payment Details for Paypal
-  if (isset($_SESSION["paymentEmailadd"])) {
-  $paymentEmailadd = $_SESSION["paymentEmailadd"];
+  if($paymentMethod == "paypal"){
+    $query = "SELECT * FROM paypal_payment_details WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $paymentEmailadd = $result["email_address"];
+  }
 }
   // Payment Details for GCash
-  if(isset($_SESSION["paymentAccountname"]) && isset($_SESSION["paymentAccountnumber"])){
-  $paymentAccountname = $_SESSION["paymentAccountname"];
-  $paymentAccountnumber = $_SESSION["paymentAccountnumber"];
+  if($paymentMethod == "gcash"){
+    $query = "SELECT * FROM gcash_payment_details WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $paymentAccountname = $result["account_name"];
+      $paymentAccountnumber = $result["account_number"];
+  }
 }
   // Payment Details for Credit Card
-if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) && isset($_SESSION["mm"]) 
-  && isset($_SESSION["YYYY"]) && isset($_SESSION["CVV"])){
-  $paymentCardnumber = $_SESSION["paymentCardnumber"];
-  $paymentCardname = $_SESSION["paymentCardname"];
-  $mm = $_SESSION["mm"];
-  $YYYY = $_SESSION["YYYY"];
-  $CVV = $_SESSION["CVV"];
+  if($paymentMethod == "mastercard"){
+    $query = "SELECT * FROM mastercard_payment_details WHERE reservation_id = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$reservation_id]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($result) {
+      $paymentCardnumber = $result["card_number"];
+      $paymentCardname = $result["card_name"];
+      $mm = $result["mm"];
+      $YYYY = $result["YYYY"];
+      $CVV = $result["CVV"];
+  }
 }
 ?>
 
@@ -169,7 +194,7 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
             <!-- Transaction Date -->
             <div class="section-details">
               <span>Transaction Date:</span>
-              <p><?php echo $timeStamp ?></p>
+              <p><?php echo $date_created ?></p>
             </div>
           </div>
 
@@ -208,11 +233,11 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
 
           <div class="details-container">
             <div class="section-title"><h3>Reservation Details</h3></div>
-            <?php if($type == "Swimming"): ?>
+            <?php if($res_type == "Swimming"): ?>
               <!-- Reservation Type-->
               <div class="section-details">
                 <span>Reservation Type:</span>
-                <p><?php echo $type ?></p>
+                <p><?php echo $res_type ?></p>
               </div>
 
               <!-- Date of Visit:-->
@@ -250,7 +275,7 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
                 <span>Cottage Type:</span>
                 <p><?php echo $cottagetypename ?></p>
               </div>
-            <?php elseif($type == "Room"): ?>
+            <?php elseif($res_type == "Room"): ?>
               <!-- Reservation Type-->
               <div class="section-details">
                 <span>Reservation Type:</span>
@@ -284,7 +309,7 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
               <!-- Reservation Type-->
               <div class="section-details">
                 <span>Reservation Type:</span>
-                <p><?php echo $type ?></p>
+                <p><?php echo $res_type ?></p>
               </div>
 
               <!-- Venue Area:-->
@@ -308,12 +333,12 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
         
           <div class="details-container">
             <div class="section-title"><h3>Payment Details</h3></div>
-              <?php if($paymentType == "paypal"): ?>
-                <?php  echo $paymentType; ?>
+              <?php if($paymentMethod == "Paypal"): ?>
+                <?php  echo $paymentMethod; ?>
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>
-                  <p><?php echo ucfirst($paymentType) ?></p>
+                  <p><?php echo ucfirst($paymentMethod) ?></p>
                 </div>
 
                 <!-- Account Name -->
@@ -322,11 +347,11 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
                   <p><?php echo $paymentEmailadd ?></p>
                 </div>
 
-              <?php elseif($paymentType == "gcash"): ?>
+              <?php elseif($paymentMethod == "Gcash"): ?>
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>
-                  <p><?php echo ucfirst($paymentType) ?></p>
+                  <p><?php echo ucfirst($paymentMethod) ?></p>
                 </div>
 
                 <!-- Account Name -->
@@ -344,7 +369,7 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>
-                  <p><?php echo ucfirst($paymentType) ?></p>
+                  <p><?php echo ucfirst($paymentMethod) ?></p>
                 </div>
 
                 <!-- Account Name -->
