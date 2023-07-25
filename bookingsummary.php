@@ -31,23 +31,9 @@ require_once "includes/dbh.inc.php";
     $Children = $_SESSION["Children"];
     $SeniorPWD = $_SESSION["SeniorPWD"];
     $cottagetype = $_SESSION["CottageType"];
-    $cottagetypename = "";
+    $cottagetypename = $_SESSION["cottageTypeName"];
+    $swimRoom = $_SESSION['swimRoom'];
 
-    if ($cottagetype == 1000) {
-      $cottagetypename = "Canopy";
-    }else if ($cottagetype == 1500) {
-      $cottagetypename = "Trellis 1";
-    }else if ($cottagetype == 2000) {
-      $cottagetypename = "Trellis 2";
-    }else if ($cottagetype == 1200) {
-      $cottagetypename = "Kubo";
-    }else if ($cottagetype == 7500) {
-      $cottagetypename = "Pavilion 1";
-    }else if ($cottagetype == 6500) {
-      $cottagetypename = "Pavilion 2";
-    }else if ($cottagetype == 9500) {
-      $cottagetypename = "Pavilion 3";
-    }
 }
   // Reservation Details for Room
   if(isset($_SESSION['RoomType']) && isset($_SESSION['CheckIn']) 
@@ -61,6 +47,7 @@ require_once "includes/dbh.inc.php";
     $checkout = $_SESSION["CheckOut"];
     $TotalCost = $_SESSION["totalCost"];
     $downpayment = $_SESSION["downPayment"];
+    $roomNum = $_SESSION['roomNum'];
     
 }
   // Reservation Details for Events
@@ -72,6 +59,7 @@ require_once "includes/dbh.inc.php";
     $downpayment = ($_SESSION["downPayment"]);
     $totalcostNum = (int)$TotalCost;
     $downpaymentNum = (int)$downpayment;
+    $eventNum = $_SESSION["event_venue_id"];
 }
 
   // General Payment Detail
@@ -126,13 +114,65 @@ check:
     $verify = mysqli_query($con, $resQuery);
   
     if ($verify) {
-        echo "<script> alert(Reservatioh Successful!)</script>";
-        header ("Location: confirmation.php");
-      
+        if ($type == "Swimming") {
+          $cottageQuery = "SELECT cottage_id FROM cottages WHERE cottage_type = '$cottagetypename'";
+          $cottageResult = mysqli_query($con, $cottageQuery);
+          $cottageRow = mysqli_fetch_assoc($cottageResult);
+          $cottage_id = $cottageRow['cottage_id'];
+          $cottage_idnum = (int)$cottage_id;
+
+
+          $swimQuery = "INSERT INTO swimming_reservations (reservation_id, chosen_hour, pax_adults, pax_children, pax_senior, cottage_number) 
+          VALUES ('$referencenumber', '$timeSlot', '$Adult', '$Children', '$SeniorPWD', '$swimRoom')";
+          $swimVerify = mysqli_query($con, $swimQuery);
+          $swimRoomQuery = "UPDATE cottage_numbers SET reserved_check_in = '$dateofvisit' WHERE cottage_number = '$swimRoom'";
+          $swimRoomVerify = mysqli_query($con, $swimRoomQuery);
+      }elseif($type == "Room"){
+          $roomQuery = "SELECT room_id FROM rooms WHERE room_type = '$roomtype'";
+          $roomResult = mysqli_query($con, $roomQuery);
+          $roomRow = mysqli_fetch_assoc($roomResult);
+          $room_id = $roomRow['room_id'];
+
+
+
+          $roomResQuery = "INSERT INTO room_reservations (reservation_id, room_type, pax_number, room_number) 
+          VALUES ('$referencenumber', '$room_id', '$paxNum', '$roomNum')";
+          $roomResVerify = mysqli_query($con, $roomResQuery);
+          $roomNumQuery = "UPDATE room_numbers SET reserved_check_in = '$checkin', reserved_check_out = '$checkout' WHERE room_number = '$roomNum'";
+          $roomNumVerify = mysqli_query($con, $roomNumQuery);
       }else{
-        echo "<script> alert(Reservation Failed!)</script>";
+          $eventTypeQuery = "SELECT event_venue_id FROM event_venues WHERE event_type = '$venueArea'";
+          $eventTypeResult = mysqli_query($con, $eventTypeQuery);
+          $eventTypeRow = mysqli_fetch_assoc($eventTypeResult);
+          $event_venue_id = $eventTypeRow['event_venue_id'];
+          $eventQuery = "INSERT INTO event_reservations (reservation_id, event_type, pax_number, event_venue_number) 
+          VALUES ('$referencenumber', '$venueArea', '$eventPax', '$eventNum')";
+          $eventVerify = mysqli_query($con, $eventQuery);
+          $eventNumQuery = "UPDATE event_venue_numbers SET reserved_check_in = '$eventDate' WHERE event_venue_number = '$eventNum'";
+          $eventNumVerify = mysqli_query($con, $eventNumQuery);
       }
+
+      if ($paymentType == "paypal") {
+        $paypalQuery = "INSERT INTO paypal_payment_details (reservation_id, email_address) 
+        VALUES ('$referencenumber', '$paymentEmailadd')";
+        $paypalVerify = mysqli_query($con, $paypalQuery);
+      }elseif($paymentType == "gcash"){
+        $gcashQuery = "INSERT INTO gcash_payment_details (reservation_id, account_name, account_number) 
+        VALUES ('$referencenumber', '$paymentAccountname', '$paymentAccountnumber')";
+        $gcashVerify = mysqli_query($con, $gcashQuery);
+      }else{
+        $mm = (int)$mm;
+        $YYYY = (int)$YYYY;
+        $CVV = (int)$CVV;
+        $creditQuery = "INSERT INTO mastercard_payment_details  (reservation_id, cardholder_number, cardholder_name, mm, yyyy, cvv) 
+        VALUES ('$referencenumber', '$paymentCardnumber', '$paymentCardname', $mm, $YYYY, $CVV)";
+        $creditVerify = mysqli_query($con, $creditQuery);
+      }
+
+
+      header ("Location: confirmation.php");
   }
+}
 
 ?>
 
