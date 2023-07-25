@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+
+  --primary-button-clr: #38621E;
+  --primary-btn-hover: #60814b;
+  --secondary-button-clr: #FCFDFC;
+  --background-clr: #E9F2EB;
+  --accent-clr: #73AB48;
+  --textlink-hover: #3d5e3e;
+  --main-text-clr: #0C360E;
+  --text-black-clr: #040605;
+  --text-green-clr: #2A401C;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.6;
+    background-color: #fff;
+}
+
+.section-name {
+  margin: 30px 0px 10px 0px;
+  color: rgb(116, 145, 98);
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+}
+ 
+.section-phrase {
+  color: var(--text-black-clr);
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@media(max-width: 700px) {
+    body {
+        font-size: 14px;
+    }
+
+    .section-name {
+      font-size: 17px;
+    }
+
+    .section-phrase {
+      font-size: 25px;
+    }
+}
+
+#admin {
+    display: flex;
+}
+
+.admin-container {
+    background: var(--background-clr);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.side-nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.2);
+    width: 15%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account span {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.account i {
+    font-size: 100px;
+    color: var(--main-text-clr);
+}
+
+.menu-list {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-list i {
+    margin-right: 5px;
+}
+
+.secondary-btn {
+    margin: 10px 0;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid var(--primary-button-clr);
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.1);
+    background: transparent;
+    padding: 10px;
+    background: var(--secondary-button-clr);
+    color: var(--primary-button-clr);
+    cursor: pointer;
+    width: 150px;
+    height: 60px;
+}  
+  
+.secondary-btn:hover {
+    background: var(--primary-btn-hover);
+    color: #fff;
+}
+
+.main-content {
+    padding: 30px;
+    width: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+.content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.content h1 {
+    margin-bottom: 20px;
+    color: var(--main-text-clr);
+    font-size: 30px;
+
+}
+
+.dashboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dashboard-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.dashboard-container {
+    width: 100%;
+    height: 300px;
+    background: #fff;
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.dashboard-container span {
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.booking-table {
+    display: flex;
+    align-items: center;
+    
+}
+
+#bookingList {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#bookingList td, #bookingList th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#bookingList tr:nth-child(even){background-color: #f2f2f2;}
+
+#bookingList tr:hover {background-color: #ddd;}
+
+#bookingList th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--primary-button-clr);
+  color: white;
+}
+
+
+.logout {
+    margin-top: auto;
+}
+
+.logout-btn {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    border-style: none;
+    background: transparent;
+    padding: 10px 20px;
+    background: var(--primary-button-clr);
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.3);
+    color: #fff;
+    cursor: pointer;
+    width: 150px;
+    height: 50px;
+}  
+  
+.logout-btn:hover {
+    background: var(--primary-btn-hover);
+}
+  
+.logout i {
+    margin-left: 10px;
+}
