@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+    $isLoggedIn = true;
+  } else {
+    $isLoggedIn = false;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,15 +37,21 @@
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="reservation.html" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
@@ -53,7 +69,7 @@
           <div class="profile-menu" id="profile-menu">
             <a href="#"><i class="fas fa-user-edit"></i>Profile</a>
             <a href="#"><i class="fas fa-cog"></i>Settings</a>
-            <a href="login.html"><i class="fas fa-sign-out-alt"></i>Logout</a>
+            <a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
           </div>
 
           <span><i class="fas fa-user" id="user"></i></span>
@@ -84,27 +100,16 @@
         </span>
         <div class="background-content">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            at auctor magna. Donec mauris ante, tincidunt at hendrerit quis,
-            venenatis mollis velit. Cras in nibh nunc. Sed pharetra fermentum
-            nulla et feugiat. Donec ut turpis eu est convallis pretium ac et
-            quam. Curabitur ornare ornare ullamcorper. Nullam faucibus erat ac
-            lacus venenatis, vitae dignissim diam ultricies. Aenean ut arcu
-            purus. Quisque aliquet, metus sed sagittis hendrerit, risus mi
-            tincidunt augue, in pellentesque velit est sit amet diam. Nullam
-            eros quam, pellentesque eu dignissim quis, consectetur id lorem.
-            Donec felis magna, lobortis at dignissim at, mollis in lacus. Proin
-            fringilla sem et tortor ornare iaculis. Donec eleifend dui id lacus
-            congue, tristique finibus augue convallis. Integer sem eros,
-            efficitur mattis malesuada id, condimentum eu ligula. Sed ut orci
-            non magna auctor finibus. Curabitur turpis diam, fringilla quis
-            lobortis in, molestie in ante. Sed eget sapien eget erat blandit
-            ornare. Nunc ultricies lorem ut diam pharetra, id tristique leo
-            euismod. Sed vehicula arcu gravida nulla pharetra ultricies. Etiam
-            eget turpis eu leo lobortis volutpat a vel magna. Nullam sapien
-            eros, ultrices a commodo eu, vulputate sit amet nibh. Nam vel sem ac
-            libero tempor euismod. Proin blandit orci augue, eu feugiat felis
-            dignissim nec.
+            Escape to Amaro Resort, your affordable quick getaway in Metro Manila.
+            Nestled in the captivating landscapes of Valenzuela, Philippines, this
+            enchanting retreat offers a harmonious blend of modern luxury and
+            traditional Filipino aesthetics, providing a haven of comfort and cultural
+            authenticity. Indulge in the mesmerizing infinity pool, explore guided hikes
+            to hidden waterfalls, and savor delectable fusion cuisine that celebrates the
+            region's rich heritage. With a commitment to sustainability and community
+            engagement, Amaro Resort ensures responsible tourism and preserves the
+            natural beauty of Valenzuela for generations to come, creating an
+            unforgettable and enriching experience for all.
           </p>
         </div>
       </div>
@@ -118,25 +123,21 @@
           <div class="mission">
             <h2>Our Mission</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum at auctor magna. Donec mauris ante, tincidunt at
-              hendrerit quis, venenatis mollis velit. Cras in nibh nunc. Sed
-              pharetra fermentum nulla et feugiat. Donec ut turpis eu est
-              convallis pretium ac et quam. Curabitur ornare ornare ullamcorper.
-              Nullam faucibus erat ac lacus venenatis, vitae dignissim diam
-              ultricies.
+              At Amaro Resort, our mission is to offer guests a serene haven where they
+              can embrace nature's beauty and experience authentic Filipino hospitality.
+              Through sustainable practices and community engagement, we aim to
+              protect Valenzuela's natural wonders and make a positive impact on both
+              the environment and the local community.
             </p>
           </div>
           <div class="vision">
             <h2>Our Vision</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum at auctor magna. Donec mauris ante, tincidunt at
-              hendrerit quis, venenatis mollis velit. Cras in nibh nunc. Sed
-              pharetra fermentum nulla et feugiat. Donec ut turpis eu est
-              convallis pretium ac et quam. Curabitur ornare ornare ullamcorper.
-              Nullam faucibus erat ac lacus venenatis, vitae dignissim diam
-              ultricies.
+              At Amaro Resort, our vision is to become Valenzuela's premier eco-friendly
+              destination, celebrated for offering a harmonious experience with nature
+              and genuine cultural authenticity. Through responsible and ethical practices,
+              we aim to inspire guests and stakeholders to cherish the environment and
+              embrace a profound connection with the rich heritage of the Philippines.
             </p>
           </div>
         </div>
@@ -145,7 +146,7 @@
     <!-- end of mission and vision -->
 
     <!-- start of FAQs -->
-    <section id="faqs">
+    <!-- <section id="faqs">
       <div class="faqs-container">
         <span class="section-name">Frequently Asked Questions (FAQs)</span>
         <span class="section-phrase">
@@ -153,7 +154,7 @@
         </span>
         <div class="faqs-content"></div>
       </div>
-    </section>
+    </section> -->
     <!-- end of FAQs -->
 
     <!-- start of CTA -->
@@ -169,9 +170,15 @@
             </p>
           </div>
           <div class="cta-below">
-            <a href="reservation.html" id="cta-button">
-              <button type="button" class="cta-btn">BOOK NOW</button>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="cta-button">
+              <button type="button" class="cta-btn">Book Now</button>
             </a>
+          <?php else: ?>
+            <a href="login.php" id="cta-button">
+              <button type="button" class="cta-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
           </div>
         </div>
       </div>
@@ -209,18 +216,18 @@
                   <h2>Links</h2>
                   <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="reservation.html">Reservation</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="services.php">Services</a></li>
+                    <li><a href="reservation.php">Reservation</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                   </ul>
                 </div>
                 <div class="links-label">
                   <h2>Legal</h2>
                   <ul>
-                    <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                    <li><a href="t&c.html">Terms & Conditions</a></li>
-                    <li><a href="rules.html">Rules and Regulations</a></li>
+                    <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                    <li><a href="t&c.php">Terms & Conditions</a></li>
+                    <li><a href="rules.php">Rules and Regulations</a></li>
                 </div>
                 <div class="newsletter">
                   <h2>Newsletter</h2>

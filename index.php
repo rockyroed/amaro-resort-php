@@ -34,14 +34,14 @@
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
             <a class="navBar" href="reservation.php"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
           <?php if ($isLoggedIn): ?>
-            <a href="reservation.html" id="book-button">
+            <a href="reservation.php" id="book-button">
               <button type="button" class="book-btn">Book Now</button>
             </a>
           <?php else: ?>
@@ -97,34 +97,6 @@
     </section>
     <!-- end of home -->
 
-    <!-- start of quick-book -->
-    <!-- <section id="quick-book">
-      <div class="container-flex">
-        <div class="input-grid">
-          <div class="box">
-            <label>Check-in:</label> <br />
-            <input type="date" placeholder="Check-in-Date" />
-          </div>
-          <div class="box">
-            <label>Check-out:</label> <br />
-            <input type="date" placeholder="Check-out-Date" />
-          </div>
-          <div class="box">
-            <label>Adult:</label> <br />
-            <input type="number" placeholder="0" />
-          </div>
-          <div class="box">
-            <label>Children:</label> <br />
-            <input type="number" placeholder="0" />
-          </div>
-        </div>
-        <div class="search">
-          <input type="submit" name="" value="See Availability" />
-        </div>
-      </div>
-    </section> -->
-    <!-- end of quick-book -->
-
     <!-- start of services -->
     <section id="services">
       <div class="svc-container">
@@ -136,9 +108,9 @@
             <div class="svctype-desc">
               <h1 class="svc-title">Swimming</h1>
               <p class="svc-desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                in lectus ante.
+                Experience aquatic bliss with our comprehensive swimming services, where
+                skilled instructors offer tailored lessons for all skill levels, from beginners to
+                advanced swimmers, in our family-friendly pools and lap pool.
               </p>
             </div>
             <a href="swimming.html" id="swimBook">
@@ -151,9 +123,10 @@
             <div class="svctype-desc">
               <h1 class="svc-title">Hotel Room</h1>
               <p class="svc-desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                in lectus ante.
+                Step into our inviting hotel room, where tasteful decor, a peaceful
+                ambiance, and plush bedding await to provide the perfect retreat after a
+                day of travel or exploration, ensuring you wake up refreshed and ready for
+                new adventures.
               </p>
             </div>
             <a href="hotelroom.html" id="roomBook">
@@ -166,9 +139,10 @@
             <div class="svctype-desc">
               <h1 class="svc-title">Event</h1>
               <p class="svc-desc">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                in lectus ante.
+                Our hotel provides versatile event spaces and attentive event planning
+                services for intimate celebrations, corporate gatherings, weddings,
+                anniversaries, and professional conferences, ensuring a seamless and
+                memorable event while we take care of the details.
               </p>
             </div>
             <a href="event.html" id="eventBook">
@@ -221,7 +195,7 @@
         </span>
         <div class="feedbacks-list">
           <div class="customer">
-            <img src="images/User.png" alt="customer image" />
+            <img src="images/profile-icon.jpg" alt="customer image" />
 
             <div class="rating">
               <span><i class="fas fa-star" id="star"></i></span>
@@ -233,16 +207,14 @@
 
             <h3>Aimee Cruz</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              faucibus sapien viverra leo dignissim tincidunt. Sed in lectus
-              ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed in
-              lectus ante.
+              The resort grounds were impeccably maintained, and the lush gardens and pristine 
+              beachfront created a true tropical paradise. I spent hours just lounging by the pool, soaking 
+              in the sun.
             </p>
           </div>
 
           <div class="customer">
-            <img src="images/User.png" alt="customer image" />
+            <img src="images/profile-icon.jpg" alt="customer image" />
 
             <div class="rating">
               <span><i class="fas fa-star"></i></span>
@@ -252,17 +224,14 @@
               <span><i class="fas fa-star"></i></span>
             </div>
 
-            <h3>Aimee Cruz</h3>
+            <h3>John Doe</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              faucibus sapien viverra leo dignissim tincidunt. Sed in lectus
-              ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed in
-              lectus ante.
+              Had an amazing time at the resort! Beautiful location, friendly staff, and excellent
+              amenities. Will definitely be back!
             </p>
           </div>
           <div class="customer">
-            <img src="images/User.png" alt="customer image" />
+            <img src="images/profile-icon.jpg" alt="customer image" />
 
             <div class="rating">
               <span><i class="fas fa-star"></i></span>
@@ -272,13 +241,10 @@
               <span><i class="fas fa-star"></i></span>
             </div>
 
-            <h3>Aimee Cruz</h3>
+            <h3>Matthew Finn</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-              faucibus sapien viverra leo dignissim tincidunt. Sed in lectus
-              ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed in
-              lectus ante.
+              The resort exceeded all expectations. The rooms were comfortable, the food was
+              delicious, and the beach was stunning. Highly recommend it!
             </p>
           </div>
         </div>

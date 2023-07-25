@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+    $isLoggedIn = true;
+  } else {
+    $isLoggedIn = false;
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -27,15 +37,21 @@
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="reservation.html" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.html" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
@@ -69,12 +85,12 @@
                 <div class="svctype-desc">
                 <h1 class="svc-title">Swimming</h1>
                 <p class="svc-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                    in lectus ante.
+                  Experience aquatic bliss with our comprehensive swimming services, where
+                  skilled instructors offer tailored lessons for all skill levels, from beginners to
+                  advanced swimmers, in our family-friendly pools and lap pool.
                 </p>
                 </div>
-                <a href="swimming.html" id="swimBook">
+                <a href="swimming.php" id="swimBook">
                 <button type="button" class="svc-btn">VIEW DETAILS</button>
                 </a>
             </div>
@@ -84,12 +100,13 @@
                 <div class="svctype-desc">
                 <h1 class="svc-title">Hotel Room</h1>
                 <p class="svc-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                    in lectus ante.
+                  Step into our inviting hotel room, where tasteful decor, a peaceful
+                  ambiance, and plush bedding await to provide the perfect retreat after a
+                  day of travel or exploration, ensuring you wake up refreshed and ready for
+                  new adventures.
                 </p>
                 </div>
-                <a href="hotelroom.html" id="roomBook">
+                <a href="hotelroom.php" id="roomBook">
                 <button type="button" class="svc-btn">VIEW DETAILS</button>
                 </a>
             </div>
@@ -99,12 +116,13 @@
                 <div class="svctype-desc">
                 <h1 class="svc-title">Event</h1>
                 <p class="svc-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Curabitur faucibus sapien viverra leo dignissim tincidunt. Sed
-                    in lectus ante.
+                  Our hotel provides versatile event spaces and attentive event planning
+                  services for intimate celebrations, corporate gatherings, weddings,
+                  anniversaries, and professional conferences, ensuring a seamless and
+                  memorable event while we take care of the details.
                 </p>
                 </div>
-                <a href="event.html" id="eventBook">
+                <a href="event.php" id="eventBook">
                 <button type="button" class="svc-btn">VIEW DETAILS</button>
                 </a>
             </div>
@@ -180,9 +198,15 @@
             </p>
           </div>
           <div class="cta-below">
+          <?php if ($isLoggedIn): ?>
             <a href="reservation.html" id="cta-button">
-              <button type="button" class="cta-btn">BOOK NOW</button>
+              <button type="button" class="cta-btn">Book Now</button>
             </a>
+          <?php else: ?>
+            <a href="login.php" id="cta-button">
+              <button type="button" class="cta-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
           </div>
         </div>
       </div>
@@ -220,18 +244,18 @@
               <h2>Links</h2>
               <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="services.php">Services</a></li>
+                <li><a href="reservation.php">Reservation</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="links-label">
               <h2>Legal</h2>
               <ul>
-                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                <li><a href="t&c.html">Terms & Conditions</a></li>
-                <li><a href="rules.html">Rules and Regulations</a></li>
+                <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                <li><a href="t&c.php">Terms & Conditions</a></li>
+                <li><a href="rules.php">Rules and Regulations</a></li>
             </div>
             <div class="newsletter">
               <h2>Newsletter</h2>
