@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "includes/dbh.inc.php";
 $type = $_SESSION["Type"];
 
 $type = strtoupper($type);
@@ -16,16 +17,47 @@ if($type == "SWIMMING") {
     $cottagetype = $_POST['cottagetype'];
     $TotalCost = $_POST['totalCost'];
     $downPayment = $_POST['downPayment'];
+    $cottagetypename = "";
 
+    if ($cottagetype == 1000) {
+      $cottagetypename = "Canopy";
+    }else if ($cottagetype == 1500) {
+      $cottagetypename = "Trellis 1";
+    }else if ($cottagetype == 2000) {
+      $cottagetypename = "Trellis 2";
+    }else if ($cottagetype == 1200) {
+      $cottagetypename = "Kubo";
+    }else if ($cottagetype == 7500) {
+      $cottagetypename = "Pavilion 1";
+    }else if ($cottagetype == 6500) {
+      $cottagetypename = "Pavilion 2";
+    }else if ($cottagetype == 9500) {
+      $cottagetypename = "Pavilion 3";
+    }
+
+    $query = "SELECT cottage_id FROM cottages WHERE price = '$cottagetype'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
+    $cottage_id = $row['cottage_id'];
+    $null = NULL;
+
+    $roomNumQuery = "SELECT cottage_number FROM cottage_numbers WHERE cottage_id = '$cottage_id' AND reserved_check_in IS NULL LIMIT 1";
+    $roomNumResult = mysqli_query($con, $roomNumQuery);
+    $roomNumRow = mysqli_fetch_assoc($roomNumResult);
+    $swimRoom = $roomNumRow['cottage_number'];
+    // echo $swimRoom;
+     
     $_SESSION["DateOfVisit"] = $dateofvisit;
     $_SESSION["TimeSlot"] = $timeslot;
     $_SESSION["Adult"] = $adult;
     $_SESSION["Children"] = $children;
     $_SESSION["SeniorPWD"] = $seniorPWD;
     $_SESSION["CottageType"] = $cottagetype;
+    $_SESSION["swimRoom"] = $swimRoom;
     $_SESSION["totalCost"] = $TotalCost;
     $_SESSION["downPayment"] = $downPayment;
-    echo "<script>alert('Success');</script>";
+    $_SESSION["cottageTypeName"] = $cottagetypename;
+    // echo "<script>alert($cottage_id);</script>";
     header("Location: paymentdetails.php"); die();
   }
   /* 
@@ -50,6 +82,16 @@ TotalCost
     $TotalCost = $_POST['totalCost'];
     $downPayment = $_POST['downPayment'];
 
+    $query = "SELECT room_id FROM rooms WHERE room_type = '$roomtype'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
+    $room_id = $row['room_id'];
+
+    $roomNumQuery = "SELECT room_number FROM room_numbers WHERE room_id = '$room_id' AND reserved_check_in IS NULL AND reserved_check_out IS NULL LIMIT 1";
+    $roomNumResult = mysqli_query($con, $roomNumQuery);
+    $roomNumRow = mysqli_fetch_assoc($roomNumResult);
+    $roomNum = $roomNumRow['room_number'];
+
     $_SESSION["RoomType"] = $roomtype;
     $_SESSION["CheckIn"] = $checkin;
     $_SESSION["CheckOut"] = $checkout;
@@ -58,7 +100,8 @@ TotalCost
     $_SESSION["SeniorPWD"] = $seniorPWD;
     $_SESSION["totalCost"] = $TotalCost;
     $_SESSION["downPayment"] = $downPayment;
-    echo "<script>alert('Success');</script>";
+    $_SESSION["roomNum"] = $roomNum;
+    // echo "<script>alert('$roomNum');</script>";
     header("Location: paymentdetails.php"); die();
   }
     
@@ -71,11 +114,22 @@ TotalCost
   $TotalCost = $_POST['totalCost'];
   $downPayment = $_POST['downPayment'];
 
+  $query = "SELECT event_venue_id FROM event_venues WHERE event_type = '$venueArea'";
+  $result = mysqli_query($con, $query);
+  $row = mysqli_fetch_assoc($result);
+  $event_venue_id = $row['event_venue_id'];
+
+  $eventNumQuery = "SELECT event_venue_number FROM event_venue_numbers WHERE event_venue_id = '$event_venue_id' AND reserved_check_in IS NULL LIMIT 1";
+  $eventNumResult = mysqli_query($con, $eventNumQuery);
+  $eventNumRow = mysqli_fetch_assoc($eventNumResult);
+  $eventNum = $eventNumRow['event_venue_number'];
+
   $_SESSION["EventDate"] = $eventDate;
   $_SESSION["EventPax"] = $eventPax;
   $_SESSION["VenueArea"] = $venueArea;
   $_SESSION["totalCost"] = $TotalCost;
   $_SESSION["downPayment"] = $downPayment;
+  $_SESSION["event_venue_id"] = $eventNum;
   echo "<script>alert('Success');</script>";
   header("Location: paymentdetails.php"); die();
   }

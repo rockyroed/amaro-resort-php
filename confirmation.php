@@ -10,17 +10,20 @@ $type = $_SESSION["Type"];
 $referencenumber = $_SESSION["reservation_id"];
 $reservationdate = $_SESSION["reservation_date"];
 $paymentType = $_SESSION["paymentType"];
-$Adult = $_SESSION["Adult"];
-$Children = $_SESSION["Children"];
-$SeniorPWD = $_SESSION["SeniorPWD"];
 $totalCost = $_SESSION["totalCost"];
 $downPayment = $_SESSION["downPayment"];
 
+if (isset($_SESSION['Adult']) && isset($_SESSION['Children']) && isset($_SESSION['SeniorPWD'])) {
+  $Adult = $_SESSION["Adult"];
+  $Children = $_SESSION["Children"];
+  $SeniorPWD = $_SESSION["SeniorPWD"];
+}
 if ($type == "Room") {
   $paxNum = (int)$Adult + (int)$Children + (int)$SeniorPWD;
 }
-
-$eventPax = $_SESSION['EventPax'];
+if ($type == "Event") {
+  $eventPax = $_SESSION["EventPax"];
+}
 
 
 
@@ -107,7 +110,7 @@ $eventPax = $_SESSION['EventPax'];
             </div>
 
             <!-- Pax Number -->
-            <?php if($type == "SWIMMING"): ?>
+            <?php if($type == "Swimming"): ?>
               <!-- Adult-->
               <div class="section-details">
                 <span>Adult:</span>
