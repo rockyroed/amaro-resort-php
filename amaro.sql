@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 24, 2023 at 07:37 PM
+-- Generation Time: Jul 25, 2023 at 10:56 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -84,11 +84,11 @@ CREATE TABLE `cottage_numbers` (
 --
 
 INSERT INTO `cottage_numbers` (`cottage_number`, `cottage_id`, `reserved_check_in`) VALUES
-('CAN-1', 1, NULL),
-('CAN-10', 1, NULL),
-('CAN-11', 1, NULL),
-('CAN-12', 1, NULL),
-('CAN-13', 1, NULL),
+('CAN-1', 1, '0000-00-00'),
+('CAN-10', 1, '2023-07-27'),
+('CAN-11', 1, '2023-07-26'),
+('CAN-12', 1, '2023-07-26'),
+('CAN-13', 1, '2023-07-19'),
 ('CAN-14', 1, NULL),
 ('CAN-15', 1, NULL),
 ('CAN-16', 1, NULL),
@@ -155,11 +155,19 @@ INSERT INTO `cottage_numbers` (`cottage_number`, `cottage_id`, `reserved_check_i
 
 CREATE TABLE `event_reservations` (
   `event_reservation_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `event_type` enum('Function Hall','Court','','') NOT NULL,
-  `pax_nunber` int(11) NOT NULL,
+  `pax_number` int(11) NOT NULL,
   `event_venue_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_reservations`
+--
+
+INSERT INTO `event_reservations` (`event_reservation_id`, `reservation_id`, `event_type`, `pax_number`, `event_venue_number`) VALUES
+(3, 'cef0939984c9932d4301d96ad58cff1e', 'Function Hall', 4, 'FUN-1'),
+(4, '71ae43f9441f93c65e7cf14606ba2409', 'Function Hall', 4, 'FUN-1');
 
 -- --------------------------------------------------------
 
@@ -202,7 +210,7 @@ CREATE TABLE `event_venue_numbers` (
 INSERT INTO `event_venue_numbers` (`event_venue_number`, `event_venue_id`, `reserved_check_in`) VALUES
 ('BAS-1', 2, NULL),
 ('BAS-2', 2, NULL),
-('FUN-1', 1, NULL),
+('FUN-1', 1, 2023),
 ('FUN-2', 1, NULL);
 
 -- --------------------------------------------------------
@@ -213,11 +221,17 @@ INSERT INTO `event_venue_numbers` (`event_venue_number`, `event_venue_id`, `rese
 
 CREATE TABLE `gcash_payment_details` (
   `gcash_payment_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `account_name` varchar(100) NOT NULL,
-  `account_number` varchar(15) NOT NULL,
-  `transaction_id` int(100) NOT NULL
+  `account_number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gcash_payment_details`
+--
+
+INSERT INTO `gcash_payment_details` (`gcash_payment_id`, `reservation_id`, `account_name`, `account_number`) VALUES
+(1, '51120cea49c14810d476355127e6c8b3', 'finn', '09612649728');
 
 -- --------------------------------------------------------
 
@@ -243,7 +257,7 @@ CREATE TABLE `guests` (
 --
 
 INSERT INTO `guests` (`guest_id`, `first_name`, `middle_name`, `last_name`, `phone_number`, `email_address`, `password`, `type`, `creation_date`, `modification_date`) VALUES
-(1, 'Christian Roed', 'Panes', 'Boyles', '09183579673', 'flldwthr@gmail.com', 'thisisapassword', 'User', '2023-07-22 19:24:00', NULL),
+(1, 'Finn', 'Palma', 'Muyco', '09612649728', 'mjmuyco13@gmail.com', 'thisisapassword', 'User', '2023-07-22 19:24:00', NULL),
 (7, 'Saitama', NULL, 'Saitama', '09485938495', 'saitamasaitama@gmail.com', 'onepunchman', 'User', '2023-07-24 21:41:01', NULL);
 
 -- --------------------------------------------------------
@@ -254,13 +268,20 @@ INSERT INTO `guests` (`guest_id`, `first_name`, `middle_name`, `last_name`, `pho
 
 CREATE TABLE `mastercard_payment_details` (
   `mastercard_payment_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `cardholder_number` varchar(15) NOT NULL,
   `cardholder_name` varchar(100) NOT NULL,
-  `month` int(11) NOT NULL,
-  `year` int(11) NOT NULL,
+  `mm` int(11) NOT NULL,
+  `yyyy` int(11) NOT NULL,
   `cvv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `mastercard_payment_details`
+--
+
+INSERT INTO `mastercard_payment_details` (`mastercard_payment_id`, `reservation_id`, `cardholder_number`, `cardholder_name`, `mm`, `yyyy`, `cvv`) VALUES
+(1, '4fccba0d0f9e5c254e67d215f348ce48', '504', 'Finn', 7, 2023, 504);
 
 -- --------------------------------------------------------
 
@@ -270,9 +291,16 @@ CREATE TABLE `mastercard_payment_details` (
 
 CREATE TABLE `paypal_payment_details` (
   `paypal_payment_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
-  `email_address` int(11) NOT NULL
+  `reservation_id` varchar(255) NOT NULL,
+  `email_address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `paypal_payment_details`
+--
+
+INSERT INTO `paypal_payment_details` (`paypal_payment_id`, `reservation_id`, `email_address`) VALUES
+(2, '4d594c9beb34a0086dcdd1dc4ee28b98', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -281,7 +309,7 @@ CREATE TABLE `paypal_payment_details` (
 --
 
 CREATE TABLE `reservations` (
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `guest_id` int(11) NOT NULL,
   `reservation_type` enum('Swimming','Room','Event','') NOT NULL,
   `reservation_date` datetime NOT NULL,
@@ -296,7 +324,51 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`reservation_id`, `guest_id`, `reservation_type`, `reservation_date`, `payment_method`, `total_cost`, `down_payment`, `payment_status`) VALUES
-(0, 1, 'Swimming', '2023-07-24 18:13:22', '', 0, 0, 'Pending');
+('01459f02ef0297b6ccaae2240c3d4e2c', 1, 'Swimming', '2023-07-25 07:49:45', 'GCash', 1840, 368, 'Pending'),
+('02c345ac143c5ecd189cc2e9eabc264d', 1, 'Event', '2023-07-25 22:07:22', 'Paypal', 25000, 5000, 'Pending'),
+('081a7403b7a5838f8ccab42e4964307f', 1, 'Swimming', '2023-07-24 21:53:12', 'Paypal', 1560, 312, 'Pending'),
+('0b6dd8d965c86c0cef9c18561ea0a165', 1, 'Swimming', '2023-07-25 22:26:42', 'MasterCard', 1560, 312, 'Pending'),
+('0be57beec5b959b7e47e72e46c426367', 1, 'Swimming', '2023-07-24 21:56:52', 'Paypal', 1560, 312, 'Pending'),
+('198fc7983f1e5488aa91913600fff0db', 1, 'Event', '2023-07-24 21:49:25', 'Paypal', 25000, 5000, 'Pending'),
+('1a8c304e0b7555da36f2b3e50e675830', 1, 'Event', '2023-07-25 22:11:00', 'Paypal', 25000, 5000, 'Pending'),
+('2bf43805cb4dcdf187a7bbc34f1d98a5', 1, 'Room', '2023-07-24 21:04:45', 'Paypal', 2000, 400, 'Pending'),
+('2e21444e736a39b60908e59e11ce8e72', 1, 'Event', '2023-07-24 20:27:47', 'Paypal', 25000, 5000, 'Pending'),
+('2f948962d23aa2a1ca1efb8886055823', 1, 'Event', '2023-07-25 22:09:26', 'Paypal', 25000, 5000, 'Pending'),
+('31af83d125a8e62c00622f5e8bed954a', 1, 'Swimming', '2023-07-25 22:14:58', 'Paypal', 1560, 312, 'Pending'),
+('33456c7e726dba085bd345f1bcd082a5', 1, 'Room', '2023-07-25 22:00:08', 'Paypal', 5600, 1120, 'Pending'),
+('37ba9dddfdc149c03c35e0c65a7872e8', 1, 'Swimming', '2023-07-24 21:56:51', 'Paypal', 1560, 312, 'Pending'),
+('4d594c9beb34a0086dcdd1dc4ee28b98', 1, 'Swimming', '2023-07-25 22:25:19', 'Paypal', 1560, 312, 'Pending'),
+('4fccba0d0f9e5c254e67d215f348ce48', 1, 'Swimming', '2023-07-25 22:29:35', 'MasterCard', 1560, 312, 'Pending'),
+('5075c66f2be2a213d4b855759e603a42', 1, 'Swimming', '2023-07-25 22:26:58', 'MasterCard', 1560, 312, 'Pending'),
+('51120cea49c14810d476355127e6c8b3', 1, 'Swimming', '2023-07-25 22:26:02', 'GCash', 1560, 312, 'Pending'),
+('66413480c6ea01c56d91f04384108a04', 1, 'Swimming', '2023-07-25 22:22:27', 'Paypal', 1560, 312, 'Pending'),
+('6c5fde5a824e9854c15b9e10d4bf4c6f', 1, 'Swimming', '2023-07-24 21:56:23', 'Paypal', 1560, 312, 'Pending'),
+('707b0ac4fc9b3af471fb4f49ec16ac6b', 1, 'Room', '2023-07-25 21:56:32', 'Paypal', 2000, 400, 'Pending'),
+('71ae43f9441f93c65e7cf14606ba2409', 1, 'Event', '2023-07-25 22:18:51', 'Paypal', 25000, 5000, 'Pending'),
+('767ce509082e1f91ef709c5919f4d601', 1, 'Swimming', '2023-07-25 21:34:13', 'Paypal', 1560, 312, 'Pending'),
+('78b52aa39a920605593610c45a274d88', 1, 'Room', '2023-07-25 21:58:40', 'Paypal', 4000, 800, 'Pending'),
+('7ac445e7b9aac4791a95118c6a086bde', 1, 'Room', '2023-07-25 21:58:13', 'Paypal', 2000, 400, 'Pending'),
+('84b0f43355ea11e90cb1d841b632bb56', 1, 'Room', '2023-07-25 22:17:50', 'Paypal', 2000, 400, 'Pending'),
+('8d96ab486a8e499fcb7bea6991fe079d', 1, 'Room', '2023-07-25 21:57:19', 'Paypal', 2000, 400, 'Pending'),
+('98e7bebb095b4b18f5207609f5fc5c8d', 1, 'Swimming', '2023-07-25 22:28:08', 'MasterCard', 1560, 312, 'Pending'),
+('9d2d3d659708976f3bfb1b69e2ea9713', 1, 'Room', '2023-07-25 21:58:06', 'Paypal', 2000, 400, 'Pending'),
+('9ea4c78fb7005f4a70a71610a2c57d7f', 1, 'Swimming', '2023-07-25 21:53:04', 'Paypal', 1560, 312, 'Pending'),
+('9fcc2b420585396bdc4392440fe59096', 1, 'Swimming', '2023-07-25 21:50:55', 'Paypal', 2060, 412, 'Pending'),
+('ac8d5725432b6c1dd5315733b148e765', 1, 'Event', '2023-07-25 22:08:51', 'Paypal', 25000, 5000, 'Pending'),
+('b2d6af2524dbc049065cc8374972862d', 1, 'Swimming', '2023-07-25 22:28:40', 'MasterCard', 1560, 312, 'Pending'),
+('b7b71ddcf37ed147caadb2285a85d210', 1, 'Swimming', '2023-07-24 21:56:52', 'Paypal', 1560, 312, 'Pending'),
+('c4577ebf169d2057b0ea19ed5a126ad8', 1, 'Room', '2023-07-24 20:52:08', 'Paypal', 2000, 400, 'Pending'),
+('c599972d5332ed318ecb6ca26faf7b64', 1, 'Swimming', '2023-07-24 21:55:59', 'Paypal', 1560, 312, 'Pending'),
+('cef0939984c9932d4301d96ad58cff1e', 1, 'Event', '2023-07-25 22:18:25', 'Paypal', 25000, 5000, 'Pending'),
+('d1c7241bbde5fd84415ebdf9b76f8d46', 1, 'Event', '2023-07-25 22:08:13', 'Paypal', 25000, 5000, 'Pending'),
+('d6e53717945df67f15d47e11b8f7d625', 1, 'Event', '2023-07-24 21:51:56', 'Paypal', 25000, 5000, 'Pending'),
+('dacbf303391d365955bd4a1707c03d2e', 1, 'Swimming', '2023-07-25 21:32:08', 'Paypal', 1560, 312, 'Pending'),
+('ded634c1b9af4721ca1712cef61c3cc6', 1, 'Swimming', '2023-07-25 22:29:24', 'MasterCard', 1560, 312, 'Pending'),
+('e6936bdca9ecd65cee001ea7de355271', 1, 'Room', '2023-07-24 20:54:22', 'Paypal', 2000, 400, 'Pending'),
+('ebc3bd32acdc4fcad6ef88aa5e72bcc0', 1, 'Swimming', '2023-07-25 22:24:39', 'Paypal', 1560, 312, 'Pending'),
+('ee94f21c79c331e13e10fe3a2db98511', 1, 'Swimming', '2023-07-25 22:27:37', 'MasterCard', 1560, 312, 'Pending'),
+('f8213918c57ae9c6796316866bc6b04b', 1, 'Swimming', '2023-07-24 21:54:04', 'Paypal', 1560, 312, 'Pending'),
+('f8e877e3238976e1a7ccedca4791be2d', 1, 'Swimming', '2023-07-24 21:54:32', 'Paypal', 1560, 312, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -338,7 +410,7 @@ CREATE TABLE `room_numbers` (
 --
 
 INSERT INTO `room_numbers` (`room_number`, `room_id`, `reserved_check_in`, `reserved_check_out`) VALUES
-('COU-1', 1, NULL, NULL),
+('COU-1', 1, '2023-07-28', '2023-07-29'),
 ('COU-10', 1, NULL, NULL),
 ('COU-2', 1, NULL, NULL),
 ('COU-3', 1, NULL, NULL),
@@ -367,11 +439,18 @@ INSERT INTO `room_numbers` (`room_number`, `room_id`, `reserved_check_in`, `rese
 
 CREATE TABLE `room_reservations` (
   `room_reservation_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `room_type` enum('Couple','Family','','') NOT NULL,
   `pax_number` int(11) NOT NULL,
   `room_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_reservations`
+--
+
+INSERT INTO `room_reservations` (`room_reservation_id`, `reservation_id`, `room_type`, `pax_number`, `room_number`) VALUES
+(6, '84b0f43355ea11e90cb1d841b632bb56', 'Couple', 2, 'COU-1');
 
 -- --------------------------------------------------------
 
@@ -406,13 +485,33 @@ INSERT INTO `swimming_prices` (`swimming_price_id`, `chosen_hour`, `guest_type`,
 
 CREATE TABLE `swimming_reservations` (
   `swimming_reservation_id` int(11) NOT NULL,
-  `reservation_id` int(11) NOT NULL,
+  `reservation_id` varchar(255) NOT NULL,
   `chosen_hour` enum('Day','Night','','') NOT NULL,
   `pax_adults` int(11) NOT NULL,
   `pax_children` int(11) NOT NULL,
   `pax_senior` int(11) NOT NULL,
   `cottage_number` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `swimming_reservations`
+--
+
+INSERT INTO `swimming_reservations` (`swimming_reservation_id`, `reservation_id`, `chosen_hour`, `pax_adults`, `pax_children`, `pax_senior`, `cottage_number`) VALUES
+(11, '9fcc2b420585396bdc4392440fe59096', 'Day', 2, 2, 0, 'CAN-10'),
+(12, '9ea4c78fb7005f4a70a71610a2c57d7f', 'Day', 2, 0, 0, 'CAN-10'),
+(13, '31af83d125a8e62c00622f5e8bed954a', 'Day', 2, 0, 0, 'CAN-10'),
+(14, '66413480c6ea01c56d91f04384108a04', 'Day', 2, 0, 0, 'CAN-11'),
+(15, 'ebc3bd32acdc4fcad6ef88aa5e72bcc0', 'Day', 2, 0, 0, 'CAN-11'),
+(16, '4d594c9beb34a0086dcdd1dc4ee28b98', 'Day', 2, 0, 0, 'CAN-11'),
+(17, '51120cea49c14810d476355127e6c8b3', 'Day', 2, 0, 0, 'CAN-12'),
+(18, '0b6dd8d965c86c0cef9c18561ea0a165', 'Day', 2, 0, 0, 'CAN-13'),
+(19, '5075c66f2be2a213d4b855759e603a42', 'Day', 2, 0, 0, 'CAN-13'),
+(20, 'ee94f21c79c331e13e10fe3a2db98511', 'Day', 2, 0, 0, 'CAN-13'),
+(21, '98e7bebb095b4b18f5207609f5fc5c8d', 'Day', 2, 0, 0, 'CAN-13'),
+(22, 'b2d6af2524dbc049065cc8374972862d', 'Day', 2, 0, 0, 'CAN-13'),
+(23, 'ded634c1b9af4721ca1712cef61c3cc6', 'Day', 2, 0, 0, 'CAN-13'),
+(24, '4fccba0d0f9e5c254e67d215f348ce48', 'Day', 2, 0, 0, 'CAN-13');
 
 --
 -- Indexes for dumped tables
@@ -547,7 +646,7 @@ ALTER TABLE `cottages`
 -- AUTO_INCREMENT for table `event_reservations`
 --
 ALTER TABLE `event_reservations`
-  MODIFY `event_reservation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `event_venues`
@@ -559,7 +658,7 @@ ALTER TABLE `event_venues`
 -- AUTO_INCREMENT for table `gcash_payment_details`
 --
 ALTER TABLE `gcash_payment_details`
-  MODIFY `gcash_payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gcash_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `guests`
@@ -571,13 +670,13 @@ ALTER TABLE `guests`
 -- AUTO_INCREMENT for table `mastercard_payment_details`
 --
 ALTER TABLE `mastercard_payment_details`
-  MODIFY `mastercard_payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mastercard_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `paypal_payment_details`
 --
 ALTER TABLE `paypal_payment_details`
-  MODIFY `paypal_payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `paypal_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rooms`
@@ -589,7 +688,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `room_reservations`
 --
 ALTER TABLE `room_reservations`
-  MODIFY `room_reservation_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `room_reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `swimming_prices`
@@ -601,7 +700,7 @@ ALTER TABLE `swimming_prices`
 -- AUTO_INCREMENT for table `swimming_reservations`
 --
 ALTER TABLE `swimming_reservations`
-  MODIFY `swimming_reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `swimming_reservation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Constraints for dumped tables
@@ -661,7 +760,7 @@ ALTER TABLE `room_numbers`
 --
 ALTER TABLE `room_reservations`
   ADD CONSTRAINT `room_to_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `reservations` (`reservation_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `room_to_room` FOREIGN KEY (`room_number`) REFERENCES `room_numbers` (`room_number`);
+  ADD CONSTRAINT `room_to_room` FOREIGN KEY (`room_number`) REFERENCES `room_numbers` (`room_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `swimming_reservations`
