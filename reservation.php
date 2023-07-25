@@ -12,13 +12,12 @@ $error = "";
     $emailaddress = $_POST["EmailAddress"];
 
     $_SESSION["Type"] = $type;
-    $_SESSION["FirstName"] = $firstname; 
+    $_SESSION["FirstName"] = $firstname;
     $_SESSION["MiddleName"] = $middlename;
-    $_SESSION["LastName"] = $lastname; 
+    $_SESSION["LastName"] = $lastname;
     $_SESSION["PhoneNumber"] = $phonenumber;
     $_SESSION["EmailAddress"] = $emailaddress;
     header("Location: bookingdetails.php"); die();
-    
   }
 
 ?>
