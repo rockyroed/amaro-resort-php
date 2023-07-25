@@ -257,18 +257,18 @@ TotalCost
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">₱0</p>
+                <p id="totalCost">0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">₱0</p>
+                <p id="downPayment" name="">0</p>
               </div>
 
               <div class="cta-buttons">
-                <a href="reservation.html" id="backButton">
+                <a href="reservation.php" id="backButton">
                   <button type="button" class="secondary-btn">BACK</button>
                 </a>
                 <!-- <a href="" id="proceedPayment"> -->
@@ -405,14 +405,14 @@ TotalCost
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">₱0</p>
+                <p id="totalCost">0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">₱0</p>
+                <p id="downPayment" name="">0</p>
               </div>
 
               <div class="cta-buttons">
@@ -530,14 +530,14 @@ TotalCost
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">₱0</p>
+                <p id="totalCost">0</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">₱0</p>
+                <p id="downPayment" name="">0</p>
               </div>
 
               <div class="cta-buttons">
@@ -593,8 +593,6 @@ TotalCost
                         $("#roomRet").html("");
                     },
                     success:function(data){
-                        // console.log(data);
-                        // console.log("value:" + value);
                         $("#roomRet").html(data);
                     }
                 });
@@ -614,8 +612,6 @@ TotalCost
                         $("#eventRet").html("");
                     },
                     success:function(data){
-                        // console.log(data);
-                        // console.log("value:" + value);
                         $("#eventRet").html(data);
                     }
                 });
