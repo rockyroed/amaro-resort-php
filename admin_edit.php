@@ -29,15 +29,69 @@ $DSmonthly_sales = $DSrow['monthly_sales'];
 //get all reservations
 $DSquery = "SELECT * from reservations WHERE reservation_id = '$res_id'";
 $DSresult = mysqli_query($con, $DSquery);
+$DSquery2 = "SELECT * from reservations WHERE reservation_id = '$res_id'";
+$DSresult2 = mysqli_query($con, $DSquery2);
+$DSrow2 = mysqli_fetch_assoc($DSresult2);
+$DSreservation_type = $DSrow2['reservation_type'];
 
 
-if (isset($_POST['status'])){
-  $status = $_POST['status'];
-  $DSquery = "UPDATE reservations SET res_status = '$status' WHERE reservation_id = '$res_id'";
-  $DSresult = mysqli_query($con, $DSquery);
+
+  if (isset($_POST['status'])){
+    $status = $_POST['status'];
+    $DSquery = "UPDATE reservations SET res_status = '$status' WHERE reservation_id = '$res_id'";
+    $DSresult = mysqli_query($con, $DSquery);
+
+    if ($status == "Visited"){
+      if ($DSreservation_type == "Swimming"){
+        $query = "SELECT * FROM reservations
+        LEFT JOIN swimming_reservations ON reservations.reservation_id = swimming_reservations.reservation_id
+        LEFT JOIN cottage_numbers ON swimming_reservations.cottage_number = cottage_numbers.cottage_number
+        LEFT JOIN cottages ON cottage_numbers.cottage_id = cottages.cottage_id
+        WHERE reservations.reservation_id = ?";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute([$res_id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          if($result) {
+            $cottage_id = $result["cottage_number"];
+            $query = "UPDATE cottage_numbers SET reserved_check_in = NULL WHERE cottage_number = '$cottage_id'";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+          }
+      }
+      elseif ($DSreservation_type == "Room"){
+        $query = "SELECT * FROM reservations
+        LEFT JOIN room_reservations ON reservations.reservation_id = room_reservations.reservation_id
+        LEFT JOIN room_numbers ON room_reservations.room_number = room_numbers.room_number
+        LEFT JOIN rooms ON room_numbers.room_id = rooms.room_id
+        WHERE reservations.reservation_id = ?";
+          $stmt = $pdo->prepare($query);
+          $stmt->execute([$res_id]);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          if($result) {
+            $room_number = $result["room_number"];
+            $query = "UPDATE room_numbers SET reserved_check_in = NULL,reserved_check_out = NULL WHERE room_number = '$room_number'";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+          }
+      }
+      else{
+        $query = "SELECT * FROM reservations
+        LEFT JOIN event_reservations ON reservations.reservation_id = event_reservations.reservation_id
+        LEFT JOIN event_venue_numbers ON event_reservations.event_venue_number = event_venue_numbers.event_venue_number
+        WHERE reservations.reservation_id = ?";
+          $stmt = $pdo->prepare($query);
+          $stmt->execute([$res_id]);
+          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+          if($result) {
+            $event_venue_number = $result["event_venue_number"];
+            $query = "UPDATE event_venue_numbers SET reserved_check_in = NULL WHERE event_venue_number = '$event_venue_number'";
+            $stmt = $pdo->prepare($query);
+            $stmt->execute();
+          }
+      }
+  }
   header("Location: admin.php");
 }
-
 
 
 

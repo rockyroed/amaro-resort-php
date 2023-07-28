@@ -90,9 +90,8 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
 $reserveQuery = "select reservation_id from reservations";
 $result = mysqli_query($con, $reserveQuery);
 
-$referencenumber = bin2hex(random_bytes(4));
+$referencenumber = bin2hex(random_bytes(5));
 $timeStamp = date("Y-m-d H:i:s");
-echo $timeStamp;
 
 check:
   while ($row = mysqli_fetch_assoc($result)) {
