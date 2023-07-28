@@ -1,3 +1,47 @@
+<?php 
+session_start();
+require_once "includes/dbh.inc.php";
+
+if(isset($_POST['emailaddress']) && isset($_POST['password'])) {
+  $emailaddress = $_POST['emailaddress'];
+  $password = $_POST['password'];
+
+  $_SESSION['admin_emailaddress'] = $emailaddress;
+
+  try {
+    require_once "includes/dbh.inc.php";
+
+    $query = "SELECT * FROM admins WHERE email_address = ? AND password = ?";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$emailaddress, $password]);
+    
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if($result) {
+        $admin_id = $result["admin_id"];
+        $firstname = $result["first_name"];
+        $middlename = $result["middle_name"];
+        $surname = $result["last_name"];
+        $phonenumber = $result["phone_number"];
+        $emailaddress = $result["email_address"];
+        $passwsord = $result["password"];
+        $type = $result["type"];
+        $creationdate = $result["creation_date"];
+        $_SESSION['admin_id'] = $admin_id;
+        header( "Location: admin.php" ); die;
+    } else {
+        $error = "Cannot log in. The user is not existing or the password is incorrect. Please try again.";
+    }
+
+    $pdo = null;
+    $stmt = null;
+} catch(PDOException $e) {
+    die("Query Failed: " . $e->getMessage());
+}
+  } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,7 +81,7 @@
           <h1>Login to your Account</h1>
           <p>Administrator Access</p>
           <div class="form">
-            <form action="login.php" method="post">
+            <form method="post">
               <!-- Email Address -->
               <div class="input-box">
                 <label for="emailAdd">Email Address</label>
@@ -69,10 +113,6 @@
                   required
                 />
               </div>
-
-              <?php if (!empty($error)): ?>
-              <div class="error-message"><?php echo $error; ?></div>
-              <?php endif; ?>
 
               <button class="primary-btn">LOGIN</button>
             </form>

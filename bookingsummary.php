@@ -92,6 +92,7 @@ $result = mysqli_query($con, $reserveQuery);
 
 $referencenumber = bin2hex(random_bytes(4));
 $timeStamp = date("Y-m-d H:i:s");
+echo $timeStamp;
 
 check:
   while ($row = mysqli_fetch_assoc($result)) {

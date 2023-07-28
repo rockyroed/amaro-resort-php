@@ -28,6 +28,10 @@ body {
     background-color: #fff;
 }
 
+.hidden{
+    display: none;
+}
+
 .section-name {
   margin: 30px 0px 10px 0px;
   color: rgb(116, 145, 98);

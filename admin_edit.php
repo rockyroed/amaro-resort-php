@@ -3,6 +3,10 @@ session_start();
 require_once "includes/dbh.inc.php";
 $admin_email = $_SESSION['admin_emailaddress'];
 
+if (isset($_GET['reservation_id'])){
+  $res_id = $_GET['reservation_id'];
+}
+
 // get current date
 $today = date("Y-m-d");
 $DSquery = "SELECT SUM(down_payment) AS daily_sales FROM reservations WHERE DATE(reservation_date) = '$today'";
@@ -23,14 +27,13 @@ $DSrow = mysqli_fetch_assoc($DSresult);
 $DSmonthly_sales = $DSrow['monthly_sales'];
 
 //get all reservations
-$DSquery = "SELECT *  FROM reservations";
+$DSquery = "SELECT * from reservations WHERE reservation_id = '$res_id'";
 $DSresult = mysqli_query($con, $DSquery);
 
 
-if (isset($_POST['status']) && isset($_POST['statusChange'])){
+if (isset($_POST['status'])){
   $status = $_POST['status'];
-  $reservation_id = $_POST['statusChange'];
-  $DSquery = "UPDATE reservations SET status = '$status' WHERE reservation_id = '$reservation_id'";
+  $DSquery = "UPDATE reservations SET res_status = '$status' WHERE reservation_id = '$res_id'";
   $DSresult = mysqli_query($con, $DSquery);
   header("Location: admin.php");
 }
@@ -124,6 +127,7 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
           </div>
           <div class="content">
             <h1>BOOKINGS</h1>
+            <form method="post">
             <div class="booking-table">
               <table id="bookingList">
                 <tr>
@@ -132,41 +136,34 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
                   <th>Date</th>
                   <th>Details</th>
                   <th>Status</th>
-                  <th>Edit</th>
+                  <th>Cancel</th>
+                  <th>Save</th>
                 </tr>
                 <?php while($DSrow = mysqli_fetch_assoc($DSresult)){ ?>
                 <tr>
                   <td><?php echo $DSrow['reservation_id']?></td>
                   <td><?php echo $DSrow['reservation_type']?></td>
                   <td><?php echo $DSrow['reservation_date']?></td>
-                  <td><a href="details.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">view</a></td>
-                  <td><?php echo $DSrow['res_status']?></td>
+                  <td><a href="#" alt="view">view</a></td>
                   <td>
-                      <a href="admin_edit.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">
-                        <button>
-                          <img src="../amaro-resort-v2/images/edit-btn.png" alt="user-profile-edit">
-                        </button>
-                      </a>   
+                    <select id="status" name="status" default="<?php echo $DSrow['res_status']?>">
+                      <option>Pending</option>
+                      <option>Paid</option>
+                      <option>Visited</option>
+                    </select>
                   </td>
+                  <td><a href="admin.php"><button type="button">Cancel</button></a></td>
+                  <td><button>Save</button></td>
                 </tr>
                 <?php } ?>
               </table>
             </div>
-            <input class="hidden" id="statusChange" name="statusChange"></input>
+            </form>
           </div>
         </div>
       </div>
     </section>
     <!-- end of admin   -->
     <script type="module" src="../amaro-resort-v2/javascript/admin.js"></script>
-    <script>
-          function status_change(){
-          var status = document.getElementById("status");
-          var statusChange = document.getElementById("statusChange");
-          statusChange.value = status.getAttribute("title");
-    }
-    status_change()
-
-    </script>
   </body>
 </html>
