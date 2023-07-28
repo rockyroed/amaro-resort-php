@@ -15,7 +15,8 @@ require_once "includes/dbh.inc.php";
       $date_created = $result["reservation_date"];
       $paymentMethod = $result["payment_method"];
       $totalcost = $result["total_cost"];
-      $downpayment = $result["downpayment"];   
+      $downpayment = $result["down_payment"]; 
+      $res_status = $result["res_status"];  
   }
 
   // Guest Details
@@ -35,17 +36,22 @@ require_once "includes/dbh.inc.php";
 
   // Reservation Details for Swimming
   if($res_type == "Swimming"){
-    $query = "SELECT * FROM swimming_reservations WHERE reservation_id = ?";
+    $query = "SELECT * FROM reservations
+    LEFT JOIN swimming_reservations ON reservations.reservation_id = swimming_reservations.reservation_id
+    LEFT JOIN cottage_numbers ON swimming_reservations.cottage_number = cottage_numbers.cottage_number
+    LEFT JOIN cottages ON cottage_numbers.cottage_id = cottages.cottage_id
+    WHERE reservations.reservation_id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result) {
-      $dateofvisit = $result["date_of_visit"];
-      $timeSlot = $result["time_slot"];
-      $Adult = $result["adult"];
-      $Children = $result["children"];
-      $SeniorPWD = $result["senior_pwd"];
-      $cottage_id = $result["cottage_id"];
+      $dateofvisit = $result["reserved_check_in"];
+      $timeSlot = $result["chosen_hour"];
+      $Adult = $result["pax_adults"];
+      $Children = $result["pax_children"];
+      $SeniorPWD = $result["pax_senior"];
+      $cottage_id = $result["cottage_number"];
+      $cottageType = $result["cottage_type"];
     }
 
     // Cottage Details
@@ -59,15 +65,21 @@ require_once "includes/dbh.inc.php";
 }
   // Reservation Details for Room
   if($res_type == "Room"){
-    $query = "SELECT * FROM room_reservations WHERE reservation_id = ?";
+    $query = "SELECT * FROM reservations
+    LEFT JOIN room_reservations ON reservations.reservation_id = room_reservations.reservation_id
+    LEFT JOIN room_numbers ON room_reservations.room_number = room_numbers.room_number
+    LEFT JOIN rooms ON room_numbers.room_id = rooms.room_id
+    WHERE reservations.reservation_id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result) {
-      $checkin = $result["check_in"];
-      $checkout = $result["check_out"];
+      $checkin = $result["reserved_check_in"];
+      $checkout = $result["reserved_check_out"];
       $room_id = $result["room_id"];
       $paxNum = $result["pax_number"];
+      $room_number = $result["room_number"];
+
     }
 
     // Room Details
@@ -81,21 +93,27 @@ require_once "includes/dbh.inc.php";
     
 }
   // Reservation Details for Events
-  if($res_type == "Events"){
-    $query = "SELECT * FROM event_reservations WHERE reservation_id = ?";
+  if($res_type == "Event"){
+    $query = "SELECT * FROM reservations
+    LEFT JOIN event_reservations ON reservations.reservation_id = event_reservations.reservation_id
+    LEFT JOIN event_venue_numbers ON event_reservations.event_venue_number = event_venue_numbers.event_venue_number
+    WHERE reservations.reservation_id = ?
+    ";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result) {
-      $eventVenueNumber = $result["event_venu_number"];
+      $eventVenueNumber = $result["event_venue_number"];
       $eventPax = $result["pax_number"];
       $venueArea = $result["event_type"];
+      $eventDate = $result["reserved_check_in"];
+      
   }
 }
   
   
   // Payment Details for Paypal
-  if($paymentMethod == "paypal"){
+  if($paymentMethod == "Paypal"){
     $query = "SELECT * FROM paypal_payment_details WHERE reservation_id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
@@ -105,7 +123,7 @@ require_once "includes/dbh.inc.php";
   }
 }
   // Payment Details for GCash
-  if($paymentMethod == "gcash"){
+  if($paymentMethod == "GCash"){
     $query = "SELECT * FROM gcash_payment_details WHERE reservation_id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
@@ -116,17 +134,17 @@ require_once "includes/dbh.inc.php";
   }
 }
   // Payment Details for Credit Card
-  if($paymentMethod == "mastercard"){
+  if($paymentMethod == "MasterCard"){
     $query = "SELECT * FROM mastercard_payment_details WHERE reservation_id = ?";
     $stmt = $pdo->prepare($query);
     $stmt->execute([$reservation_id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if($result) {
-      $paymentCardnumber = $result["card_number"];
-      $paymentCardname = $result["card_name"];
+      $paymentCardnumber = $result["cardholder_number"];
+      $paymentCardname = $result["cardholder_name"];
       $mm = $result["mm"];
-      $YYYY = $result["YYYY"];
-      $CVV = $result["CVV"];
+      $YYYY = $result["yyyy"];
+      $CVV = $result["cvv"];
   }
 }
 ?>
@@ -195,6 +213,12 @@ require_once "includes/dbh.inc.php";
             <div class="section-details">
               <span>Transaction Date:</span>
               <p><?php echo $date_created ?></p>
+            </div>
+
+            <!-- Reservation Status -->
+            <div class="section-details">
+              <span>Reservation Status:</span>
+              <p><?php echo $res_status ?></p>
             </div>
           </div>
 
@@ -273,13 +297,19 @@ require_once "includes/dbh.inc.php";
               <!-- Cottage Type -->
               <div class="section-details">
                 <span>Cottage Type:</span>
-                <p><?php echo $cottagetypename ?></p>
+                <p><?php echo $cottageType ?></p>
+              </div>
+
+              <!-- Cottage ID -->
+              <div class="section-details">
+                <span>Cottage Number:</span>
+                <p><?php echo $cottage_id ?></p>
               </div>
             <?php elseif($res_type == "Room"): ?>
               <!-- Reservation Type-->
               <div class="section-details">
                 <span>Reservation Type:</span>
-                <p><?php echo $type ?></p>
+                <p><?php echo $res_type ?></p>
               </div>
 
               <!-- Check-in:-->
@@ -300,6 +330,12 @@ require_once "includes/dbh.inc.php";
                 <p><?php echo $roomtype ?></p>
               </div>
 
+              <!-- Room Number-->
+              <div class="section-details">
+                <span>Room Number:</span>
+                <p><?php echo $room_number ?></p>
+              </div>
+
               <!-- Pax Number-->
               <div class="section-details">
                 <span>Pax Number:</span>
@@ -310,6 +346,12 @@ require_once "includes/dbh.inc.php";
               <div class="section-details">
                 <span>Reservation Type:</span>
                 <p><?php echo $res_type ?></p>
+              </div>
+
+              <!-- Venue Type:-->
+              <div class="section-details">
+                <span>Venue Type:</span>
+                <p><?php echo $eventVenueNumber ?></p>
               </div>
 
               <!-- Venue Area:-->
@@ -347,7 +389,7 @@ require_once "includes/dbh.inc.php";
                   <p><?php echo $paymentEmailadd ?></p>
                 </div>
 
-              <?php elseif($paymentMethod == "Gcash"): ?>
+              <?php elseif($paymentMethod == "GCash"): ?>
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>
@@ -405,13 +447,13 @@ require_once "includes/dbh.inc.php";
             <!-- Total Cost -->
             <div class="section-details">
               <span>Total Cost:</span>
-              <p><?php echo '₱' .$totalcostNum ?></p>
+              <p><?php echo '₱' .$totalcost ?></p>
             </div>
 
             <!-- Downpayment -->
             <div class="section-details">
               <span>Down Payment:</span>
-              <p><?php echo '₱' .$downpaymentNum ?></p>
+              <p><?php echo '₱' .$downpayment ?></p>
             </div>
         </div>
       </div>

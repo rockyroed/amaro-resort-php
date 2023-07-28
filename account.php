@@ -263,7 +263,7 @@ if((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POST
                 <td><?php echo $booking_row['reservation_type']?></td>
                 <td><?php echo $booking_row['reservation_date']?></td>
                 <td><a href="details.php?reservation_id=<?php echo $booking_row['reservation_id']?>" alt="view">view</a></td>
-                <td><?php echo $booking_row['payment_status']?></td>
+                <td><?php echo $booking_row['res_status']?></td>
               </tr>
               <?php }?>
             </table>

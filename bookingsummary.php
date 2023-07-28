@@ -91,7 +91,7 @@ if(isset($_SESSION["paymentCardnumber"]) && isset($_SESSION["paymentCardname"]) 
 $reserveQuery = "select reservation_id from reservations";
 $result = mysqli_query($con, $reserveQuery);
 
-$referencenumber = bin2hex(random_bytes(16));
+$referencenumber = bin2hex(random_bytes(4));
 $timeStamp = date("Y-m-d H:i:s");
 
 check:
@@ -108,7 +108,7 @@ check:
     $_SESSION['reservation_id'] = $referencenumber;
     $_SESSION['reservation_date'] = $timeStamp;
 
-    $resQuery = "INSERT INTO reservations (reservation_id,guest_id, reservation_type,reservation_date,payment_method,total_cost,down_payment,payment_status) 
+    $resQuery = "INSERT INTO reservations (reservation_id,guest_id, reservation_type,reservation_date,payment_method,total_cost,down_payment,res_status) 
     VALUES ('$referencenumber', '$guest_id', '$type', '$timeStamp', '$paymentType','$totalcostNum','$downpaymentNum', 'Pending')";
     
     $verify = mysqli_query($con, $resQuery);
