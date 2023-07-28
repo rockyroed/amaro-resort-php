@@ -65,7 +65,6 @@ require_once "includes/dbh.inc.php";
   // General Payment Detail
   if (isset($_SESSION["paymentType"])) {
     $paymentType = $_SESSION["paymentType"];
-    echo $paymentType;
   }
   
   
@@ -363,7 +362,6 @@ check:
           <div class="details-container">
             <div class="section-title"><h3>Payment Details</h3></div>
               <?php if($paymentType == "paypal"): ?>
-                <?php  echo $paymentType; ?>
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>

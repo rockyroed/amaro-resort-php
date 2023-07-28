@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Amaro Resort | Home Page</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -83,7 +83,7 @@
             memorable occasions, and a refreshing swimming pool.
           </p>
           <?php if ($isLoggedIn): ?>
-            <a href="reservation.html" id="check-menu">
+            <a href="reservation.php" id="check-menu">
               <button type="button" class="head-btn">BOOK NOW</button>
             </a>
           <?php else: ?>
@@ -113,7 +113,7 @@
                 advanced swimmers, in our family-friendly pools and lap pool.
               </p>
             </div>
-            <a href="swimming.html" id="swimBook">
+            <a href="swimming.php" id="swimBook">
               <button type="button" class="svc-btn">VIEW DETAILS</button>
             </a>
           </div>
@@ -129,7 +129,7 @@
                 new adventures.
               </p>
             </div>
-            <a href="hotelroom.html" id="roomBook">
+            <a href="hotelroom.php" id="roomBook">
               <button type="button" class="svc-btn">VIEW DETAILS</button>
             </a>
           </div>
@@ -145,7 +145,7 @@
                 memorable event while we take care of the details.
               </p>
             </div>
-            <a href="event.html" id="eventBook">
+            <a href="event.php" id="eventBook">
               <button type="button" class="svc-btn">VIEW DETAILS</button>
             </a>
           </div>
@@ -172,7 +172,7 @@
                 where cherished memories are waiting to be created.
               </p>
             </div>
-            <a href="about.html" id="aboutUs">
+            <a href="about.php" id="aboutUs">
               <button type="button" class="abt-btn">KNOW MORE</button>
             </a>
           </div>
@@ -266,7 +266,7 @@
           </div>
           <div class="cta-below">
             <?php if ($isLoggedIn): ?>
-              <a href="reservation.html" id="cta-button">
+              <a href="reservation.php" id="cta-button">
                 <button type="button" class="cta-btn">BOOK NOW</button>
               </a>
             <?php else: ?>
@@ -311,18 +311,18 @@
               <h2>Links</h2>
               <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="services.php">Services</a></li>
+                <li><a href="reservation.php">Reservation</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="links-label">
               <h2>Legal</h2>
               <ul>
-                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                <li><a href="t&c.html">Terms & Conditions</a></li>
-                <li><a href="rules.html">Rules and Regulations</a></li>
+                <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                <li><a href="t&c.php">Terms & Conditions</a></li>
+                <li><a href="rules.php">Rules and Regulations</a></li>
             </div>
             <div class="newsletter">
               <h2>Newsletter</h2>
