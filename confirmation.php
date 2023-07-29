@@ -193,12 +193,15 @@ if ($type == "Event") {
             </div>
           </div>
 
-          <p> Present this to confirmation slip to the resort receptionist. <br> See you soon! </p>
+          <p> Present this confirmation slip to the resort receptionist. <br> See you soon! </p>
 
           </div>
           <div class="cta-buttons">
             <a href="index.php" id="backToHome">
               <button type="button" class="secondary-btn">GO TO HOME</button>
+            </a>
+            <a href="reservation.php" id="backToHome">
+              <button type="button" class="primary-btn">ADD ANOTHER BOOKING</button>
             </a>
           </div>
         </div>

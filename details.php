@@ -2,6 +2,12 @@
 session_start();
 require_once "includes/dbh.inc.php";
 
+if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+  $isLoggedIn = true;
+} else {
+  $isLoggedIn = false;
+}
+
   if(isset($_GET['reservation_id'])){
     $reservation_id = $_GET['reservation_id'];
     $query = "SELECT * FROM reservations WHERE reservation_id = ?";
@@ -178,19 +184,49 @@ require_once "includes/dbh.inc.php";
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <?php if ($isLoggedIn): ?>
+              <a class="navBar" href="reservation.php"> Reservation </a>
+            <?php else: ?>
+              <a class="navBar" href="login.php"> Reservation </a>
+            <?php endif; ?>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="reservation.html" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
-          <span><i class="fas fa-user" id="user"></i></span>
+          <div class="mobile-button">
+            <span id="user-button">
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
+            </span>
+
+            <span id="menu-bar">
+              <i class="fas fa-bars" id="main-menu"></i>
+            </span>
+          </div>
+
+
+          <div class="account-menu" id="account-menu">
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </div>
         </div>
       </div>
       <!-- end of nav -->
@@ -458,5 +494,6 @@ require_once "includes/dbh.inc.php";
       </div>
     </section>
     <!-- end of booking summary -->
+    <script type="module" src="javascript/details.js"></script>
   </body>
 </html>

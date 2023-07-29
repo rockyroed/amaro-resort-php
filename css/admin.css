@@ -244,6 +244,7 @@ body {
     background: #f2f2f2;
     color: var(--text-black-clr);
     padding: 5px;
+    cursor: pointer;
 }
 
 .admin-cancel-button {
@@ -252,6 +253,7 @@ body {
     padding: 5px;
     background: #f44336;
     color: #fff;
+    cursor: pointer;
 }
 
 .admin-save-button {
@@ -260,6 +262,7 @@ body {
     padding: 5px;
     background: #4CAF50;
     color: #fff;
+    cursor: pointer;
 }
 
 .logout {

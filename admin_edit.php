@@ -190,11 +190,12 @@ $DSreservation_type = $DSrow2['reservation_type'];
                   <th>Save</th>
                 </tr>
                 <?php while($DSrow = mysqli_fetch_assoc($DSresult)){ ?>
-                <tr>
+                <form method="post">
+                  <tr>
                   <td><?php echo $DSrow['reservation_id']?></td>
                   <td><?php echo $DSrow['reservation_type']?></td>
                   <td><?php echo $DSrow['reservation_date']?></td>
-                  <td><a href="#" alt="view">View</a></td>
+                  <td><a href="details.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">View</a></td>
                   <td>
                     <select id="status" name="status" default="<?php echo $DSrow['res_status']?>">
                       <option>Pending</option>
@@ -203,8 +204,9 @@ $DSreservation_type = $DSrow2['reservation_type'];
                     </select>
                   </td>
                   <td><a href="admin.php"><button type="button" class="admin-cancel-button">Cancel</button></a></td>
-                  <td><button type="button" class="admin-save-button">Save</button></td>
+                  <td><button class="admin-save-button">Save</button></td>
                 </tr>
+                </form>
                 <?php } ?>
               </table>
             </div>

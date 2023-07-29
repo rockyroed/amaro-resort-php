@@ -326,7 +326,7 @@
                 <li><a href="t&c.php">Terms & Conditions</a></li>
                 <li><a href="rules.php">Rules and Regulations</a></li>
             </div>
-            <!-- <div class="newsletter">
+            <div class="newsletter">
               <h2>Newsletter</h2>
               <p class="newsletter-text">
                 Elevate your resort experience and be the first to receive exclusive promotions, 
@@ -336,7 +336,7 @@
                 <input type="email" id="email" name="email" placeholder="Enter your email" >
                 <button type="submit" title="subscribe"><i class="fas fa-paper-plane" id="subButton"></i></button>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
         <div class="copyright">
