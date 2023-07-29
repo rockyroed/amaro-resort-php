@@ -163,7 +163,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/details.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Reservation Details | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -176,11 +176,9 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
       <div class="nav" id="nav">
         <div class="site-nav">
           <div class="site-name" id="site-name">
-            <img
-              src="css/page-images/AmaroResort.png"
-              alt="logo"
-              class="logo"
-            />
+            <a href="index.php" id="navlogo">
+              <img src="images/AmaroResort.png" alt="logo" class="logo" />
+            </a>
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
