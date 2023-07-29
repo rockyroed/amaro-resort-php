@@ -35,7 +35,11 @@
             <a class="navBar" href="index.php"> Home </a>
             <a class="navBar" href="about.php"> About </a>
             <a class="navBar" href="services.php"> Services </a>
-            <a class="navBar" href="reservation.php"> Reservation </a>
+            <?php if ($isLoggedIn): ?>
+              <a class="navBar" href="reservation.php"> Reservation </a>
+            <?php else: ?>
+              <a class="navBar" href="login.php"> Reservation </a>
+            <?php endif; ?>
             <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
