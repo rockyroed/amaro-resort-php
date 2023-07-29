@@ -232,6 +232,35 @@ body {
   color: white;
 }
 
+#bookingList a {
+    color: var(--main-text-clr);
+}
+
+#bookingList select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: #f2f2f2;
+    color: var(--text-black-clr);
+    padding: 5px;
+}
+
+.admin-cancel-button {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    background: #f44336;
+    color: #fff;
+}
+
+.admin-save-button {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    background: #4CAF50;
+    color: #fff;
+}
 
 .logout {
     margin-top: auto;

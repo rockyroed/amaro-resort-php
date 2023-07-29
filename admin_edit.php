@@ -194,7 +194,7 @@ $DSreservation_type = $DSrow2['reservation_type'];
                   <td><?php echo $DSrow['reservation_id']?></td>
                   <td><?php echo $DSrow['reservation_type']?></td>
                   <td><?php echo $DSrow['reservation_date']?></td>
-                  <td><a href="#" alt="view">view</a></td>
+                  <td><a href="#" alt="view">View</a></td>
                   <td>
                     <select id="status" name="status" default="<?php echo $DSrow['res_status']?>">
                       <option>Pending</option>
@@ -202,8 +202,8 @@ $DSreservation_type = $DSrow2['reservation_type'];
                       <option>Visited</option>
                     </select>
                   </td>
-                  <td><a href="admin.php"><button type="button">Cancel</button></a></td>
-                  <td><button>Save</button></td>
+                  <td><a href="admin.php"><button type="button" class="admin-cancel-button">Cancel</button></a></td>
+                  <td><button type="button" class="admin-save-button">Save</button></td>
                 </tr>
                 <?php } ?>
               </table>
