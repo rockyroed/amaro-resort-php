@@ -55,7 +55,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/signup.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Sign Up | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -63,7 +63,7 @@
   </head>
   <body>
     <!-- start of nav -->
-    <section id="navBar" class="page-section active">
+    <!-- <section id="navBar" class="page-section active">
       <div class="nav" id="nav">
         <div class="site-nav">
           <div class="site-name" id="site-name">
@@ -92,13 +92,18 @@
           <span><i class="fas fa-user" id="user"></i></span>
         </div>
       </div>
-    </section>
+    </section> -->
     <!-- end of nav -->
 
     <!-- start of signup -->
     <section id="login-container">
       <div class="left-side">
         <div class="left-container">
+          <div class="site-name" id="site-name">
+            <a href="index.php" id="navlogo">
+              <img src="images/AmaroResort.png" alt="logo" class="logo" />
+            </a>
+          </div>
           <h1>Create your Account</h1>
           <p>Sign up now to book a reservation!</p>
           <div class="form">
@@ -229,7 +234,7 @@
 
             <div class="signup-link">
               <span class="question">Have an account?</span>
-              <a href="login.html" id="loginLink">
+              <a href="login.php" id="loginLink">
                 <span class="textlink">LOGIN</span>
               </a>
             </div>

@@ -189,7 +189,7 @@ body {
 .left-side {
     background: var(--background-clr);
     width: 50%;
-    height: 85vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -312,7 +312,7 @@ body {
 .right-side {
     background: url("page-images/AboutBG.png") center/cover no-repeat;
     width: 50%;
-    height: 85vh;
+    height: 100vh;
     display: flex;
     padding: 30px;
     align-items: end;

@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+    $isLoggedIn = true;
+  } else {
+    $isLoggedIn = false;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/event.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Event | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -15,29 +24,53 @@
     <!-- start of nav -->
     <section id="navBar" class="page-section active">
       <div class="nav" id="nav">
-        <div class="site-nav">
+      <div class="site-nav">
           <div class="site-name" id="site-name">
-            <img
-              src="css/page-images/AmaroResort.png"
-              alt="logo"
-              class="logo"
-            />
+            <a href="index.php" id="navlogo">
+              <img src="images/AmaroResort.png" alt="logo" class="logo" />
+            </a>
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="#" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
-          <span><i class="fas fa-user" id="user"></i></span>
+          <div class="mobile-button">
+            <span id="user-button">
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
+            </span>
+
+            <span id="menu-bar">
+              <i class="fas fa-bars" id="main-menu"></i>
+            </span>
+          </div>
+
+
+          <div class="account-menu" id="account-menu">
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </div>
         </div>
       </div>
     </section>
@@ -46,7 +79,7 @@
     <!-- start of room rates -->
     <section id="roomRates">
       <div class="rates-container">
-          <span class="section-phrase">Room Rates</span>
+          <span class="section-phrase">Event Rates</span>
             <div class="room-rates-container">
                 <div class="left-img-1">
        
@@ -54,35 +87,17 @@
                 <div class="right-details">
                     <div class="room-price">
                         <h2> Function Hall </h2>
-                        <p>₱2,000.00</p>
+                        <p>₱25,000.00</p>
                     </div>
 
                     <div class="inclusions">
                         <i class="fas fa-arrow-circle-right"></i>
-                        <p class="in-details">Pax Number</p>
-                    </div>
-
-                    <div class="inclusions">
-                      <i class="fas fa-arrow-circle-right"></i>
-                      <p class="in-details">Pax Number</p>
-                    </div>
-
-                    <div class="inclusions">
-                      <i class="fas fa-arrow-circle-right"></i>
-                      <p class="in-details">Pax Number</p>
-                    </div>
-
-                    <div class="inclusions">
-                      <i class="fas fa-arrow-circle-right"></i>
-                      <p class="in-details">Pax Number</p>
+                        <p class="in-details">70-80 pax</p>
                     </div>
 
                     <span>Additional Information:</span>
                     <ul>
                         <li>Standard check in 2:00 PM - 12:00 NN check out</li>
-                        <li>Requires 1,000 pesos for security deposit and will be forfeited in case of loss or damages.</li>
-                        <li>Exceeding guest will be charged of 500 pesos for extra mattress and pillow.</li>
-                        <li>Additional hour: ₱150 / per hour</li>
                         <li>Swimming entrance is not included.</li>
                     </ul>
 
@@ -93,35 +108,17 @@
               <div class="right-details">
                   <div class="room-price">
                       <h2> Court / Events Place</h2>
-                      <p>₱2,800.00</p>
+                      <p>₱35,000.00</p>
                   </div>
 
                   <div class="inclusions">
                       <i class="fas fa-arrow-circle-right"></i>
-                      <p class="in-details">Pax Number</p>
-                  </div>
-
-                  <div class="inclusions">
-                    <i class="fas fa-arrow-circle-right"></i>
-                    <p class="in-details">Pax Number</p>
-                  </div>
-
-                  <div class="inclusions">
-                    <i class="fas fa-arrow-circle-right"></i>
-                    <p class="in-details">Pax Number</p>
-                  </div>
-
-                  <div class="inclusions">
-                    <i class="fas fa-arrow-circle-right"></i>
-                    <p class="in-details">Pax Number</p>
+                      <p class="in-details">200-250 pax</p>
                   </div>
 
                   <span>Additional Information:</span>
                   <ul>
                       <li>Standard check in 2:00 PM - 12:00 NN check out</li>
-                      <li>Requires 1,000 pesos for security deposit and will be forfeited in case of loss or damages.</li>
-                      <li>Exceeding guest will be charged of 500 pesos for extra mattress and pillow.</li>
-                      <li>Additional hour: ₱150 / per hour</li>
                       <li>Swimming entrance is not included.</li>
                   </ul>
               </div>
@@ -148,9 +145,15 @@
             </p>
           </div>
           <div class="cta-below">
-            <a href="reservation.html" id="cta-button">
-              <button type="button" class="cta-btn">BOOK NOW</button>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="cta-button">
+              <button type="button" class="cta-btn">Book Now</button>
             </a>
+          <?php else: ?>
+            <a href="login.php" id="cta-button">
+              <button type="button" class="cta-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
           </div>
         </div>
       </div>
@@ -221,5 +224,6 @@
       </div>
     </section>
     <!-- end of footer -->
+    <script type="module" src="javascript/event.js"></script>
   </body>
 </html>

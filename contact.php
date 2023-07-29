@@ -1,3 +1,12 @@
+<?php
+  session_start();
+  if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+    $isLoggedIn = true;
+  } else {
+    $isLoggedIn = false;
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/contact.css" />
     <link rel="icon" href="images/TabLogo.png" type="image/png"/>
-    <title>Amaro Resort</title>
+    <title>Contact | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -28,19 +37,44 @@
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="reservation.html" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
-          <span><i class="fas fa-user" id="user"></i></span>
+          <div class="mobile-button">
+            <span id="user-button">
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
+            </span>
+
+            <span id="menu-bar">
+              <i class="fas fa-bars" id="main-menu"></i>
+            </span>
+          </div>
+
+          <div class="account-menu" id="account-menu">
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </div>
         </div>
       </div>
       <!-- end of nav -->
@@ -138,18 +172,18 @@
               <h2>Links</h2>
               <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="reservation.html">Reservation</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="services.php">Services</a></li>
+                <li><a href="reservation.php">Reservation</a></li>
+                <li><a href="contact.php">Contact</a></li>
               </ul>
             </div>
             <div class="links-label">
               <h2>Legal</h2>
               <ul>
-                <li><a href="privacypolicy.html">Privacy Policy</a></li>
-                <li><a href="t&c.html">Terms & Conditions</a></li>
-                <li><a href="rules.html">Rules and Regulations</a></li>
+                <li><a href="privacypolicy.php">Privacy Policy</a></li>
+                <li><a href="t&c.php">Terms & Conditions</a></li>
+                <li><a href="rules.php">Rules and Regulations</a></li>
             </div>
             <div class="newsletter">
               <h2>Newsletter</h2>
@@ -170,6 +204,6 @@
       </div>
     </section>
     <!-- end of footer -->
-  
+    <script type="module" src="javascript/contact.js"></script>
   </body>
 </html>

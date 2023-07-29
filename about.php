@@ -5,7 +5,6 @@
   } else {
     $isLoggedIn = false;
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/about.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>About | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -25,14 +24,10 @@
     <!-- start of nav -->
     <section id="navBar" class="page-section active">
       <div class="nav" id="nav">
-        <div class="site-nav">
+      <div class="site-nav">
           <div class="site-name" id="site-name">
             <a href="index.php" id="navlogo">
-              <img
-                src="css/page-images/AmaroResort.png"
-                alt="logo"
-                class="logo"
-              />
+              <img src="images/AmaroResort.png" alt="logo" class="logo" />
             </a>
           </div>
           <div class="nav-bar" id="navbar">
@@ -57,22 +52,25 @@
 
           <div class="mobile-button">
             <span id="user-button">
-              <i class="fas fa-user" id="user"></i>
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
             </span>
 
             <span id="menu-bar">
               <i class="fas fa-bars" id="main-menu"></i>
             </span>
-         </div>
-
-
-          <div class="profile-menu" id="profile-menu">
-            <a href="#"><i class="fas fa-user-edit"></i>Profile</a>
-            <a href="#"><i class="fas fa-cog"></i>Settings</a>
-            <a href="login.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
           </div>
 
-          <span><i class="fas fa-user" id="user"></i></span>
+
+          <div class="account-menu" id="account-menu">
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </div>
         </div>
       </div>
     </section>

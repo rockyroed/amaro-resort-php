@@ -5,7 +5,6 @@
   } else {
     $isLoggedIn = false;
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort | Home Page</title>
+    <title>Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -49,25 +48,24 @@
               <button type="button" class="book-btn">Book Now</button>
             </a>
           <?php endif; ?>
-          
 
           <div class="vl"></div>
 
-        <div class="mobile-button">
-          <span id="user-button">
-            <?php if ($isLoggedIn): ?>
-              <i class="fas fa-user" id="user" title="Profile"></i>
-            <?php else: ?>
-              <a href="login.php">
-                <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
-              </a>
-            <?php endif; ?>
-          </span>
+          <div class="mobile-button">
+            <span id="user-button">
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
+            </span>
 
-          <span id="menu-bar">
-            <i class="fas fa-bars" id="main-menu"></i>
-          </span>
-        </div>
+            <span id="menu-bar">
+              <i class="fas fa-bars" id="main-menu"></i>
+            </span>
+          </div>
 
 
           <div class="account-menu" id="account-menu">
@@ -241,7 +239,7 @@
               <span><i class="fas fa-star"></i></span>
             </div>
 
-            <h3>Matthew Finn</h3>
+            <h3>Finn Steiner</h3>
             <p>
               The resort exceeded all expectations. The rooms were comfortable, the food was
               delicious, and the beach was stunning. Highly recommend it!
@@ -324,7 +322,7 @@
                 <li><a href="t&c.php">Terms & Conditions</a></li>
                 <li><a href="rules.php">Rules and Regulations</a></li>
             </div>
-            <div class="newsletter">
+            <!-- <div class="newsletter">
               <h2>Newsletter</h2>
               <p class="newsletter-text">
                 Elevate your resort experience and be the first to receive exclusive promotions, 
@@ -334,7 +332,7 @@
                 <input type="email" id="email" name="email" placeholder="Enter your email" >
                 <button type="submit" title="subscribe"><i class="fas fa-paper-plane" id="subButton"></i></button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="copyright">
