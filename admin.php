@@ -1,7 +1,12 @@
 <?php 
 session_start();
 require_once "includes/dbh.inc.php";
-$admin_email = $_SESSION['admin_emailaddress'];
+
+if(isset($_SESSION['admin_emailaddress']) && !empty($_SESSION['admin_emailaddress'])) {
+  $admin_email = $_SESSION['admin_emailaddress'];
+} else {
+  header("Location: admin_login.php");
+}
 
 // get current date
 $today = date("Y-m-d");
@@ -47,7 +52,7 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/admin.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Admin Page | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"
@@ -65,23 +70,11 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
               class="logo"
             />
           </div>
-
+          
           <div class="account">
             <i class="fas fa-user-circle"></i>
             <span><?php echo $admin_email ?></span>
           </div>
-
-          <!-- <div class="menu-list">
-            <a href="admin.php" id="dashboard">
-              <button type="button" class="secondary-btn">
-                <i class="fas fa-th-large"></i> DASHBOARD
-              </button>
-
-              <button type="button" class="secondary-btn">
-                <i class="fas fa-concierge-bell"></i> BOOKING
-              </button>
-            </a>
-          </div> -->
 
           <div class="logout">
             <a href="logout.php" id="logout-button">
@@ -99,21 +92,17 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
               <div class="dashboard-row">
                 <div class="dashboard-container">
                   <span>Daily Sales</span>
-                  <span><?php echo '₱'.$DSdaily_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSdaily_sales ?></span>
                   <div class="graph">
-                    <canvas
-                      id="myChart"
-                      style="width: 100%; max-width: 600px"
-                    ></canvas>
                   </div>
                 </div>
                 <div class="dashboard-container">
                   <span>Weekly Sales</span>
-                  <span><?php echo '₱'.$DSweekly_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSweekly_sales ?></span>
                 </div>
                 <div class="dashboard-container">
                   <span>Monthly Sales</span>
-                  <span><?php echo '₱'.$DSmonthly_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSmonthly_sales ?></span>
                 </div>
               </div>
 
@@ -127,7 +116,7 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
             <div class="booking-table">
               <table id="bookingList">
                 <tr>
-                  <th>Reservation #</th>
+                  <th>Reservation No.</th>
                   <th>Type</th>
                   <th>Date</th>
                   <th>Details</th>
@@ -139,12 +128,12 @@ if (isset($_POST['status']) && isset($_POST['statusChange'])){
                   <td><?php echo $DSrow['reservation_id']?></td>
                   <td><?php echo $DSrow['reservation_type']?></td>
                   <td><?php echo $DSrow['reservation_date']?></td>
-                  <td><a href="details.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">view</a></td>
+                  <td><a href="details.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">View</a></td>
                   <td><?php echo $DSrow['res_status']?></td>
                   <td>
                       <a href="admin_edit.php?reservation_id=<?php echo $DSrow['reservation_id']?>" alt="view">
                         <button>
-                          <img src="../amaro-resort-v2/images/edit-btn.png" alt="user-profile-edit">
+                        <i class="fas fa-edit"></i>
                         </button>
                       </a>   
                   </td>

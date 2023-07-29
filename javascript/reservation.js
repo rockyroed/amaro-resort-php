@@ -1,9 +1,11 @@
 const buttons = document.getElementsByClassName('book-btn');
 
 const resType = document.getElementById('restype');
+const rightBook = document.getElementById('right-book');
 
 for(let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', () => {
+        rightBook.classList.remove('hidden');
         const index = i;
         for(let i = 0; i < buttons.length; i++) {
             if(i === index) {

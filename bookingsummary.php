@@ -113,7 +113,7 @@ check:
     $verify = mysqli_query($con, $resQuery);
   
     if ($verify) {
-        if ($type == "Swimming") {
+        if ($type == "Swimming") { //problem
           $cottageQuery = "SELECT cottage_id FROM cottages WHERE cottage_type = '$cottagetypename'";
           $cottageResult = mysqli_query($con, $cottageQuery);
           $cottageRow = mysqli_fetch_assoc($cottageResult);
@@ -192,7 +192,7 @@ check:
   <body>
     <section id="navBar" class="page-section active">
       <!-- start of nav -->
-      <div class="nav" id="nav">
+      <!-- <div class="nav" id="nav">
         <div class="site-nav">
           <div class="site-name" id="site-name">
             <img
@@ -217,7 +217,7 @@ check:
 
           <span><i class="fas fa-user" id="user"></i></span>
         </div>
-      </div>
+      </div> -->
       <!-- end of nav -->
     </section>
 

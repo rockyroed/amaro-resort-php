@@ -153,24 +153,20 @@ $DSreservation_type = $DSrow2['reservation_type'];
           <div class="content">
             <h1>DASHBOARD</h1>
             <div class="dashboard">
-              <div class="dashboard-row">
+            <div class="dashboard-row">
                 <div class="dashboard-container">
                   <span>Daily Sales</span>
-                  <span><?php echo '₱'.$DSdaily_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSdaily_sales ?></span>
                   <div class="graph">
-                    <canvas
-                      id="myChart"
-                      style="width: 100%; max-width: 600px"
-                    ></canvas>
                   </div>
                 </div>
                 <div class="dashboard-container">
                   <span>Weekly Sales</span>
-                  <span><?php echo '₱'.$DSweekly_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSweekly_sales ?></span>
                 </div>
                 <div class="dashboard-container">
                   <span>Monthly Sales</span>
-                  <span><?php echo '₱'.$DSmonthly_sales ?></span>
+                  <span class="sales-price"><?php echo '₱'.$DSmonthly_sales ?></span>
                 </div>
               </div>
 

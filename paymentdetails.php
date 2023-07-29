@@ -170,13 +170,13 @@ $type = strtoupper($type);
                 <div class="input-box">
                   <label for="accountnumber">Account Number</label>
                   <input
-                    type="number"
+                    type="tel"
                     id="account-number"
-                    title="AccountNumber"
+                    title="Account Number"
                     name="paymentAccountnumber"
-                    size="30"
-                    maxlength="50"
-                    placeholder="0"
+                    placeholder="(09)00-000-0000"
+                    maxlength="11"
+                    pattern="[09]{2}[0-9]{9}"
                     required
                   />
                 </div>
@@ -220,7 +220,6 @@ $type = strtoupper($type);
                   name="paymentCardnumber"
                   size="40"
                   maxlength="50"
-                  placeholder="0"
                   required
                 />
               </div>
@@ -235,7 +234,6 @@ $type = strtoupper($type);
                   name="paymentCardname"
                   size="40"
                   maxlength="50"
-                  placeholder="0"
                   required
                 />
               </div>
@@ -245,13 +243,12 @@ $type = strtoupper($type);
                   <!-- MM -->
                   <label for="MM">MM</label>
                   <input
-                    type="number"
+                    type="text"
                     id="mm"
                     title="MM"
                     name="mm"
                     size="40"
                     maxlength="50"
-                    placeholder="0"
                     required
                   />
                 </div>
@@ -260,13 +257,12 @@ $type = strtoupper($type);
                   <!-- YYYY -->
                   <label for="YYYY">YYYY</label>
                   <input
-                    type="number"
+                    type="text"
                     id="yyyy"
                     title="YYYY"
                     name="YYYY"
                     size="40"
                     maxlength="50"
-                    placeholder="0"
                     required
                   />
                 </div>
@@ -275,13 +271,12 @@ $type = strtoupper($type);
                 <div class="input-box">
                   <label for="CVV">CVV</label>
                   <input
-                    type="number"
+                    type="text"
                     id="cvv"
                     title="CVV"
                     name="CVV"
                     size="30"
                     maxlength="50"
-                    placeholder="0"
                     required
                   />
                 </div>

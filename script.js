@@ -72,8 +72,9 @@ function calculateSwimTotal(){
   cottageTotal = parseInt(cottagePrice);
   
   totalPax = adultInput + childrenInput + seniorPWDInput;
-  totalCost.textContent = (cottageTotal + adultTotal + childrenTotal + seniorTotal);
-  downPayment.textContent = ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
+  totalCost.textContent = (cottageTotal + adultTotal + childrenTotal + seniorTotal).toFixed(2);
+  downPaymentOriginal = ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
+  downPayment.textContent = downPaymentOriginal.toFixed(2);
 
   tcpost.value = totalCost.textContent;
   dpPost.value = downPayment.textContent;
@@ -166,8 +167,9 @@ function computeDays(){
     
       var FinalCost = roomPrice * daysGap;
     
-      totalCost.textContent =  FinalCost;
-      downPayment.textContent = (FinalCost * 0.2);
+      totalCost.textContent =  FinalCost.toFixed(2);
+      downPaymentOriginal = FinalCost * 0.2;
+      downPayment.textContent = downPaymentOriginal.toFixed(2);
 
       tcpost.value = totalCost.textContent;
       dpPost.value = downPayment.textContent;
@@ -181,10 +183,18 @@ function doubleEvent(){
   validateAdultPax();
 }
 
-function greyOutPreviousDate(){
+function greyOutPreviousDateSwimming(){
   const currentDate = new Date();
-  // const utcTime = currentDate.getTime() + (currentDate.getTimezoneOffset() * 60000);
-  // const phtTime = new Date(utcTime + (9 * 60 * 60000));
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const currentDateString = `${year}-${month}-${day}`;
+  const dateOfVisit = document.getElementById('dateofvisit');
+  dateOfVisit.setAttribute('min', currentDateString);
+  }
+
+function greyOutPreviousDateRoom(){
+  const currentDate = new Date();
   const year = currentDate.getFullYear();
   const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
   const day = String(currentDate.getDate()).padStart(2, '0');
@@ -193,12 +203,20 @@ function greyOutPreviousDate(){
   const checkOutInput = document.getElementById('checkout');
   checkInInput.setAttribute('min', currentDateString);
   checkOutInput.setAttribute('min', currentDateString);
-  console.log(currentDate);
-  console.log(currentDateString);
+  }
+
+function greyOutPreviousDateEvent(){
+  const currentDate = new Date();
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(currentDate.getDate()).padStart(2, '0');
+  const currentDateString = `${year}-${month}-${day}`;
+  const eventDate = document.getElementById('eventDate');
+  eventDate.setAttribute('min', currentDateString);
   }
 
   function calculateEventTotal(){
-    var eventPrice = document.getElementById('event.price').value;
+    var eventPrice = document.getElementById('event.price').value; // problem
     var totalCost = document.getElementById('totalCost');
     var downPayment = document.getElementById('downPayment');
 
@@ -208,9 +226,10 @@ function greyOutPreviousDate(){
 
     var FinalCost = eventPrice;
     
-      totalCost.textContent = FinalCost;
-      downPayment.textContent = (FinalCost * 0.2);
+    totalCost.textContent = FinalCost.toFixed(2);
+    downPaymentOriginal = (FinalCost * 0.2);
+    downPayment.textContent = downPaymentOriginal.toFixed(2);
 
-      tcpost.value = totalCost.textContent;
-      dpPost.value = downPayment.textContent;
+    tcpost.value = totalCost.textContent;
+    dpPost.value = downPayment.textContent;
   }

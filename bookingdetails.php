@@ -45,7 +45,6 @@ if($type == "SWIMMING") {
     $roomNumResult = mysqli_query($con, $roomNumQuery);
     $roomNumRow = mysqli_fetch_assoc($roomNumResult);
     $swimRoom = $roomNumRow['cottage_number'];
-    // echo $swimRoom;
      
     $_SESSION["DateOfVisit"] = $dateofvisit;
     $_SESSION["TimeSlot"] = $timeslot;
@@ -57,18 +56,8 @@ if($type == "SWIMMING") {
     $_SESSION["totalCost"] = $TotalCost;
     $_SESSION["downPayment"] = $downPayment;
     $_SESSION["cottageTypeName"] = $cottagetypename;
-    // echo "<script>alert($cottage_id);</script>";
     header("Location: paymentdetails.php"); die();
   }
-  /* 
-checkin
-checkout
-Adult
-Children
-SeniorPWD
-roomtype
-TotalCost 
-*/
 } elseif($type == "ROOM") {
   if(isset($_POST['roomtype']) && isset($_POST['checkin']) && isset($_POST['checkout'])
   && isset($_POST['Adult']) && isset($_POST['Children']) && isset($_POST['SeniorPWD'])
@@ -175,6 +164,7 @@ TotalCost
                     name="dateofvisit"
                     title="Date of Visit"
                     placeholder="DD-MMM-YYYY"
+                    onclick="greyOutPreviousDateSwimming()"
                     required
                   />
                 </div>
@@ -352,7 +342,7 @@ TotalCost
                     id="roomtype"
                     name="roomtype"
                     required
-                    onclick="greyOutPreviousDate()"
+                    onclick="greyOutPreviousDateRoom()"
                   >
                     <option hidden value="">Select Room</option>
                     <option value="Couple">Couple Room (1-2 Pax)</option>
@@ -505,8 +495,8 @@ TotalCost
                       onchange="calculateEventTotal()"
                     >
                       <option hidden value="">Select Venue</option>
-                      <option value="Function Hall">Function Hall Max Pax: 80</option>
-                      <option value="Court">Court</option>
+                      <option value="Function Hall">Function Hall (70 - 80 pax)</option>
+                      <option value="Court">Court (200-250 pax)</option>
                     </select>
                   </div>
                 </div>
@@ -524,7 +514,7 @@ TotalCost
                     maxlength="50"
                     placeholder="0"
                     required
-                    onclick="eventPax()"
+                    onchange="eventPax()"
                   />
                 </div>
               </div>
@@ -540,6 +530,7 @@ TotalCost
                     title="Event Date"
                     placeholder="DD-MMM-YYYY"
                     required
+                    onclick="greyOutPreviousDateEvent()"
                     onchange="calculateEventTotal()"
                   />
                 </div>

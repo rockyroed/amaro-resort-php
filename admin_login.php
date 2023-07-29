@@ -7,6 +7,8 @@ if(isset($_POST['emailaddress']) && isset($_POST['password'])) {
   $password = $_POST['password'];
 
   $_SESSION['admin_emailaddress'] = $emailaddress;
+  $_SESSION['first_name'] = $firstname;
+  $_SESSION['last_name'] = $lastname;
 
   try {
     require_once "includes/dbh.inc.php";
@@ -49,7 +51,7 @@ if(isset($_POST['emailaddress']) && isset($_POST['password'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/admin_login.css" />
     <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-    <title>Amaro Resort</title>
+    <title>Admin Login | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
       crossorigin="anonymous"

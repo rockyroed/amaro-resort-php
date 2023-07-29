@@ -2,6 +2,12 @@
 session_start();
 require_once "includes/dbh.inc.php";
 
+if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
+  $isLoggedIn = true;
+} else {
+  $isLoggedIn = false;
+}
+
 
 $firstname = $_SESSION["FirstName"];
 $middlename = $_SESSION["MiddleName"];
@@ -47,30 +53,55 @@ if ($type == "Event") {
     <section id="navBar" class="page-section active">
       <!-- start of nav -->
       <div class="nav" id="nav">
-        <div class="site-nav">
+      <div class="site-nav">
           <div class="site-name" id="site-name">
-            <img
-              src="css/page-images/AmaroResort.png"
-              alt="logo"
-              class="logo"
-            />
+            <a href="index.php" id="navlogo">
+              <img src="images/AmaroResort.png" alt="logo" class="logo" />
+            </a>
           </div>
           <div class="nav-bar" id="navbar">
             <a class="navBar" href="index.php"> Home </a>
-            <a class="navBar" href="about.html"> About </a>
-            <a class="navBar" href="services.html"> Services </a>
-            <a class="navBar" href="reservation.html"> Reservation </a>
-            <a class="navBar" href="contact.html"> Contact </a>
+            <a class="navBar" href="about.php"> About </a>
+            <a class="navBar" href="services.php"> Services </a>
+            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="contact.php"> Contact </a>
           </div>
 
-          <a href="#" id="book-button">
-            <button type="button" class="book-btn">Book Now</button>
-          </a>
+          <?php if ($isLoggedIn): ?>
+            <a href="reservation.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php else: ?>
+            <a href="login.php" id="book-button">
+              <button type="button" class="book-btn">Book Now</button>
+            </a>
+          <?php endif; ?>
 
           <div class="vl"></div>
 
-          <span><i class="fas fa-user" id="user"></i></span>
+          <div class="mobile-button">
+            <span id="user-button">
+              <?php if ($isLoggedIn): ?>
+                <i class="fas fa-user" id="user" title="Profile"></i>
+              <?php else: ?>
+                <a href="login.php">
+                  <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
+                </a>
+              <?php endif; ?>
+            </span>
+
+            <span id="menu-bar">
+              <i class="fas fa-bars" id="main-menu"></i>
+            </span>
+          </div>
+
+
+          <div class="account-menu" id="account-menu">
+            <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </div>
         </div>
+      </div>
       </div>
       <!-- end of nav -->
     </section>
@@ -146,7 +177,7 @@ if ($type == "Event") {
             <!-- Payment Method -->
             <div class="section-details">
               <span>Payment Method:</span>
-              <p><?php echo $paymentType ?></p>
+              <p><?php echo ucfirst($paymentType) ?></p>
             </div>
 
             <!-- Total Cost -->
@@ -167,17 +198,13 @@ if ($type == "Event") {
           </div>
           <div class="cta-buttons">
             <a href="index.php" id="backToHome">
-              <button type="button" class="secondary-btn">GO BACK</button>
-            </a>
-            <a href="reservation.html" id="addBooking">
-              <button type="submit" class="primary-btn">
-                ADD BOOKING
-              </button>
+              <button type="button" class="secondary-btn">GO TO HOME</button>
             </a>
           </div>
         </div>
       </div>
     </section>
     <!-- end of booking summary -->
+    <script type="module" src="javascript/confirmation.js"></script>
   </body>
 </html>

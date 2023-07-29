@@ -1,7 +1,21 @@
 <?php
 session_start();
 
+require_once "includes/dbh.inc.php";
 $error = "";
+
+if (isset($_SESSION["guest_id"])) {
+  $guestid = $_SESSION["guest_id"];
+  $query = "SELECT * FROM guests WHERE guest_id = ?";
+  $stmt = $pdo->prepare($query);
+  $stmt->execute([$guestid]);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+  $firstname = $result["first_name"];
+  $middlename = $result["middle_name"];
+  $lastname = $result["last_name"];
+  $phonenumber = $result["phone_number"];
+  $emailaddress = $result["email_address"];
+}
 
   if(isset($_POST['restype']) && isset($_POST["FirstName"]) && isset($_POST["MiddleName"]) && isset($_POST["LastName"]) && isset($_POST["PhoneNumber"]) && isset($_POST["EmailAddress"])) {
     $type = $_POST["restype"];
@@ -54,7 +68,7 @@ $error = "";
           </a>
         </div>
       </div>
-      <div class="right-book">
+      <div class="right-book hidden" id="right-book">
         <div class="right-container">
           <img src="images/AmaroResort.png" alt="logo" class="logo" />
           <span class="section-name" id="section-name"
@@ -77,7 +91,7 @@ $error = "";
                     id="firstName"
                     title="First Name"
                     name="FirstName"
-                    value=""
+                    value="<?php echo $firstname; ?>"
                     size="40"
                     maxlength="50"
                     placeholder="First Name"
@@ -93,11 +107,10 @@ $error = "";
                     id="middleName"
                     title="Middle Name"
                     name="MiddleName"
-                    value=""
+                    value="<?php echo $middlename; ?>"
                     size="30"
                     maxlength="50"
                     placeholder="Middle Name"
-                    required
                   />
                 </div>
 
@@ -109,7 +122,7 @@ $error = "";
                     id="lastName"
                     title="Last Name"
                     name="LastName"
-                    value=""
+                    value="<?php echo $lastname; ?>"
                     size="30"
                     maxlength="50"
                     placeholder="Last Name"
@@ -130,6 +143,7 @@ $error = "";
                     placeholder="(09)00-000-0000"
                     maxlength="11"
                     pattern="[09]{2}[0-9]{9}"
+                    value="<?php echo $phonenumber; ?>"
                     required
                   />
                 </div>
@@ -142,7 +156,7 @@ $error = "";
                     id="emailAddress"
                     title="Email Address"
                     name="EmailAddress"
-                    value=""
+                    value="<?php echo $emailaddress; ?>"
                     size="50"
                     maxlength="50"
                     placeholder="Email Address"

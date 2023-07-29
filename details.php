@@ -376,7 +376,6 @@ require_once "includes/dbh.inc.php";
           <div class="details-container">
             <div class="section-title"><h3>Payment Details</h3></div>
               <?php if($paymentMethod == "Paypal"): ?>
-                <?php  echo $paymentMethod; ?>
                 <!-- Payment Method -->
                 <div class="section-details">
                   <span>Payment Method:</span>
