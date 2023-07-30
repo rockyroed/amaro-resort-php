@@ -3,4 +3,13 @@
 session_start();
 session_unset();
 session_destroy();
-header("Location: login.php");
+
+if (isset($_GET['type'])) {
+    $userType = $_GET['type'];
+
+    if ($userType == 'admin') {
+        header("Location: admin_login.php");
+    } else {
+        header("Location: login.php");
+    }
+}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 :root {
 
   --primary-button-clr: #38621E;
@@ -12,24 +13,29 @@
   --text-green-clr: #2A401C;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
+img {
+  height: 75px;
+  border-radius: 10px;
+}
+
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    line-height: 1.6;
-    background-color: #fff;
+  line-height: 1.6;
+  background-color: #fff;
 }
 
 .section-name {
@@ -41,9 +47,9 @@ body {
 }
 
 @media(max-width: 700px) {
-    body {
-        font-size: 14px;
-    }
+  body {
+    font-size: 14px;
+  }
 }
 
 #reservation {
@@ -211,7 +217,7 @@ header {
 .input-box textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #888888; 
+  border: 1px solid #888888;
   border-radius: 4px;
   box-sizing: border-box;
   resize: vertical;
@@ -262,7 +268,7 @@ header {
   cursor: pointer;
   width: 300px;
   height: 60px;
-}  
+}
 
 .primary-btn:hover {
   background: var(--primary-btn-hover);
@@ -282,7 +288,7 @@ header {
   cursor: pointer;
   width: 300px;
   height: 60px;
-}  
+}
 
 .secondary-btn:hover {
   background: var(--primary-btn-hover);
@@ -291,13 +297,13 @@ header {
 
 .hz-line {
   border: none;
-  border-top: 1px solid #ccc; 
+  border-top: 1px solid #ccc;
   margin: 0px 0;
 }
 
 .horizontal-line {
   border: none;
-  border-top: 1px solid #ccc; 
+  border-top: 1px solid #ccc;
   margin: 40px 0;
 }
 
@@ -307,4 +313,3 @@ header {
   font-style: normal;
   font-weight: 700;
 }
-
