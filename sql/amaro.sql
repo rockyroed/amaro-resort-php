@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2023 at 04:05 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Feb 19, 2024 at 06:20 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -45,7 +45,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `first_name`, `middle_name`, `last_name`, `phone_number`, `email_address`, `password`, `type`, `creation_date`, `modification_date`) VALUES
-(1, 'finn', 'ste', 'iner', '69', 'mjmuyco13@gmail.com', 'finn', 'Admin', '2023-07-29 01:12:00', NULL);
+(2, 'Christian Roed', 'Panes', 'Boyles', '09685768495', 'chrstnrdbyls@gmail.com', '$2y$10$7sApkqpkhK9qSupHaAE76.kW7crAddNXfiK0ORzUTUJGdx1JQll1u', 'User', '2024-02-20 01:14:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE `cottage_numbers` (
 --
 
 INSERT INTO `cottage_numbers` (`cottage_number`, `cottage_id`, `reserved_check_in`) VALUES
-('CAN-1', 1, '2023-07-31'),
+('CAN-1', 1, NULL),
 ('CAN-10', 1, NULL),
 ('CAN-11', 1, NULL),
 ('CAN-12', 1, NULL),
@@ -168,15 +168,6 @@ CREATE TABLE `event_reservations` (
   `event_venue_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `event_reservations`
---
-
-INSERT INTO `event_reservations` (`event_reservation_id`, `reservation_id`, `event_type`, `pax_number`, `event_venue_number`) VALUES
-(1, '1a53906aef7c20bf108bdd8626f63f4e', 'Function Hall', 69, 'FUN-1'),
-(2, '51a2f7b2c117a5172c29c168b6b564c3', 'Function Hall', 69, 'FUN-2'),
-(6, '20386a2a7643f5ab87587cfe7ddee5f4', 'Function Hall', 69, 'FUN-1');
-
 -- --------------------------------------------------------
 
 --
@@ -218,7 +209,7 @@ CREATE TABLE `event_venue_numbers` (
 INSERT INTO `event_venue_numbers` (`event_venue_number`, `event_venue_id`, `reserved_check_in`) VALUES
 ('BAS-1', 2, NULL),
 ('BAS-2', 2, NULL),
-('FUN-1', 1, '2023-08-05'),
+('FUN-1', 1, NULL),
 ('FUN-2', 1, NULL);
 
 -- --------------------------------------------------------
@@ -233,13 +224,6 @@ CREATE TABLE `gcash_payment_details` (
   `account_name` varchar(100) NOT NULL,
   `account_number` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `gcash_payment_details`
---
-
-INSERT INTO `gcash_payment_details` (`gcash_payment_id`, `reservation_id`, `account_name`, `account_number`) VALUES
-(1, '6494ff02ae67e69de509d08dbac83bdb', 'finn', '09612649728');
 
 -- --------------------------------------------------------
 
@@ -265,8 +249,8 @@ CREATE TABLE `guests` (
 --
 
 INSERT INTO `guests` (`guest_id`, `first_name`, `middle_name`, `last_name`, `phone_number`, `email_address`, `password`, `type`, `creation_date`, `modification_date`) VALUES
-(1, 'Finn', 'Palma', 'Muyco', '09612649728', 'mjmuyco13@gmail.com', 'thisisapassword', 'User', '2023-07-22 19:24:00', NULL),
-(7, 'Saitama', NULL, 'Saitama', '09485938495', 'saitamasaitama@gmail.com', 'onepunchman', 'User', '2023-07-24 21:41:01', NULL);
+(8, 'John', 'Michael', 'Vincent', '09675849385', 'johnmichael@gmail.com', '$2y$10$X9j75SdXYR2v9Lir3SKHYOTpyboEWodPxPjglx8Pk5KzjE9cte9hC', 'User', '2024-02-20 01:00:13', NULL),
+(9, 'Christian Roed', 'Panes', 'Boyles', '09685768495', 'chrstnrdbyls@gmail.com', '$2y$10$s8rX4zFEx3CoB5JO5YH/8.JKhqw5xotvT4dTrYegXQQ.gn.0iBzcy', 'User', '2024-02-20 01:12:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -284,13 +268,6 @@ CREATE TABLE `mastercard_payment_details` (
   `cvv` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `mastercard_payment_details`
---
-
-INSERT INTO `mastercard_payment_details` (`mastercard_payment_id`, `reservation_id`, `cardholder_number`, `cardholder_name`, `mm`, `yyyy`, `cvv`) VALUES
-(1, '1a53906aef7c20bf108bdd8626f63f4e', '69696969', 'Mathew', 7, 2023, 6969);
-
 -- --------------------------------------------------------
 
 --
@@ -302,16 +279,6 @@ CREATE TABLE `paypal_payment_details` (
   `reservation_id` varchar(255) NOT NULL,
   `email_address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `paypal_payment_details`
---
-
-INSERT INTO `paypal_payment_details` (`paypal_payment_id`, `reservation_id`, `email_address`) VALUES
-(1, 'd758ac74d32a8eb2343be7eedebb5536', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph'),
-(2, '51a2f7b2c117a5172c29c168b6b564c3', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph'),
-(3, '20386a2a7643f5ab87587cfe7ddee5f4', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph'),
-(4, '6dd672a6', 'mathewjamespmuyco@iskolarngbayan.pup.edu.ph');
 
 -- --------------------------------------------------------
 
@@ -329,21 +296,6 @@ CREATE TABLE `reservations` (
   `down_payment` float NOT NULL,
   `res_status` enum('Pending','Paid','Visited') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `reservations`
---
-
-INSERT INTO `reservations` (`reservation_id`, `guest_id`, `reservation_type`, `reservation_date`, `payment_method`, `total_cost`, `down_payment`, `res_status`) VALUES
-('1a53906aef7c20bf108bdd8626f63f4e', 1, 'Event', '2023-07-28 00:00:00', 'MasterCard', 25000, 5000, 'Paid'),
-('20386a2a7643f5ab87587cfe7ddee5f4', 1, 'Event', '2023-07-28 00:00:00', 'Paypal', 25000, 5000, 'Paid'),
-('51a2f7b2c117a5172c29c168b6b564c3', 1, 'Event', '2023-07-28 00:00:00', 'Paypal', 25000, 5000, 'Visited'),
-('6494ff02ae67e69de509d08dbac83bdb', 1, 'Room', '2023-07-28 00:00:00', 'GCash', 4000, 800, 'Visited'),
-('6dd672a6', 1, 'Swimming', '2023-07-28 00:00:00', 'Paypal', 2060, 412, 'Visited'),
-('7373a49c546f64851ae6f93206fe1740', 1, 'Event', '2023-07-28 00:00:00', 'Paypal', 25000, 5000, 'Pending'),
-('a419d40cdf4f80868dd11152873a5b5e', 1, 'Event', '2023-07-28 00:00:00', 'Paypal', 25000, 5000, 'Pending'),
-('d758ac74d32a8eb2343be7eedebb5536', 1, 'Swimming', '2023-07-28 00:00:00', 'Paypal', 1840, 368, 'Pending'),
-('d865923aef970c3790b39d29f0b20e42', 1, 'Event', '2023-07-28 00:00:00', 'Paypal', 25000, 5000, 'Pending');
 
 -- --------------------------------------------------------
 
@@ -420,13 +372,6 @@ CREATE TABLE `room_reservations` (
   `room_number` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `room_reservations`
---
-
-INSERT INTO `room_reservations` (`room_reservation_id`, `reservation_id`, `room_type`, `pax_number`, `room_number`) VALUES
-(1, '6494ff02ae67e69de509d08dbac83bdb', 'Couple', 2, 'COU-1');
-
 -- --------------------------------------------------------
 
 --
@@ -467,14 +412,6 @@ CREATE TABLE `swimming_reservations` (
   `pax_senior` int(11) NOT NULL,
   `cottage_number` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `swimming_reservations`
---
-
-INSERT INTO `swimming_reservations` (`swimming_reservation_id`, `reservation_id`, `chosen_hour`, `pax_adults`, `pax_children`, `pax_senior`, `cottage_number`) VALUES
-(1, 'd758ac74d32a8eb2343be7eedebb5536', 'Day', 3, 0, 0, 'CAN-1'),
-(2, '6dd672a6', 'Day', 2, 0, 0, 'TREL1-1');
 
 --
 -- Indexes for dumped tables
@@ -597,7 +534,7 @@ ALTER TABLE `swimming_reservations`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cottages`
@@ -627,7 +564,7 @@ ALTER TABLE `gcash_payment_details`
 -- AUTO_INCREMENT for table `guests`
 --
 ALTER TABLE `guests`
-  MODIFY `guest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `guest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `mastercard_payment_details`
