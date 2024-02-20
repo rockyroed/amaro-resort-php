@@ -126,7 +126,7 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
 
         <div class="account-menu" id="account-menu">
           <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
-          <a href="logout.php"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          <a href="logout.php?type=guest"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
       </div>
     </div>
