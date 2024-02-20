@@ -255,13 +255,13 @@ if($type == "SWIMMING") {
                   >
                     <option hidden value="0">Select Cottage</option>
                     <option value="0">None</option>
-                    <option value="1000">Canopy (5-10 pax): P1,000.00</option>
-                    <option value="1500">Trellis 1</option>
-                    <option value="2000">Trellis 2</option>
-                    <option value="1200">Kubo</option>
-                    <option value="7500">Pavilion 1</option>
-                    <option value="8500">Pavilion 2</option>
-                    <option value="9500">Pavilion 3</option>
+                    <option value="1000">Canopy (5-10 pax): ₱1,000.00</option>
+                    <option value="1500">Trellis 1 (10-15 pax): ₱1,500.00 </option>
+                    <option value="2000">Trellis 2 (15-20 pax): ₱2,000.00</option>
+                    <option value="1200">Kubo (5-10 pax): ₱1,200.00</option>
+                    <option value="7500">Pavilion 1 (50 pax): ₱7,500.00</option>
+                    <option value="8500">Pavilion 2 (65 pax): ₱8,500.00</option>
+                    <option value="9500">Pavilion 3 (100 pax): ₱9,500.00</option>
                   </select>
                 </div>
               </div>
@@ -345,8 +345,8 @@ if($type == "SWIMMING") {
                     onclick="greyOutPreviousDateRoom()"
                   >
                     <option hidden value="">Select Room</option>
-                    <option value="Couple">Couple Room (1-2 Pax)</option>
-                    <option value="Family">Family Room (2-4 Pax)</option>
+                    <option value="Couple">Couple Room (1-2 Pax): ₱2,000.00</option>
+                    <option value="Family">Family Room (2-4 Pax): ₱2,800.00</option>
                   </select>
                 </div>
               </div>
@@ -495,8 +495,8 @@ if($type == "SWIMMING") {
                       onchange="calculateEventTotal()"
                     >
                       <option hidden value="">Select Venue</option>
-                      <option value="Function Hall">Function Hall (70 - 80 pax)</option>
-                      <option value="Court">Court (200-250 pax)</option>
+                      <option value="Function Hall">Function Hall (70-80 pax): ₱25,000.00</option>
+                      <option value="Court">Court (200-250 pax): ₱35,000.00</option>
                     </select>
                   </div>
                 </div>
