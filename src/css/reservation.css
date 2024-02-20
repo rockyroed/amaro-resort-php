@@ -40,7 +40,7 @@ body {
 
 .section-name {
   margin: 20px 0px 10px 0px;
-  color: white;
+  color: var(--main-text-clr);
   font-weight: 600;
   font-size: 20px;
   text-align: center;
