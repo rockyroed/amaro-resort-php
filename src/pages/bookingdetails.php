@@ -189,6 +189,31 @@ if($type == "SWIMMING") {
 
                 </div>
               </div>
+
+              <!-- Cottage Type -->
+              <div class="input-box">
+                <label for="CottageType">Cottage Type</label>
+                <div class="select-box">
+                  <select
+                    title="cottage type"
+                    id="cottagetype"
+                    name="cottagetype"
+                    required
+                    onclick="calculateSwimTotal()"
+                  >
+                    <option hidden value="0">Select Cottage</option>
+                    <option value="0">None</option>
+                    <option value="1000">Canopy (5-10 pax): ₱1,000.00</option>
+                    <option value="1500">Trellis 1 (10-15 pax): ₱1,500.00 </option>
+                    <option value="2000">Trellis 2 (15-20 pax): ₱2,000.00</option>
+                    <option value="1200">Kubo (5-10 pax): ₱1,200.00</option>
+                    <option value="7500">Pavilion 1 (50 pax): ₱7,500.00</option>
+                    <option value="8500">Pavilion 2 (65 pax): ₱8,500.00</option>
+                    <option value="9500">Pavilion 3 (100 pax): ₱9,500.00</option>
+                  </select>
+                </div>
+              </div>
+
               <div class="column">
                 <div class="input-box">
                   <!-- Adult -->
@@ -239,30 +264,6 @@ if($type == "SWIMMING") {
                     required
                     onclick="calculateSwimTotal()"
                   />
-                </div>
-              </div>
-
-              <!-- Cottage Type -->
-              <div class="input-box">
-                <label for="CottageType">Cottage Type</label>
-                <div class="select-box">
-                  <select
-                    title="cottage type"
-                    id="cottagetype"
-                    name="cottagetype"
-                    required
-                    onclick="calculateSwimTotal()"
-                  >
-                    <option hidden value="0">Select Cottage</option>
-                    <option value="0">None</option>
-                    <option value="1000">Canopy (5-10 pax): ₱1,000.00</option>
-                    <option value="1500">Trellis 1 (10-15 pax): ₱1,500.00 </option>
-                    <option value="2000">Trellis 2 (15-20 pax): ₱2,000.00</option>
-                    <option value="1200">Kubo (5-10 pax): ₱1,200.00</option>
-                    <option value="7500">Pavilion 1 (50 pax): ₱7,500.00</option>
-                    <option value="8500">Pavilion 2 (65 pax): ₱8,500.00</option>
-                    <option value="9500">Pavilion 3 (100 pax): ₱9,500.00</option>
-                  </select>
                 </div>
               </div>
 
