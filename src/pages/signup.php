@@ -14,7 +14,7 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
   $type = "USER";
 
   try {
-    require_once "includes/dbh.inc.php";
+    require_once "../includes/dbh.inc.php";
 
     $query = "SELECT COUNT(guest_id) FROM guests WHERE email_address = ?";
 
@@ -54,7 +54,7 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
         $pdo = null;
         $stmt = null;
 
-        header("Location: index.php");
+        header("Location: ../../index.php");
       } else {
         die("Query Failed.");
       }
@@ -71,8 +71,8 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/signup.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/signup.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Sign Up | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -84,8 +84,8 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
     <div class="left-side">
       <div class="left-container">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <h1>Create your Account</h1>

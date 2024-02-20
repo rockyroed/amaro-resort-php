@@ -13,24 +13,24 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/event.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-  <title>Event | Amaro Resort</title>
+  <link rel="stylesheet" href="../css/contact.css" />
+  <link rel="icon" href="../assets/TabLogo.png" type="image/png" />
+  <title>Contact | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <!-- start of nav -->
   <section id="navBar" class="page-section active">
+    <!-- start of nav -->
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../css/page-images/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -69,108 +69,84 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           </span>
         </div>
 
-
         <div class="account-menu" id="account-menu">
           <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
           <a href="logout.php?type=guest"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
       </div>
     </div>
+    <!-- end of nav -->
   </section>
-  <!-- end of nav -->
 
-  <!-- start of room rates -->
-  <section id="roomRates">
-    <div class="rates-container">
-      <span class="section-phrase">Event Rates</span>
-      <div class="room-rates-container">
-        <div class="left-img-1">
+  <!-- start of content -->
+  <div class="content">
 
-        </div>
-        <div class="right-details">
-          <div class="room-price">
-            <h2> Function Hall </h2>
-            <p>₱25,000.00</p>
-          </div>
-
-          <div class="inclusions">
-            <i class="fas fa-arrow-circle-right"></i>
-            <p class="in-details">70-80 pax</p>
-          </div>
-
-          <span>Additional Information:</span>
-          <ul>
-            <li>Standard check in 2:00 PM - 12:00 NN check out</li>
-            <li>Swimming entrance is not included.</li>
-          </ul>
-
-        </div>
-      </div>
-
-      <div class="room-rates-container">
-        <div class="right-details">
-          <div class="room-price">
-            <h2> Court / Events Place</h2>
-            <p>₱35,000.00</p>
-          </div>
-
-          <div class="inclusions">
-            <i class="fas fa-arrow-circle-right"></i>
-            <p class="in-details">200-250 pax</p>
-          </div>
-
-          <span>Additional Information:</span>
-          <ul>
-            <li>Standard check in 2:00 PM - 12:00 NN check out</li>
-            <li>Swimming entrance is not included.</li>
-          </ul>
-        </div>
-
-        <div class="left-img-2">
-
-        </div>
-      </div>
+    <div class="imagecontainer">
+      <img src="../assets/location.png" alt="locationicon" class="custom-image">
     </div>
-  </section>
-  <!-- end of room rates -->
 
+    <div class="address">
+      <h3>Address</h3>
+      <h5>11 San Baraquiel Street, Brgy. Punturin, Valenzuela City</h5>
 
-  <!-- start of CTA -->
-  <section id="cta">
-    <div class="cta-bg">
-      <div class="cta-content">
-        <div class="cta-above">
-          <h1>Experience the perfect getaway!</h1>
-          <p>
-            Experience the perfect getaway at our resort, offering a range of
-            event packages, enticing room accommodations, and competitive
-            swimming rates for an unforgettable stay.
-          </p>
-        </div>
-        <div class="cta-below">
-          <?php if ($isLoggedIn) : ?>
-            <a href="reservation.php" id="cta-button">
-              <button type="button" class="cta-btn">Book Now</button>
-            </a>
-          <?php else : ?>
-            <a href="login.php" id="cta-button">
-              <button type="button" class="cta-btn">Book Now</button>
-            </a>
-          <?php endif; ?>
-        </div>
-      </div>
     </div>
-  </section>
-  <!-- end of CTA -->
 
+    <div class="imagecon2">
+      <img src="../assets/telephone.png" alt="telephoneicon" class="custom-image2">
+    </div>
+
+    <div class="telephone">
+      <h3>Contact Numbers</h3>
+      <h5>LANDLINE: 02 83667226</h5>
+    </div>
+
+    <div class="contact2">
+      <h5>GLOBE: 0977 714 5122</h5>
+    </div>
+
+    <div class="contact3">
+      <h5>SMART: 0947 369 1817</h5>
+    </div>
+
+    <div class="imagecon3">
+      <img src="../assets/email.png" alt="telephoneicon" class="custom-image3">
+    </div>
+
+    <div class="mail">
+      <h3>Email Address</h3>
+      <h5>amaroresort@gmail.com</h5>
+    </div>
+
+
+    <h4>Send us a message</h4>
+    <h6>We would love to hear from you! Send us a message using the contact form below.</h6>
+
+    <input type="fname" id="fname" name="fname" placeholder="Enter your name" required>
+    <input type="email" id="emailAdd" name="email" placeholder="Enter your email" required>
+    <input type="message" id="message" name="message" placeholder="Enter your message" required>
+
+    <a href="#" id="send-button">
+      <button type="button" class="send-btn">SEND NOW</button>
+    </a>
+  </div>
+
+  <div class="box">
+    <h2>Our Location</h2>
+
+  </div>
+
+  <div class="google-map">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15433.960618757048!2d120.9856815!3d14.7413931!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b107a4606dcb%3A0xddff5b3356ef5b20!2sAMARO%20RESORT!5e0!3m2!1sen!2sph!4v1689492395935!5m2!1sen!2sph" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <!-- end of content -->
 
   <!-- start of footer -->
   <section id="footer">
     <div class="ftr-container">
       <div class="ftr-content">
         <div class="ftr-left">
-          <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+          <a href="../../index.php" id="footerLogo">
+            <img src="../assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -194,19 +170,19 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           <div class="links-label">
             <h2>Links</h2>
             <ul>
-              <li><a href="index.php">Home</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="services.html">Services</a></li>
-              <li><a href="reservation.html">Reservation</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="../../index.php">Home</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="services.php">Services</a></li>
+              <li><a href="reservation.php">Reservation</a></li>
+              <li><a href="contact.php">Contact</a></li>
             </ul>
           </div>
           <div class="links-label">
             <h2>Legal</h2>
             <ul>
-              <li><a href="privacypolicy.html">Privacy Policy</a></li>
-              <li><a href="t&c.html">Terms & Conditions</a></li>
-              <li><a href="rules.html">Rules and Regulations</a></li>
+              <li><a href="privacypolicy.php">Privacy Policy</a></li>
+              <li><a href="t&c.php">Terms & Conditions</a></li>
+              <li><a href="rules.php">Rules and Regulations</a></li>
           </div>
           <div class="newsletter">
             <h2>Newsletter</h2>
@@ -227,7 +203,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     </div>
   </section>
   <!-- end of footer -->
-  <script type="module" src="javascript/event.js"></script>
+  <script type="module" src="../javascript/contact.js"></script>
 </body>
 
 </html>

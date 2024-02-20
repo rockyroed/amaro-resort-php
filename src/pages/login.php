@@ -8,7 +8,7 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
   $_SESSION['email_address'] = $emailaddress;
 
   try {
-    require_once "includes/dbh.inc.php";
+    require_once "../includes/dbh.inc.php";
 
     $query = "SELECT * FROM guests WHERE email_address = ?";
 
@@ -30,7 +30,7 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
         $type = $result["type"];
         $creationdate = $result["creation_date"];
         $_SESSION['guest_id'] = $guest_id;
-        header("Location: index.php");
+        header("Location: ../../index.php");
         die;
       } else {
         $error = "Cannot log in. The password is incorrect. Please try again.";
@@ -53,8 +53,8 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/login.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/login.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Login | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -65,16 +65,16 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
       <div class="nav" id="nav">
         <div class="site-nav">
           <div class="site-name" id="site-name">
-            <a href="index.php" id="navlogo">
+            <a href="../../index.php" id="navlogo">
               <img
-                src="css/page-images/AmaroResort.png"
+                src="../css/page-images/AmaroResort.png"
                 alt="logo"
                 class="logo"
               />
             </a>
           </div>
           <div class="nav-bar" id="navbar">
-            <a class="navBar" href="index.php"> Home </a>
+            <a class="navBar" href="../../index.php"> Home </a>
             <a class="navBar" href="about.html"> About </a>
             <a class="navBar" href="services.html"> Services </a>
             <a class="navBar" href="reservation.html"> Reservation </a>
@@ -98,8 +98,8 @@ if (isset($_POST["emailaddress"]) && isset($_POST["password"])) {
     <div class="left-side">
       <div class="left-container">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <h1>Login to your Account</h1>

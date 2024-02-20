@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 
 if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   $isLoggedIn = true;
@@ -32,7 +32,7 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
   $emailaddress = $_POST["EmailAddress"];
 
   try {
-    require_once "includes/dbh.inc.php";
+    require_once "../includes/dbh.inc.php";
 
     $query = "UPDATE guests SET first_name = ?, middle_name = ?, last_name = ?, phone_number = ?, email_address = ? WHERE guest_id = ?";
 
@@ -51,7 +51,8 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
       $type = $result["type"];
       $creationdate = $result["creation_date"];
       $_SESSION['guest_id'] = $guest_id;
-      header("Location: index.php");
+      // TODO: check if this still works
+      header("Location: ../../index.php");
       die;
     } else {
       $error = "Cannot log in. The user is not existing or the password is incorrect. Please try again.";
@@ -70,7 +71,7 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/account.css" />
+  <link rel="stylesheet" href="../css/account.css" />
   <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
   <title>Account | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
@@ -82,12 +83,12 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <a class="navBar" href="reservation.php"> Reservation </a>
@@ -250,7 +251,7 @@ if ((isset($_POST["FirstName"]) && (isset($_POST["MiddleName"])) && (isset($_POS
     </div>
   </section>
   <!-- end of account -->
-  <script type="module" src="./javascript/account.js"></script>
+  <script type="module" src="../javascript/account.js"></script>
 </body>
 
 </html>

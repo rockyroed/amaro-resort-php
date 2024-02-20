@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 
 if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   $isLoggedIn = true;
@@ -159,8 +159,8 @@ if ($paymentMethod == "MasterCard") {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/details.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/details.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Reservation Details | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -171,12 +171,12 @@ if ($paymentMethod == "MasterCard") {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -497,7 +497,7 @@ if ($paymentMethod == "MasterCard") {
       </div>
   </section>
   <!-- end of booking summary -->
-  <script type="module" src="javascript/details.js"></script>
+  <script type="module" src="../javascript/details.js"></script>
 </body>
 
 </html>

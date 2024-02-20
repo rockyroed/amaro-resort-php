@@ -13,8 +13,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/hotelroom.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/hotelroom.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Hotel Room | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -25,12 +25,12 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -169,8 +169,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="ftr-container">
       <div class="ftr-content">
         <div class="ftr-left">
-          <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+          <a href="../../index.php" id="footerLogo">
+            <img src="../assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -194,7 +194,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           <div class="links-label">
             <h2>Links</h2>
             <ul>
-              <li><a href="index.php">Home</a></li>
+              <li><a href="../../index.php">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="services.html">Services</a></li>
               <li><a href="reservation.html">Reservation</a></li>
@@ -227,7 +227,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     </div>
   </section>
   <!-- end of footer -->
-  <script type="module" src="javascript/hotelroom.js"></script>
+  <script type="module" src="../javascript/hotelroom.js"></script>
 </body>
 
 </html>

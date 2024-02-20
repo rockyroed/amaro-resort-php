@@ -5,7 +5,6 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 } else {
   $isLoggedIn = false;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +13,9 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/services.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-  <title>Services | Amaro Resort</title>
+  <link rel="stylesheet" href="../css/about.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
+  <title>About | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 
@@ -26,12 +25,12 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -85,124 +84,79 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="header-container">
       <div class="header-content">
         <h1>
-          Exquisite Offerings: <br>
-          Discover Our Resort's Services and Amenities
+          Unveiling Our Resort: <br />
+          Background, Mission, Vision, and FAQs
         </h1>
       </div>
     </div>
   </section>
   <!-- end of header -->
 
-  <!-- start of services -->
-  <section id="services">
-    <div class="svc-container">
-      <span class="section-name">OUR SERVICES</span>
-      <span class="section-phrase">Experience Our Exceptional Services</span>
-      <div class="svc-options">
-        <div class="svc-type">
-          <div class="swim-img-container"></div>
-          <div class="svctype-desc">
-            <h1 class="svc-title">Swimming</h1>
-            <p class="svc-desc">
-              Experience aquatic bliss with our comprehensive swimming services, where
-              skilled instructors offer tailored lessons for all skill levels, from beginners to
-              advanced swimmers, in our family-friendly pools and lap pool.
-            </p>
-          </div>
-          <a href="swimming.php" id="swimBook">
-            <button type="button" class="svc-btn">VIEW DETAILS</button>
-          </a>
-        </div>
-
-        <div class="svc-type">
-          <div class="room-img-container"></div>
-          <div class="svctype-desc">
-            <h1 class="svc-title">Hotel Room</h1>
-            <p class="svc-desc">
-              Step into our inviting hotel room, where tasteful decor, a peaceful
-              ambiance, and plush bedding await to provide the perfect retreat after a
-              day of travel or exploration, ensuring you wake up refreshed and ready for
-              new adventures.
-            </p>
-          </div>
-          <a href="hotelroom.php" id="roomBook">
-            <button type="button" class="svc-btn">VIEW DETAILS</button>
-          </a>
-        </div>
-
-        <div class="svc-type">
-          <div class="event-img-container"></div>
-          <div class="svctype-desc">
-            <h1 class="svc-title">Event</h1>
-            <p class="svc-desc">
-              Our hotel provides versatile event spaces and attentive event planning
-              services for intimate celebrations, corporate gatherings, weddings,
-              anniversaries, and professional conferences, ensuring a seamless and
-              memorable event while we take care of the details.
-            </p>
-          </div>
-          <a href="event.php" id="eventBook">
-            <button type="button" class="svc-btn">VIEW DETAILS</button>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- end of services -->
-
-  <!-- start of amenities -->
-  <section id="amenities">
-    <div class="amenities-container">
-      <span class="section-name">AMENITIES</span>
+  <!-- start of background -->
+  <section id="background">
+    <div class="background-container">
+      <span class="section-name">BACKGROUND</span>
       <span class="section-phrase">
-        Experience the Exceptional Amenities at Amaro Resort </span>
-      <div class="amenities-content">
-        <div class="categories">
-          <h2>Swimming Pool</h2>
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area11"></div>
-            </div>
+        Amaro Resort's Captivating Origins and Legacy
+      </span>
+      <div class="background-content">
+        <p>
+          Escape to Amaro Resort, your affordable quick getaway in Metro Manila.
+          Nestled in the captivating landscapes of Valenzuela, Philippines, this
+          enchanting retreat offers a harmonious blend of modern luxury and
+          traditional Filipino aesthetics, providing a haven of comfort and cultural
+          authenticity. Indulge in the mesmerizing infinity pool, explore guided hikes
+          to hidden waterfalls, and savor delectable fusion cuisine that celebrates the
+          region's rich heritage. With a commitment to sustainability and community
+          engagement, Amaro Resort ensures responsible tourism and preserves the
+          natural beauty of Valenzuela for generations to come, creating an
+          unforgettable and enriching experience for all.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- end of background -->
 
-            <div class="facilities">
-              <div class="amenities-area12"></div>
-            </div>
-          </div>
+  <!-- start of mission and vision -->
+  <section id="missionVision">
+    <div class="mv-container">
+      <div class="mv-content">
+        <div class="mission">
+          <h2>Our Mission</h2>
+          <p>
+            At Amaro Resort, our mission is to offer guests a serene haven where they
+            can embrace nature's beauty and experience authentic Filipino hospitality.
+            Through sustainable practices and community engagement, we aim to
+            protect Valenzuela's natural wonders and make a positive impact on both
+            the environment and the local community.
+          </p>
         </div>
-
-        <div class="categories">
-          <h2>Outdoor View</h2>
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area21"></div>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area22"></div>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area23"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="categories">
-          <h2>Dining Area</h2>
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area31"></div>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area32"></div>
-            </div>
-          </div>
+        <div class="vision">
+          <h2>Our Vision</h2>
+          <p>
+            At Amaro Resort, our vision is to become Valenzuela's premier eco-friendly
+            destination, celebrated for offering a harmonious experience with nature
+            and genuine cultural authenticity. Through responsible and ethical practices,
+            we aim to inspire guests and stakeholders to cherish the environment and
+            embrace a profound connection with the rich heritage of the Philippines.
+          </p>
         </div>
       </div>
     </div>
   </section>
-  <!-- end of amenities -->
+  <!-- end of mission and vision -->
+
+  <!-- start of FAQs -->
+  <!-- <section id="faqs">
+      <div class="faqs-container">
+        <span class="section-name">Frequently Asked Questions (FAQs)</span>
+        <span class="section-phrase">
+          Amaro Resort FAQs and Essential Information
+        </span>
+        <div class="faqs-content"></div>
+      </div>
+    </section> -->
+  <!-- end of FAQs -->
 
   <!-- start of CTA -->
   <section id="cta">
@@ -237,8 +191,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="ftr-container">
       <div class="ftr-content">
         <div class="ftr-left">
-          <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+          <a href="../../index.php" id="footerLogo">
+            <img src="../assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -262,7 +216,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           <div class="links-label">
             <h2>Links</h2>
             <ul>
-              <li><a href="index.php">Home</a></li>
+              <li><a href="../../index.php">Home</a></li>
               <li><a href="about.php">About</a></li>
               <li><a href="services.php">Services</a></li>
               <li><a href="reservation.php">Reservation</a></li>
@@ -295,7 +249,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     </div>
   </section>
   <!-- end of footer -->
-  <script type="module" src="javascript/services.js"></script>
+  <script type="module" src="../javascript/about.js"></script>
 </body>
 
 </html>

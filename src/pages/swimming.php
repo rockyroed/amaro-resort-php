@@ -13,9 +13,9 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/about.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-  <title>About | Amaro Resort</title>
+  <link rel="stylesheet" href="../css/swimming.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
+  <title>Swimming | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 
@@ -25,12 +25,12 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -79,84 +79,121 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   </section>
   <!-- end of nav -->
 
-  <!-- start of header -->
-  <section id="header">
-    <div class="header-container">
-      <div class="header-content">
-        <h1>
-          Unveiling Our Resort: <br />
-          Background, Mission, Vision, and FAQs
-        </h1>
-      </div>
-    </div>
-  </section>
-  <!-- end of header -->
+  <!-- start of swimming rates -->
+  <section id="swimRates">
+    <div class="rates-container">
+      <span class="section-phrase">Swimming Rates</span>
+      <div class="swim-rates-container">
+        <div class="left-img">
 
-  <!-- start of background -->
-  <section id="background">
-    <div class="background-container">
-      <span class="section-name">BACKGROUND</span>
-      <span class="section-phrase">
-        Amaro Resort's Captivating Origins and Legacy
-      </span>
-      <div class="background-content">
-        <p>
-          Escape to Amaro Resort, your affordable quick getaway in Metro Manila.
-          Nestled in the captivating landscapes of Valenzuela, Philippines, this
-          enchanting retreat offers a harmonious blend of modern luxury and
-          traditional Filipino aesthetics, providing a haven of comfort and cultural
-          authenticity. Indulge in the mesmerizing infinity pool, explore guided hikes
-          to hidden waterfalls, and savor delectable fusion cuisine that celebrates the
-          region's rich heritage. With a commitment to sustainability and community
-          engagement, Amaro Resort ensures responsible tourism and preserves the
-          natural beauty of Valenzuela for generations to come, creating an
-          unforgettable and enriching experience for all.
-        </p>
-      </div>
-    </div>
-  </section>
-  <!-- end of background -->
-
-  <!-- start of mission and vision -->
-  <section id="missionVision">
-    <div class="mv-container">
-      <div class="mv-content">
-        <div class="mission">
-          <h2>Our Mission</h2>
-          <p>
-            At Amaro Resort, our mission is to offer guests a serene haven where they
-            can embrace nature's beauty and experience authentic Filipino hospitality.
-            Through sustainable practices and community engagement, we aim to
-            protect Valenzuela's natural wonders and make a positive impact on both
-            the environment and the local community.
-          </p>
         </div>
-        <div class="vision">
-          <h2>Our Vision</h2>
-          <p>
-            At Amaro Resort, our vision is to become Valenzuela's premier eco-friendly
-            destination, celebrated for offering a harmonious experience with nature
-            and genuine cultural authenticity. Through responsible and ethical practices,
-            we aim to inspire guests and stakeholders to cherish the environment and
-            embrace a profound connection with the rich heritage of the Philippines.
-          </p>
+        <div class="right-details">
+          <h2> Entrance Fee </h2>
+          <h3> DAY (8:00 AM - 5:00 PM) </h3>
+          <ul>
+            <li>Above 4ft: ₱280.00</li>
+            <li>Below 4ft up to 1 year old: ₱250.00</li>
+            <li>Senior Citizen/PWD (with presented ID): ₱224.00</li>
+          </ul>
+
+          <h3> NIGHT (7:00 PM - 4:00 AM) </h3>
+          <ul>
+            <li>Above 4ft: ₱300.00</li>
+            <li>Below 4ft up to 1 year old: ₱250.00</li>
+            <li>Senior Citizen/PWD (with presented ID): ₱240.00</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
-  <!-- end of mission and vision -->
+  <!-- end of swimming rates -->
 
-  <!-- start of FAQs -->
-  <!-- <section id="faqs">
-      <div class="faqs-container">
-        <span class="section-name">Frequently Asked Questions (FAQs)</span>
-        <span class="section-phrase">
-          Amaro Resort FAQs and Essential Information
-        </span>
-        <div class="faqs-content"></div>
+  <!-- start of amenities -->
+  <section id="amenities">
+    <div class="amenities-container">
+      <span class="section-phrase"> Cottages </span>
+      <div class="amenities-content">
+        <div class="categories">
+          <div class="amenities-image-container">
+            <div class="facilities">
+              <div class="amenities-area11"></div>
+              <div class="cottage-price">
+                <h3> Canopy </h3>
+                <h2>₱1,000.00</h2>
+              </div>
+              <p> 5-10 pax </p>
+            </div>
+
+            <div class="facilities">
+              <div class="amenities-area12"></div>
+              <div class="cottage-price">
+                <h3> Trellis 1 </h3>
+                <h2>₱1,500.00</h2>
+              </div>
+              <p> 10-15 pax </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="categories">
+          <div class="amenities-image-container">
+            <div class="facilities">
+              <div class="amenities-area21"></div>
+              <div class="cottage-price">
+                <h3> Trellis 2 </h3>
+                <h2>₱2,000.00</h2>
+              </div>
+              <p> 15-20 pax </p>
+            </div>
+
+            <div class="facilities">
+              <div class="amenities-area22"></div>
+              <div class="cottage-price">
+                <h3> Kubo </h3>
+                <h2>₱1,200.00</h2>
+              </div>
+              <p> 5-10 pax </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="categories">
+          <div class="amenities-image-container">
+            <div class="facilities">
+              <div class="amenities-area31"></div>
+              <div class="cottage-price">
+                <h3> Pavilion 1 </h3>
+                <h2>₱7,500.00</h2>
+              </div>
+              <p> 50 pax </p>
+            </div>
+
+            <div class="facilities">
+              <div class="amenities-area32"></div>
+              <div class="cottage-price">
+                <h3> Pavilion 2 </h3>
+                <h2>₱8,500.00</h2>
+              </div>
+              <p> 65 pax </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="categories">
+          <div class="amenities-image-container">
+            <div class="facilities">
+              <div class="amenities-area41"></div>
+              <div class="cottage-price">
+                <h3> Pavilion 3 </h3>
+                <h2>₱9,500.00</h2>
+              </div>
+              <p> 100 pax </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </section> -->
-  <!-- end of FAQs -->
+  </section>
+  <!-- end of amenities -->
 
   <!-- start of CTA -->
   <section id="cta">
@@ -191,8 +228,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="ftr-container">
       <div class="ftr-content">
         <div class="ftr-left">
-          <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+          <a href="../../index.php" id="footerLogo">
+            <img src="../assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -216,19 +253,19 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           <div class="links-label">
             <h2>Links</h2>
             <ul>
-              <li><a href="index.php">Home</a></li>
-              <li><a href="about.php">About</a></li>
-              <li><a href="services.php">Services</a></li>
-              <li><a href="reservation.php">Reservation</a></li>
-              <li><a href="contact.php">Contact</a></li>
+              <li><a href="../../index.php">Home</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="reservation.html">Reservation</a></li>
+              <li><a href="contact.html">Contact</a></li>
             </ul>
           </div>
           <div class="links-label">
             <h2>Legal</h2>
             <ul>
-              <li><a href="privacypolicy.php">Privacy Policy</a></li>
-              <li><a href="t&c.php">Terms & Conditions</a></li>
-              <li><a href="rules.php">Rules and Regulations</a></li>
+              <li><a href="privacypolicy.html">Privacy Policy</a></li>
+              <li><a href="t&c.html">Terms & Conditions</a></li>
+              <li><a href="rules.html">Rules and Regulations</a></li>
           </div>
           <div class="newsletter">
             <h2>Newsletter</h2>
@@ -249,7 +286,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     </div>
   </section>
   <!-- end of footer -->
-  <script type="module" src="javascript/about.js"></script>
+  <script type="module" src="../javascript/swimming.js"></script>
 </body>
 
 </html>

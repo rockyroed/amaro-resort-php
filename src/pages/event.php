@@ -13,9 +13,9 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/swimming.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
-  <title>Swimming | Amaro Resort</title>
+  <link rel="stylesheet" href="../css/event.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
+  <title>Event | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
 
@@ -25,12 +25,12 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
@@ -79,121 +79,61 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   </section>
   <!-- end of nav -->
 
-  <!-- start of swimming rates -->
-  <section id="swimRates">
+  <!-- start of room rates -->
+  <section id="roomRates">
     <div class="rates-container">
-      <span class="section-phrase">Swimming Rates</span>
-      <div class="swim-rates-container">
-        <div class="left-img">
+      <span class="section-phrase">Event Rates</span>
+      <div class="room-rates-container">
+        <div class="left-img-1">
 
         </div>
         <div class="right-details">
-          <h2> Entrance Fee </h2>
-          <h3> DAY (8:00 AM - 5:00 PM) </h3>
+          <div class="room-price">
+            <h2> Function Hall </h2>
+            <p>₱25,000.00</p>
+          </div>
+
+          <div class="inclusions">
+            <i class="fas fa-arrow-circle-right"></i>
+            <p class="in-details">70-80 pax</p>
+          </div>
+
+          <span>Additional Information:</span>
           <ul>
-            <li>Above 4ft: ₱280.00</li>
-            <li>Below 4ft up to 1 year old: ₱250.00</li>
-            <li>Senior Citizen/PWD (with presented ID): ₱224.00</li>
+            <li>Standard check in 2:00 PM - 12:00 NN check out</li>
+            <li>Swimming entrance is not included.</li>
           </ul>
 
-          <h3> NIGHT (7:00 PM - 4:00 AM) </h3>
+        </div>
+      </div>
+
+      <div class="room-rates-container">
+        <div class="right-details">
+          <div class="room-price">
+            <h2> Court / Events Place</h2>
+            <p>₱35,000.00</p>
+          </div>
+
+          <div class="inclusions">
+            <i class="fas fa-arrow-circle-right"></i>
+            <p class="in-details">200-250 pax</p>
+          </div>
+
+          <span>Additional Information:</span>
           <ul>
-            <li>Above 4ft: ₱300.00</li>
-            <li>Below 4ft up to 1 year old: ₱250.00</li>
-            <li>Senior Citizen/PWD (with presented ID): ₱240.00</li>
+            <li>Standard check in 2:00 PM - 12:00 NN check out</li>
+            <li>Swimming entrance is not included.</li>
           </ul>
+        </div>
+
+        <div class="left-img-2">
+
         </div>
       </div>
     </div>
   </section>
-  <!-- end of swimming rates -->
+  <!-- end of room rates -->
 
-  <!-- start of amenities -->
-  <section id="amenities">
-    <div class="amenities-container">
-      <span class="section-phrase"> Cottages </span>
-      <div class="amenities-content">
-        <div class="categories">
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area11"></div>
-              <div class="cottage-price">
-                <h3> Canopy </h3>
-                <h2>₱1,000.00</h2>
-              </div>
-              <p> 5-10 pax </p>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area12"></div>
-              <div class="cottage-price">
-                <h3> Trellis 1 </h3>
-                <h2>₱1,500.00</h2>
-              </div>
-              <p> 10-15 pax </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="categories">
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area21"></div>
-              <div class="cottage-price">
-                <h3> Trellis 2 </h3>
-                <h2>₱2,000.00</h2>
-              </div>
-              <p> 15-20 pax </p>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area22"></div>
-              <div class="cottage-price">
-                <h3> Kubo </h3>
-                <h2>₱1,200.00</h2>
-              </div>
-              <p> 5-10 pax </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="categories">
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area31"></div>
-              <div class="cottage-price">
-                <h3> Pavilion 1 </h3>
-                <h2>₱7,500.00</h2>
-              </div>
-              <p> 50 pax </p>
-            </div>
-
-            <div class="facilities">
-              <div class="amenities-area32"></div>
-              <div class="cottage-price">
-                <h3> Pavilion 2 </h3>
-                <h2>₱8,500.00</h2>
-              </div>
-              <p> 65 pax </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="categories">
-          <div class="amenities-image-container">
-            <div class="facilities">
-              <div class="amenities-area41"></div>
-              <div class="cottage-price">
-                <h3> Pavilion 3 </h3>
-                <h2>₱9,500.00</h2>
-              </div>
-              <p> 100 pax </p>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
-  <!-- end of amenities -->
 
   <!-- start of CTA -->
   <section id="cta">
@@ -223,13 +163,14 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   </section>
   <!-- end of CTA -->
 
+
   <!-- start of footer -->
   <section id="footer">
     <div class="ftr-container">
       <div class="ftr-content">
         <div class="ftr-left">
-          <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+          <a href="../../index.php" id="footerLogo">
+            <img src="../assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -253,7 +194,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           <div class="links-label">
             <h2>Links</h2>
             <ul>
-              <li><a href="index.php">Home</a></li>
+              <li><a href="../../index.php">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="services.html">Services</a></li>
               <li><a href="reservation.html">Reservation</a></li>
@@ -286,7 +227,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
     </div>
   </section>
   <!-- end of footer -->
-  <script type="module" src="javascript/swimming.js"></script>
+  <script type="module" src="../javascript/event.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 $type = $_SESSION["Type"];
 
 $type = strtoupper($type);
@@ -132,8 +132,8 @@ if($type == "SWIMMING") {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bookingdetails.css" />
-    <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+    <link rel="stylesheet" href="../css/bookingdetails.css" />
+    <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
     <title>Reservation Details | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
@@ -145,7 +145,7 @@ if($type == "SWIMMING") {
     <section id="reservation">
       <div class="right-book">
         <div class="right-container">
-          <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           <span class="section-name"><?php echo $type.' '.'RESERVATION'?></span>
           <?php if($type == "SWIMMING"): ?>
           <div class="form-container">
@@ -460,7 +460,7 @@ if($type == "SWIMMING") {
               </div>
 
               <div class="cta-buttons">
-                <a href="index.php" id="cancelButton">
+                <a href="../../index.php" id="cancelButton">
                   <button type="button" class="secondary-btn">CANCEL</button>
                 </a>
                 <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
@@ -586,7 +586,7 @@ if($type == "SWIMMING") {
               </div>
 
               <div class="cta-buttons">
-                <a href="index.php" id="cancelButton">
+                <a href="../../index.php" id="cancelButton">
                   <button type="button" class="secondary-btn">CANCEL</button>
                 </a>
                 <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
@@ -663,5 +663,5 @@ if($type == "SWIMMING") {
             });
         });
   </script>
-  <script src="script.js"></script>
+  <script src="../../script.js"></script>
 </html>

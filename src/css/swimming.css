@@ -130,13 +130,6 @@ body {
 
     }
 
-    #menu-icon {
-        color: var(--bg-color);
-        font-size: 24px;
-        z-index: 100001;
-        cursor: pointer;
-        display: none;
-    }
 
     @media(max-width: 700px) {
       .site-nav {
@@ -160,11 +153,6 @@ body {
         }
 
     }
-
-
-        #menu-icon {
-            display: inline-block;
-        }
         .head-top a {
            display: none;
     
@@ -183,7 +171,7 @@ body {
 }
 
 /*swimming rates*/
-#roomRates {
+#swimRates {
     display: flex;
     margin: 50px;
 }
@@ -199,7 +187,7 @@ body {
     margin-bottom: 20px;
 }
   
-.room-rates-container {
+.swim-rates-container {
     width: 92%;
     display: flex;
     flex-direction: row;
@@ -207,14 +195,9 @@ body {
     margin: 20px;
     box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.30);
 
-    .left-img-1 {
+    .left-img {
         width: 50%;
-        background: url("page-images/coupleroom.jpg") center/cover no-repeat;
-    }
-
-    .left-img-2 {
-        width: 50%;
-        background: url("page-images/familyroom.jpg") center/cover no-repeat;
+        background: url("page-images/swimpool.jpg") center/cover no-repeat;
     }
 
     .right-details {
@@ -224,34 +207,12 @@ body {
         padding: 20px;
     }
 
-    .room-price {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .room-price p {
-        font-size: 20px;
-        font-weight: 700;
-        color: var(--main-text-clr);
-    }
-
-    .inclusions {
-        display: flex;
-        margin-bottom: 20px;
-    }
-
-    .fa-arrow-circle-right {
-        font-size: 25px;
-        color: var(--accent-clr);
-        margin-right: 10px;
-    }
-
     .right-details h2 {
         margin-bottom: 10px;
     }
 
-    .right-details span {
-        font-weight: 600;
+    .right-details h3 {
+        font-style: italic;
     }
 
     .right-details ul {
@@ -301,7 +262,7 @@ body {
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area11.jpg");
+  background: url("page-images/canopy.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -313,7 +274,7 @@ body {
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area12.jpg");
+  background: url("page-images/trellis-15.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -325,7 +286,7 @@ body {
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area21.jpg");
+  background: url("page-images/trellis-20.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -337,14 +298,14 @@ body {
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area22.jpg");
+  background: url("page-images/kubo.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
 }
 
-.amenities-area23 {
+/* .amenities-area23 {
   width: 100%;
   height: 400px;
   margin-bottom: 10px;
@@ -354,14 +315,14 @@ body {
   background-position: center center;
   background-size: cover;
   box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .amenities-area31 {
   width: 100%;
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area31.jpg");
+  background: url("page-images/pav-1.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -373,7 +334,19 @@ body {
   height: 400px;
   margin-bottom: 10px;
   border-radius: 10px;
-  background: url("page-images/area32.jpg");
+  background: url("page-images/pav-2.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
+}
+
+.amenities-area41 {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: url("page-images/pav-3.jpg");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -413,7 +386,7 @@ body {
 #cta {
   .cta-bg {
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url("/images/ctabg.png") center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url("../assets/ctabg.png") center/cover no-repeat;
     min-height: 500px;
     color: #fff;
     padding: 50px 30px 30px 30px;

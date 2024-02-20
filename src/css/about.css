@@ -130,6 +130,16 @@ body {
 
     }
 
+    .mobile-button {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-menu {
+      display: none;
+    }
 
     @media(max-width: 700px) {
       .site-nav {
@@ -153,6 +163,7 @@ body {
         }
 
     }
+
         .head-top a {
            display: none;
     
@@ -170,13 +181,123 @@ body {
     } 
 }
 
-/*swimming rates*/
-#swimRates {
+/*header*/
+#header {
+  .header-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url("page-images/AboutBG.png") center/cover no-repeat;
+    min-height: 50vh;
+    color: #fff;
+    padding: 50px;
     display: flex;
-    margin: 50px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .header-content {
+    align-content: center;
+    justify-content: center;
+  }
+
+  .header-content h1 {
+    text-align: center;
+    align-content: center;
+    color: #FFF;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
-  
-.rates-container {
+
+/*background*/
+#background {
+  display: flex;
+  margin: 30px 50px 50px 50px;
+}
+
+.background-container {
+  width: 100%;
+  height: auto;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.background-content {
+  margin: 20px auto 20px auto;
+}
+
+.background-content p {
+  color: #000;
+  text-align: justify;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+}
+
+/*mission and vision*/
+#missionVision {
+  display: flex;
+  margin: 0 50px 50px 50px;
+}
+
+.mv-container {
+  width: 100%;
+  height: auto;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding: 0 50px 50px 50px;
+}
+
+.mv-content {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.mv-content h2 {
+  margin-bottom: 20px;
+}
+
+.mv-content p {
+  text-align: center;
+  width: 100%;
+}
+
+.mission {
+  border-radius: 5px;
+  background: var(--background-clr);
+  padding: 50px;
+  text-align: center;
+}
+
+.vision {
+  border-radius: 5px;
+  background: var(--background-clr);
+  padding: 50px;
+  text-align: center;
+}
+
+@media(max-width: 700px) {
+  .background-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .mv-container {
     width: 100%;
     height: auto;
     color: #000;
@@ -185,208 +306,44 @@ body {
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
-}
+    padding: 0;
+  }
   
-.swim-rates-container {
-    width: 92%;
+  .mv-content {
     display: flex;
-    flex-direction: row;
-    justify-items: center;
-    margin: 20px;
-    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.30);
-
-    .left-img {
-        width: 50%;
-        background: url("page-images/swimpool.jpg") center/cover no-repeat;
-    }
-
-    .right-details {
-        width: 50%;
-        height:auto;
-        background: var(--background-clr);
-        padding: 20px;
-    }
-
-    .right-details h2 {
-        margin-bottom: 10px;
-    }
-
-    .right-details h3 {
-        font-style: italic;
-    }
-
-    .right-details ul {
-        margin-left: 40px;
-        margin-bottom: 20px;
-    }
-
-    .right-details ul li {
-        margin: 10px;
-    }
+    flex-direction: column;
+    gap: 30px;
+  }
 }
 
-/*amenities*/
-#amenities {
+/*FAQ*/
+#faqs {
   display: flex;
   margin: 0 50px 50px 50px;
 }
 
- .amenities-container {
+.faqs-container {
   width: 100%;
   height: auto;
   color: #000;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
   padding-left: 50px;
   padding-right: 50px;
 }
 
-.amenities-content {
-  margin: 0px 0 20px 0;
+.faqs-content {
+  margin: 20px auto 20px auto;
 }
-
-.amenities-image-container {
-  display: flex;
-  gap: 30px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
-.facilities {
-  width: 100%;
-}
-
-.amenities-area11 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/canopy.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.amenities-area12 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/trellis-15.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.amenities-area21 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/trellis-20.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.amenities-area22 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/kubo.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-/* .amenities-area23 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/area23.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-} */
-
-.amenities-area31 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/pav-1.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.amenities-area32 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/pav-2.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.amenities-area41 {
-  width: 100%;
-  height: 400px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  background: url("page-images/pav-3.jpg");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.3);
-}
-
-.cottage-price {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.facilities h3 {
-    text-align: left;
-    margin: 10px 0 0 0;
-} 
-
-.facilities h2{
-    color: var(--main-text-clr);
-}
-
-.facilities p {
-  text-align: left;
-  font-style: italic;
-}
-
-@media(max-width: 700px) {
-  .amenities-image-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-}
-
 
 /*CTA*/
 #cta {
   .cta-bg {
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url("/images/ctabg.png") center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.0)), url("../assets/ctabg.png") center/cover no-repeat;
     min-height: 500px;
     color: #fff;
     padding: 50px 30px 30px 30px;
@@ -439,7 +396,7 @@ body {
     background: transparent;
     padding: 10px 20px;
     background: var(--primary-button-clr);
-    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.3);
+    box-shadow: 0px 4px 30px 0px rgba(12, 54, 14, 0.5);
     color: #fff;
     cursor: pointer;
     width: 250px;
@@ -694,18 +651,6 @@ body {
       margin: 0 auto;
     }
   }
-}
-
-
-.mobile-button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-menu {
-  display: none;
 }
 
 .account-menu {

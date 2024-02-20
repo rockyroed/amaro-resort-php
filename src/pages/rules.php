@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/rules.css" />
-    <link rel="icon" href="css/page-images/TabLogo.png" type="image/png"/>
+    <link rel="stylesheet" href="../css/rules.css" />
+    <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png"/>
     <title>Rules | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
@@ -18,10 +18,10 @@
       <div class="nav" id="nav">
         <div class="site-nav">
           <div class="site-name" id="site-name">
-            <img src="css/page-images/AmaroResort.png" alt="logo" class="logo" />
+            <img src="../css/page-images/AmaroResort.png" alt="logo" class="logo" />
           </div>
           <div class="nav-bar" id="navbar">
-            <a class="navBar" href="index.php"> Home </a>
+            <a class="navBar" href="../../index.php"> Home </a>
             <a class="navBar" href="about.html"> About </a>
             <a class="navBar" href="services.html"> Services </a>
             <a class="navBar" href="reservation.html"> Reservation </a>
@@ -150,7 +150,7 @@
       <div class="ftr-container">
         <div class="ftr-content">
           <div class="ftr-left">
-            <img src="css/page-images/FooterLogo.png" alt="logo" class="ftr-logo" />
+            <img src="../css/page-images/FooterLogo.png" alt="logo" class="ftr-logo" />
             <p class="cta-text">
               Book your unforgettable getaway now and experience the ultimate
               relaxation at our resort!
@@ -173,7 +173,7 @@
             <div class="links-label">
               <h2>Links</h2>
               <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../../index.php">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="reservation.html">Reservation</a></li>

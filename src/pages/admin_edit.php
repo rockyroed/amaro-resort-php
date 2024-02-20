@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 
 if (isset($_SESSION['admin_emailaddress']) && !empty($_SESSION['admin_emailaddress'])) {
   $admin_email = $_SESSION['admin_emailaddress'];
@@ -109,8 +109,8 @@ if (isset($_POST['status'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/admin.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Edit View | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -121,7 +121,7 @@ if (isset($_POST['status'])) {
     <div class="admin-container">
       <div class="side-nav">
         <div class="site-logo">
-          <img src="css/page-images/AmaroResort.png" alt="logo" class="logo" />
+          <img src="../css/page-images/AmaroResort.png" alt="logo" class="logo" />
         </div>
 
         <div class="account">
@@ -242,7 +242,7 @@ if (isset($_POST['status'])) {
     </div>
   </section>
   <!-- end of admin   -->
-  <script type="module" src="../amaro-resort-v2/javascript/admin.js"></script>
+  <script type="module" src="../javascript/admin.js"></script>
 </body>
 
 </html>

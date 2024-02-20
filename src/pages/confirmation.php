@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 
 if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
   $isLoggedIn = true;
@@ -41,8 +41,8 @@ if ($type == "Event") {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/confirmation.css" />
-  <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="../css/confirmation.css" />
+  <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
   <title>Confirmation | Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -53,12 +53,12 @@ if ($type == "Event") {
     <div class="nav" id="nav">
       <div class="site-nav">
         <div class="site-name" id="site-name">
-          <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <a href="../../index.php" id="navlogo">
+            <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
-          <a class="navBar" href="index.php"> Home </a>
+          <a class="navBar" href="../../index.php"> Home </a>
           <a class="navBar" href="about.php"> About </a>
           <a class="navBar" href="services.php"> Services </a>
           <a class="navBar" href="reservation.php"> Reservation </a>
@@ -197,7 +197,7 @@ if ($type == "Event") {
 
       </div>
       <div class="cta-buttons">
-        <a href="index.php" id="backToHome">
+        <a href="../../index.php" id="backToHome">
           <button type="button" class="secondary-btn">GO TO HOME</button>
         </a>
         <a href="reservation.php" id="backToHome">
@@ -208,7 +208,7 @@ if ($type == "Event") {
     </div>
   </section>
   <!-- end of booking summary -->
-  <script type="module" src="javascript/confirmation.js"></script>
+  <script type="module" src="../javascript/confirmation.js"></script>
 </body>
 
 </html>

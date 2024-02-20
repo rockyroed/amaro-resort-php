@@ -51,8 +51,8 @@ $type = strtoupper($type);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/paymentdetails.css" />
-    <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+    <link rel="stylesheet" href="../css/paymentdetails.css" />
+    <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
     <title>Payment Details | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
@@ -63,7 +63,7 @@ $type = strtoupper($type);
     <section id="reservation">
       <div class="right-book">
         <div class="right-container">
-          <img src="images/AmaroResort.png" alt="logo" class="logo" />
+          <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
           <span class="section-name"><?php echo $type.' '.'RESERVATION'?></span>
           <div class="form-container">
             <header>Payment Method</header>
@@ -75,21 +75,21 @@ $type = strtoupper($type);
               <div class="payment--options">
                 <button class="payment" name="paypal" type="button" title="PayPal">
                   <img
-                    src="css/page-images/PayPal.png"
+                    src="../css/page-images/PayPal.png"
                     alt="logo"
                     class="logo"
                   />
                 </button>
                 <button class="payment" name="gcash" type="button" title="GCash">
                   <img
-                    src="css/page-images/GCash.png"
+                    src="../css/page-images/GCash.png"
                     alt="logo"
                     class="logo"
                   />
                 </button>
                 <button class="payment" name="mastercard" type="button" title="Mastercard">
                   <img
-                    src="css/page-images/mastercard.png"
+                    src="../css/page-images/mastercard.png"
                     alt="logo"
                     class="logo"
                   />
@@ -102,7 +102,7 @@ $type = strtoupper($type);
           <!-- Paypal Form -->
           <div class="form-container payment-details hidden">
             <header>
-              <img src="css/page-images/PayPal.png" alt="logo" class="logo" />
+              <img src="../css/page-images/PayPal.png" alt="logo" class="logo" />
             </header>
             <hr class="hz-line" />
             <!-- Form -->
@@ -145,7 +145,7 @@ $type = strtoupper($type);
           <!-- Gcash Form -->
           <div class="form-container payment-details hidden">
             <header>
-              <img src="css/page-images/GCash.png" alt="logo" class="logo" />
+              <img src="../css/page-images/GCash.png" alt="logo" class="logo" />
             </header>
             <hr class="hz-line" />
             <!-- Form -->
@@ -202,7 +202,7 @@ $type = strtoupper($type);
           <div class="form-container payment-details hidden">
             <header>
               <img
-                src="css/page-images/mastercard.png"
+                src="../css/page-images/mastercard.png"
                 alt="logo"
                 class="logo"
               />
@@ -300,6 +300,6 @@ $type = strtoupper($type);
         </div>
       </div>
     </section>
-    <script type="module" src="./javascript/paymentdetails.js"></script>
+    <script type="module" src="../javascript/paymentdetails.js"></script>
   </body>
 </html>

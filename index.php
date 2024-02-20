@@ -14,8 +14,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="images/TabLogo.png" type="image/png" />
+  <link rel="stylesheet" href="./src/css/styles.css" />
+  <link rel="icon" href="./src/assets/TabLogo.png" type="image/png" />
   <title>Amaro Resort</title>
   <script src="https://kit.fontawesome.com/dbed6b6114.js" crossorigin="anonymous"></script>
 </head>
@@ -28,27 +28,27 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
       <div class="site-nav">
         <div class="site-name" id="site-name">
           <a href="index.php" id="navlogo">
-            <img src="images/AmaroResort.png" alt="logo" class="logo" />
+            <img src="./src/assets/AmaroResort.png" alt="logo" class="logo" />
           </a>
         </div>
         <div class="nav-bar" id="navbar">
           <a class="navBar" href="index.php"> Home </a>
-          <a class="navBar" href="about.php"> About </a>
-          <a class="navBar" href="services.php"> Services </a>
+          <a class="navBar" href="./src/pages/about.php"> About </a>
+          <a class="navBar" href="./src/pages/services.php"> Services </a>
           <?php if ($isLoggedIn) : ?>
-            <a class="navBar" href="reservation.php"> Reservation </a>
+            <a class="navBar" href="./src/pages/reservation.php"> Reservation </a>
           <?php else : ?>
-            <a class="navBar" href="login.php"> Reservation </a>
+            <a class="navBar" href="./src/pages/login.php"> Reservation </a>
           <?php endif; ?>
-          <a class="navBar" href="contact.php"> Contact </a>
+          <a class="navBar" href="./src/pages/contact.php"> Contact </a>
         </div>
 
         <?php if ($isLoggedIn) : ?>
-          <a href="reservation.php" id="book-button">
+          <a href="./src/pages/reservation.php" id="book-button">
             <button type="button" class="book-btn">Book Now</button>
           </a>
         <?php else : ?>
-          <a href="login.php" id="book-button">
+          <a href="./src/pages/login.php" id="book-button">
             <button type="button" class="book-btn">Book Now</button>
           </a>
         <?php endif; ?>
@@ -60,7 +60,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
             <?php if ($isLoggedIn) : ?>
               <i class="fas fa-user" id="user" title="Profile"></i>
             <?php else : ?>
-              <a href="login.php">
+              <a href="./src/pages/login.php">
                 <i class="fas fa-sign-in-alt" id="user" title="Log In"></i>
               </a>
             <?php endif; ?>
@@ -73,8 +73,8 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
 
 
         <div class="account-menu" id="account-menu">
-          <a href="account.php"><i class="fas fa-user-edit"></i>Account</a>
-          <a href="logout.php?type=guest"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          <a href="./src/pages/account.php"><i class="fas fa-user-edit"></i>Account</a>
+          <a href="./src/pages/logout.php?type=guest"><i class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
       </div>
       <div class="head-bottom flex">
@@ -85,11 +85,11 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           memorable occasions, and a refreshing swimming pool.
         </p>
         <?php if ($isLoggedIn) : ?>
-          <a href="reservation.php" id="check-menu">
+          <a href="./src/pages/reservation.php" id="check-menu">
             <button type="button" class="head-btn">BOOK NOW</button>
           </a>
         <?php else : ?>
-          <a href="login.php" id="check-menu">
+          <a href="./src/pages/login.php" id="check-menu">
             <button type="button" class="head-btn">BOOK NOW</button>
           </a>
         <?php endif; ?>
@@ -115,7 +115,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
               advanced swimmers, in our family-friendly pools and lap pool.
             </p>
           </div>
-          <a href="swimming.php" id="swimBook">
+          <a href="./src/pages/swimming.php" id="swimBook">
             <button type="button" class="svc-btn">VIEW DETAILS</button>
           </a>
         </div>
@@ -131,7 +131,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
               new adventures.
             </p>
           </div>
-          <a href="hotelroom.php" id="roomBook">
+          <a href="./src/pages/hotelroom.php" id="roomBook">
             <button type="button" class="svc-btn">VIEW DETAILS</button>
           </a>
         </div>
@@ -147,7 +147,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
               memorable event while we take care of the details.
             </p>
           </div>
-          <a href="event.php" id="eventBook">
+          <a href="./src/pages/event.php" id="eventBook">
             <button type="button" class="svc-btn">VIEW DETAILS</button>
           </a>
         </div>
@@ -174,7 +174,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
               where cherished memories are waiting to be created.
             </p>
           </div>
-          <a href="about.php" id="aboutUs">
+          <a href="./src/pages/about.php" id="aboutUs">
             <button type="button" class="abt-btn">KNOW MORE</button>
           </a>
         </div>
@@ -197,7 +197,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
       </span>
       <div class="feedbacks-list">
         <div class="customer">
-          <img src="images/profile-icon.jpg" alt="customer image" />
+          <img src="./src/assets/profile-icon.jpg" alt="customer image" />
 
           <div class="rating">
             <span><i class="fas fa-star" id="star"></i></span>
@@ -216,7 +216,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
         </div>
 
         <div class="customer">
-          <img src="images/profile-icon.jpg" alt="customer image" />
+          <img src="./src/assets/profile-icon.jpg" alt="customer image" />
 
           <div class="rating">
             <span><i class="fas fa-star"></i></span>
@@ -233,7 +233,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
           </p>
         </div>
         <div class="customer">
-          <img src="images/profile-icon.jpg" alt="customer image" />
+          <img src="./src/assets/profile-icon.jpg" alt="customer image" />
 
           <div class="rating">
             <span><i class="fas fa-star"></i></span>
@@ -268,11 +268,11 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
         </div>
         <div class="cta-below">
           <?php if ($isLoggedIn) : ?>
-            <a href="reservation.php" id="cta-button">
+            <a href="./src/pages/reservation.php" id="cta-button">
               <button type="button" class="cta-btn">BOOK NOW</button>
             </a>
           <?php else : ?>
-            <a href="login.php" id="cta-button">
+            <a href="./src/pages/login.php" id="cta-button">
               <button type="button" class="cta-btn">BOOK NOW</button>
             </a>
           <?php endif; ?>
@@ -288,7 +288,7 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
       <div class="ftr-content">
         <div class="ftr-left">
           <a href="index.php" id="footerLogo">
-            <img src="images/FooterLogo.png" alt="logo" class="ftr-logo" />
+            <img src="./src/assets/FooterLogo.png" alt="logo" class="ftr-logo" />
           </a>
           <p class="cta-text">
             Book your unforgettable getaway now and experience the ultimate
@@ -313,18 +313,18 @@ if (isset($_SESSION["email_address"]) && !empty($_SESSION["email_address"])) {
             <h2>Links</h2>
             <ul>
               <li><a href="index.php">Home</a></li>
-              <li><a href="about.php">About</a></li>
-              <li><a href="services.php">Services</a></li>
-              <li><a href="reservation.php">Reservation</a></li>
-              <li><a href="contact.php">Contact</a></li>
+              <li><a href="./src/pages/about.php">About</a></li>
+              <li><a href="./src/pages/services.php">Services</a></li>
+              <li><a href="./src/pages/reservation.php">Reservation</a></li>
+              <li><a href="./src/pages/contact.php">Contact</a></li>
             </ul>
           </div>
           <div class="links-label">
             <h2>Legal</h2>
             <ul>
-              <li><a href="privacypolicy.php">Privacy Policy</a></li>
-              <li><a href="t&c.php">Terms & Conditions</a></li>
-              <li><a href="rules.php">Rules and Regulations</a></li>
+              <li><a href="./src/pages/privacypolicy.php">Privacy Policy</a></li>
+              <li><a href="t&./src/pages/c.php">Terms & Conditions</a></li>
+              <li><a href="./src/pages/rules.php">Rules and Regulations</a></li>
           </div>
           <div class="newsletter">
             <h2>Newsletter</h2>

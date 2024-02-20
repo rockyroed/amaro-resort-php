@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "includes/dbh.inc.php";
+require_once "../includes/dbh.inc.php";
 
   // Guest Details
   if (isset($_SESSION["FirstName"]) && isset($_SESSION["MiddleName"]) && isset($_SESSION["LastName"]) 
@@ -180,8 +180,8 @@ check:
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/bookingsummary.css" />
-    <link rel="icon" href="css/page-images/TabLogo.png" type="image/png" />
+    <link rel="stylesheet" href="../css/bookingsummary.css" />
+    <link rel="icon" href="../css/page-images/TabLogo.png" type="image/png" />
     <title>Reservation Summary | Amaro Resort</title>
     <script
       src="https://kit.fontawesome.com/dbed6b6114.js"
@@ -196,13 +196,13 @@ check:
         <div class="site-nav">
           <div class="site-name" id="site-name">
             <img
-              src="css/page-images/AmaroResort.png"
+              src="../css/page-images/AmaroResort.png"
               alt="logo"
               class="logo"
             />
           </div>
           <div class="nav-bar" id="navbar">
-            <a class="navBar" href="index.php"> Home </a>
+            <a class="navBar" href="../../index.php"> Home </a>
             <a class="navBar" href="about.html"> About </a>
             <a class="navBar" href="services.html"> Services </a>
             <a class="navBar" href="reservation.html"> Reservation </a>
@@ -444,7 +444,7 @@ check:
             <hr class="horizontal-line" />
             
             <div class="cta-buttons">
-              <a href="index.php" id="cancelButton">
+              <a href="../../index.php" id="cancelButton">
                 <button type="button" class="secondary-btn">CANCEL</button>
               </a>
               <form method="post">
