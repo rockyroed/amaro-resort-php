@@ -73,9 +73,9 @@ if (isset($_POST['restype']) && isset($_POST["FirstName"]) && isset($_POST["Midd
         </a>
       </div>
     </div>
-    <div class="right-book hidden" id="right-book">
+    <div class="right-book" id="right-book">
       <div class="right-container">
-        <img src="../assets/AmaroResort.png" alt="logo" class="logo" />
+      <!-- <img src="../assets/logo_white.png" alt="logo" class="logo" /> -->
         <span class="section-name" id="section-name"></span>
         <div class="form-container">
           <header>Guest Details</header>
