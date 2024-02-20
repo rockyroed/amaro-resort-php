@@ -461,14 +461,14 @@ if($type == "SWIMMING") {
               </div>
 
               <div class="cta-buttons">
-                <a href="../../index.php" id="cancelButton">
-                  <button type="button" class="secondary-btn">CANCEL</button>
+                <a href="reservation.php" id="backButton">
+                  <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
+                <!-- <a href="" id="proceedPayment"> -->
                   <button class="primary-btn">
                     PROCEED TO PAYMENT
                   </button>
-                <!-- </a> -->
+                </a>
               </div>
             </form>
             <!-- End of Form -->
@@ -587,14 +587,14 @@ if($type == "SWIMMING") {
               </div>
 
               <div class="cta-buttons">
-                <a href="../../index.php" id="cancelButton">
-                  <button type="button" class="secondary-btn">CANCEL</button>
+                <a href="reservation.php" id="backButton">
+                  <button type="button" class="secondary-btn">BACK</button>
                 </a>
-                <!-- <a href="paymentdetails.html" id="proceedPayment"> -->
+                <!-- <a href="" id="proceedPayment"> -->
                   <button class="primary-btn">
                     PROCEED TO PAYMENT
                   </button>
-                <!-- </a> -->
+                </a>
               </div>
             </form>
             <!-- End of Form -->
