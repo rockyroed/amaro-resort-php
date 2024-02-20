@@ -72,12 +72,12 @@ function calculateSwimTotal(){
   cottageTotal = parseInt(cottagePrice);
   
   totalPax = adultInput + childrenInput + seniorPWDInput;
-  totalCost.textContent = (cottageTotal + adultTotal + childrenTotal + seniorTotal).toFixed(2);
+  totalCost.textContent = "₱" + (cottageTotal + adultTotal + childrenTotal + seniorTotal).toFixed(2);
   downPaymentOriginal = ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
-  downPayment.textContent = downPaymentOriginal.toFixed(2);
+  downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-  tcpost.value = totalCost.textContent;
-  dpPost.value = downPayment.textContent;
+  tcpost.value = totalCost.textContent.replace("₱", "");
+  dpPost.value = downPayment.textContent.replace("₱", "");
   totalPax.value = totalPax;
 }
 
@@ -167,12 +167,12 @@ function computeDays(){
     
       var FinalCost = roomPrice * daysGap;
     
-      totalCost.textContent =  FinalCost.toFixed(2);
+      totalCost.textContent =  "₱" + FinalCost.toFixed(2);
       downPaymentOriginal = FinalCost * 0.2;
-      downPayment.textContent = downPaymentOriginal.toFixed(2);
+      downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-      tcpost.value = totalCost.textContent;
-      dpPost.value = downPayment.textContent;
+      tcpost.value = totalCost.textContent.replace("₱", "");
+      dpPost.value = downPayment.textContent.replace("₱", "");
     }
   
   }
@@ -226,10 +226,10 @@ function greyOutPreviousDateEvent(){
 
     var FinalCost = eventPrice;
     
-    totalCost.textContent = FinalCost.toFixed(2);
+    totalCost.textContent = "₱" + FinalCost.toFixed(2);
     downPaymentOriginal = (FinalCost * 0.2);
-    downPayment.textContent = downPaymentOriginal.toFixed(2);
+    downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-    tcpost.value = totalCost.textContent;
-    dpPost.value = downPayment.textContent;
+    tcpost.value = totalCost.textContent.replace("₱", "");
+    dpPost.value = downPayment.textContent.replace("₱", "");
   }
