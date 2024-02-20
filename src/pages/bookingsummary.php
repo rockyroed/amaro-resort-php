@@ -358,6 +358,7 @@ check:
                 <p><?php echo $eventDate ?></p>
               </div>
             <?php endif; ?>
+            </div>
         
           <div class="details-container">
             <div class="section-title"><h3>Payment Details</h3></div>
@@ -424,7 +425,7 @@ check:
                 </div>
               <?php endif; ?>
               </div>
-          </div>
+        
 
           <div class="details-container">
             <div class="section-title"><h3>Amount</h3></div>
