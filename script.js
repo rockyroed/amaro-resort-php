@@ -76,8 +76,8 @@ function calculateSwimTotal(){
   downPaymentOriginal = ((cottageTotal + adultTotal + childrenTotal + seniorTotal) * 0.2);
   downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-  tcpost.value = totalCost.textContent;
-  dpPost.value = downPayment.textContent;
+  tcpost.value = totalCost.textContent.replace("₱", "");
+  dpPost.value = downPayment.textContent.replace("₱", "");
   totalPax.value = totalPax;
 }
 
@@ -171,8 +171,8 @@ function computeDays(){
       downPaymentOriginal = FinalCost * 0.2;
       downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-      tcpost.value = totalCost.textContent;
-      dpPost.value = downPayment.textContent;
+      tcpost.value = totalCost.textContent.replace("₱", "");
+      dpPost.value = downPayment.textContent.replace("₱", "");
     }
   
   }
@@ -230,6 +230,6 @@ function greyOutPreviousDateEvent(){
     downPaymentOriginal = (FinalCost * 0.2);
     downPayment.textContent = "₱" + downPaymentOriginal.toFixed(2);
 
-    tcpost.value = totalCost.textContent;
-    dpPost.value = downPayment.textContent;
+    tcpost.value = totalCost.textContent.replace("₱", "");
+    dpPost.value = downPayment.textContent.replace("₱", "");
   }
