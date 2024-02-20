@@ -189,7 +189,7 @@ body {
 .left-side {
     position: sticky;
     top: 0;
-    background: var(--background-clr);
+    background: #fff;
     width: 20%;
     height: 85vh;
     display: flex;
@@ -275,7 +275,7 @@ body {
 }
 
 .right-side {
-    background: #fff;
+    background-color: #ebefe9;
     width: 80%;
     height: 85vh;
     overflow-y: scroll;
@@ -458,7 +458,7 @@ body {
   padding-bottom: 12px;
   text-align: left;
   background-color: var(--accent-clr);
-  color: white;
+  color: black;
 }
 
 #booking a {

@@ -234,8 +234,8 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: var(--primary-button-clr);
-    color: white;
+    background-color: var(--accent-clr);
+    color: black;
 }
 
 #bookingList a {

@@ -25,7 +25,7 @@ html {
 
 body {
     line-height: 1.6;
-    background-color: #fff;
+    background-color: #ebefe9;
 }
 
 .section-name {
@@ -62,6 +62,7 @@ body {
 #navBar {
     .nav {
         color: #fff;
+        background-color: #fff;
         padding: 10px 50px 10px 50px;
         display: flex;
         flex-direction: column;
@@ -200,6 +201,7 @@ body {
 }
 
 .booking-summary-container {
+    background-color: #fff;
     width: 80%;
     height: auto;
     border: 2px solid var(--main-text-clr);
