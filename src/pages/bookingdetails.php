@@ -302,14 +302,14 @@ if($type == "SWIMMING") {
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">0</p>
+                <p id="totalCost">₱0.00</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">0</p>
+                <p id="downPayment" name="">₱0.00</p>
               </div>
 
               <div class="cta-buttons">
@@ -450,14 +450,14 @@ if($type == "SWIMMING") {
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">0</p>
+                <p id="totalCost">₱0.00</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">0</p>
+                <p id="downPayment" name="">₱0.00</p>
               </div>
 
               <div class="cta-buttons">
@@ -576,14 +576,14 @@ if($type == "SWIMMING") {
               <div class="input-box">
                 <label for="TotalCost" id="tcostLabel">Total Cost</label>
                 <input class="hidden" id="tcPost" name="totalCost"></input>
-                <p id="totalCost">0</p>
+                <p id="totalCost">₱0.00</p>
               </div>
 
               <!-- Down Payment -->
               <div class="input-box">
                 <label for="DownPayment" id="dpaymentLabel">Down Payment</label>
                 <input class="hidden" id="dpPost" name="downPayment"></input>
-                <p id="downPayment" name="">0</p>
+                <p id="downPayment" name="">₱0.00</p>
               </div>
 
               <div class="cta-buttons">
