@@ -4,10 +4,10 @@ Date Written: July 23, 2023
 Date Revised: February 20, 2024
 
 ### Programmers
-Boyles, Christian Roed P.
-Erandio, Trisha Mae M.
-Francisco, John Rey P.
-Mamansag, John Michael Vincent
+- Boyles, Christian Roed P.
+- Erandio, Trisha Mae M.
+- Francisco, John Rey P.
+- Mamansag, John Michael Vincent
 
 ### Where the program fits in the general system designs
 This system is a comprehensive solution to enhance the guest experience and streamline the reservation process within the hospitality industry. It integrates various subsystems and functionalities, including accommodation booking, activity scheduling, event planning, and secure payment processing, into a cohesive and user-friendly online platform.
